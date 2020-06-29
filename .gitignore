@@ -1,2 +1,10 @@
 /portfolio/src/main/webapp/node_modules
 /portfolio/src/main/webapp/dist
+/portfolio/target/portfolio-1/node_modules
+/portfolio/target/portfolio-1/node_modules/
+/portfolio/target/portfolio-1/.cache
+/portfolio/target/portfolio-1/.cache/
+/portfolio/src/main/webapp/.cache/
+/portfolio/src/main/webapp/.cache
+portfolio/src/main/webapp/script
+portfolio/target/portfolio-1/script*

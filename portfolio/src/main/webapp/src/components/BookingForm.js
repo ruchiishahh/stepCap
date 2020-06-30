@@ -1,75 +1,95 @@
-import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { Component } from "react";
+import Button from "@material-ui/core/Button";
 
-export default class BookingForm extends React.Component{
-    state = {
-        bookingName: '',
-        bookingDate: '',
-        bookingDuration: '',
-        bookingDescription: '',
-        bookingPrice: '',
-    }
-
-    change = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })    
+export default class BookingForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      bookingName: "",
+      bookingDate: "",
+      bookingDuration: "",
+      bookingDescription: "",
+      bookingPrice: "",
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-    onSubmit = () => {
-        console.log(this.state);
-    };
+  handleChange(event) {
+    const { name, value, type, checked } = event.target;
+    type === "checkbox"
+      ? this.setState({
+          [name]: checked,
+        })
+      : this.setState({
+          [name]: value,
+        });
+  }
 
-    render() {
-        return (
-            <form>
-            <input
-                name="bookingName"
-                placeholder="Booking Name"
-                value={this.state.bookingName}
-                onChange={e => this.change(e)} 
-            />
-            
-            <br /> 
+  render() {
+    return (
+      <main>
+        <h1>Want to Book a Service?</h1>
+        <form>
+          <input
+            name="bookingName"
+            placeholder="Booking Name"
+            value={this.state.bookingName}
+            onChange={this.handleChange}
+          />
 
-            <input
-                name="bookingDate"
-                placeholder="Booking Date"
-                value={this.state.bookingDate}
-                onChange={e => this.change(e)} 
-            />
-            
-            <br /> 
+          <br />
 
-            <input
-                name="bookingDuration"
-                placeholder="Booking Duration"
-                value={this.state.bookingDuration}
-                onChange={e => this.change(e)} 
-            />
-            
-            <br /> 
+          <input
+            name="bookingDate"
+            placeholder="Booking Date"
+            type="date"
+            value={this.state.bookingDate}
+            onChange={this.handleChange}
+          />
 
-            <input
-                name="bookingDescription"
-                placeholder="Booking Description"
-                value={this.state.bookingDescription}
-                onChange={e => this.change(e)} 
-            />
-            
-            <br /> 
+          <br />
 
-            <input
-                name="bookingPrice"
-                placeholder="Booking Price"
-                value={this.state.bookingPrice}
-                onChange={e => this.change(e)} 
-            />
-            
-            <br /> 
-                
-           <Button variant="contained" color="secondary" onClick={() => this.onSubmit()}> Book Now </Button>
-            </form>
-        )   
-    }
+          <input
+            name="bookingDuration"
+            placeholder="Booking Duration (mins)"
+            type="number"
+            value={this.state.bookingDuration}
+            onChange={this.handleChange}
+          />
+
+          <br />
+
+          <input
+            name="bookingDescription"
+            placeholder="Booking Description"
+            value={this.state.bookingDescription}
+            onChange={this.handleChange}
+          />
+
+          <br />
+
+          <input
+            name="bookingPrice"
+            placeholder="Booking Price ($)"
+            type="number"
+            value={this.state.bookingPrice}
+            onChange={this.handleChange}
+          />
+
+          <br />
+          <Button variant="contained" color="secondary">
+             Book Now 
+          </Button>
+        </form>
+
+        <hr />
+        <h2> Entered information: </h2>
+        <p>Your Booking Name: {this.state.bookingName}</p>
+        <p>Your Booking Date: {this.state.bookingDate} </p>
+        <p>Your Booking Duration: {this.state.bookingDuration} (mins)</p>
+        <p>Your Booking Description: {this.state.bookingDescription} </p>
+        <p>Your Booking Price: ${this.state.bookingPrice} </p>
+      </main>
+    );
+  }
 }

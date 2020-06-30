@@ -1,9 +1,13 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+nav {
+  align-items: center;
+  background-color: rgb(73, 79, 82);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  min-height: 10vh;
 }
 
-#greeting-container {
-  margin-top: 20px;
+.nav-links {
+  list-style: none;
+  width: 50px;
 }

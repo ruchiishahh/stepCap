@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "@material-ui/core/Button";
 import RegisterForm from "./components/RegisterForm.component";
+import "./style.css";
 
-import Navbar from "./Navbar";
-import Search from "./Search";
+import Navbar from "./components/Navbar";
+import Search from "./components/Search";
 // class AppContainer extends React.Component {
 //   render() {
 //     return (
@@ -31,12 +32,12 @@ export default class AppContainer extends Component {
       <div>
         <Router>
           <Navbar />
-          <Route path="/" component={RegisterForm}>
-            {" "}
-          </Route>
-          <Route path="/search" component={Search}>
-            {" "}
-          </Route>
+          <Switch>
+            <Route path="/" exact component={RegisterForm}>
+              {" "}
+            </Route>
+            <Route path="/search" component={Search} />
+          </Switch>
         </Router>
       </div>
     );

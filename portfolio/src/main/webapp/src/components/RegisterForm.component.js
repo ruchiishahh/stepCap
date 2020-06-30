@@ -63,12 +63,11 @@ export default class RegisterForm extends Component {
             lastname: this.state.lastname
         }
         console.log(registerInfo);
-        this.props.passRegisterInfo(registerInfo);
     }
 
     render() {
         return (
-            <form class="register-form animate__animated animate__fadeInUp animate__delay-3s" onSubmit={this.onSubmit}> 
+            <form class="register-form animate__animated animate__fadeInUp" onSubmit={this.onSubmit}> 
                 <div class="form-names-container">
                     <div class="form-div long-input">
                         <label>First:</label>

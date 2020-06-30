@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "@material-ui/core/Button";
-import RegisterForm from "./components/RegisterForm.component";
+import RegisterForm from "./components/RegisterForm";
 
-import Navbar from "./components/Navbar.component";
-import LandingPage from "./components/LandingPage.component";
+import Navbar from "./components/Navbar";
+import LandingPage from "./components/LandingPage";
 import Search from "./components/Search";
 
 export default class AppContainer extends Component {

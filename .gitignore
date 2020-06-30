@@ -7,4 +7,5 @@
 /portfolio/src/main/webapp/.cache/
 /portfolio/src/main/webapp/.cache
 portfolio/src/main/webapp/script
+portfolio/src/main/webapp/script.*
 portfolio/target/portfolio-1/script*

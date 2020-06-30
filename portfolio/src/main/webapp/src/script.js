@@ -13,7 +13,7 @@
 // limitations under the License.
 import React from "react";
 import ReactDOM from "react-dom";
-
+import './style.css';
 import AppContainer from "./AppContainer"
 
 ReactDOM.render(

@@ -5,8 +5,8 @@ import Button from "@material-ui/core/Button";
 import RegisterForm from "./components/RegisterForm.component";
 import "./style.css";
 
-import Navbar from "./components/Navbar";
-import Search from "./components/Search";
+import Navbar from "./components/navbar";
+import Search from "./components/search";
 // class AppContainer extends React.Component {
 //   render() {
 //     return (

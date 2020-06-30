@@ -9,7 +9,7 @@ nav {
 
 .nav-links {
   align-items: center;
-  display: none;
+  display: flex;
   list-style: none;
   justify-content: center;
   width: 50px;

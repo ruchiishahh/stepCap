@@ -14,28 +14,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { Provider } from 'react-redux';
+import { createBrowserHistory } from 'history';
+import rootStore from './stores/rootStore';
+
 import AppContainer from "./AppContainer"
 
-ReactDOM.render(
-  <React.StrictMode>
-    <AppContainer />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+(async (window) => {
+  const initialState = {};
+  const history = createBrowserHistory({ basename: environment.route.baseRoute });
+  const store = rootStore(initialState, history);
 
-// ReactDOM.render(<AppContainer />, document.getElementById("root"));
+  const rootEl = document.getElementById('root');
+  const render = (Component, el) => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <Component history={history} dispatch={store.dispatch} />
+      </Provider>,
+      el
+    );
+  };
 
-/**
- * Adds a random greeting to the page.
- */
-// function addRandomGreeting() {
-//   const greetings =
-//       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
-
-//   // Pick a random greeting.
-//   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-//   // Add it to the page.
-//   const greetingContainer = document.getElementById('greeting-container');
-//   greetingContainer.innerText = greeting;
-// }
+  render(AppContainer, rootEl);
+})(window);

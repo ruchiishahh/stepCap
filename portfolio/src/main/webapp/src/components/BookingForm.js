@@ -12,6 +12,7 @@ export default class BookingForm extends React.Component {
       bookingPrice: "",
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -19,6 +20,10 @@ export default class BookingForm extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  handleSubmit(event) {
+    console.log(this.state);
   }
 
   render() {
@@ -73,7 +78,11 @@ export default class BookingForm extends React.Component {
           />
 
           <br />
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onChange={this.handleSubmit}
+          >
              Book Now 
           </Button>
         </form>

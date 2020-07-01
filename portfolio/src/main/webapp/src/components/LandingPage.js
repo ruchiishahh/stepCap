@@ -16,6 +16,7 @@ export default class LandingPage extends Component {
                     <div id="landing-title" class="center-title">THECOMMONS</div>
                     <div id="landing-tagline" class="center-text">Help anyone. Get help on anything.</div>
                     <div class="register-form-container">
+        
                         <RegisterForm />
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 body {
-    background-color: #2EB887;
-    color: #434D66;
+    background-color: #2EB887 !important;
+    color: #434D66 !important;
     font-family: -apple-system, BlinkMacSystemFont, "signoria", "Signoria", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -11,8 +11,8 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
-    font-size: 0.7em;
-    font-weight: 300;
+    font-size: 23px !important;
+    font-weight: 200;
     letter-spacing: 0.02em !important;
     margin-bottom: 100px;
 }
@@ -21,11 +21,11 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
-    font-size: 2.3em;
-    font-weight: 300;
+    font-size: 70px !important;
+    font-weight: 200;
     letter-spacing: 0.06em !important;
     margin-bottom: 20px;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 .form-div {
@@ -50,31 +50,37 @@ body {
 
 input {
   color: white;
-  border-radius: 2px;
+  /* border-radius: 2px; */
+  /* border: none !important; */
+  border: 1px solid #434D66;
   font-size: 22px !important;
   font-weight: 500;
-  background-color: #434D66;
-  border-style: solid !important;
+  background-color: #2EB887;
+  /* border-style: solid !important; */
   box-shadow: none !important;
-  height: 30px;
+  height: 40px;
 }
 
 input:focus {
   outline: none;
   box-shadow: outset 0px 0px 0px 0px white;
-  border: 1px solid white;
+  border: 1px solid white !important;
 }
 
 input:hover {
   outline: none;
   box-shadow: outset 0px 0px 0px 0px white;
-  border: 1px solid white;
+  border: 1px solid white !important;
 }
 
 .landing-main-container {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+.long-input {
+  width: 45%;
 }
 
 nav {
@@ -138,6 +144,29 @@ nav {
   justify-content: space-between;
   letter-spacing: 0.04em !important;
   width: 14%;
+}
+
+.register-button {
+  background-color: #2EB887;
+  border: 1px solid #434D66;
+  color: #434D66;
+  font-size: 18px !important;
+  font-weight: 200 !important;
+  height: 35px;
+  margin-top: 25px;
+  /* margin-left: 300px !important; */
+  width: 100px;
+}
+
+.register-button:hover {
+  border-color: white;
+  box-shadow: outset 0px 0px 0px 0px white;
+}
+
+.register-button:focus {
+  box-shadow: outset 0px 0px 0px 0px white;
+  color: black;
+  outline: none;
 }
 
 .register-form {

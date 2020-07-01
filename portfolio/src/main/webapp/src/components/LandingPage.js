@@ -13,8 +13,8 @@ export default class LandingPage extends Component {
     return (
         <div class="landing-main-container">
             <div class="landing-body-container">
-                <div id="landing-title" class="center-title">THECOMMONS</div>
-                <div id="landing-tagline" class="center-text">Help anyone. Get help on anything.</div>
+                <div id="landing-title" class="center-title animate__animated animate__fadeIn">THECOMMONS</div>
+                <div id="landing-tagline" class="center-text animate__animated animate__fadeIn">Help anyone. Get help on anything.</div>
                 <div class="register-form-container">
                     <RegisterForm />
                 </div>

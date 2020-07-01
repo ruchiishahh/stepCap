@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class RegisterForm extends Component {
   constructor(props) {
@@ -62,67 +63,40 @@ export default class RegisterForm extends Component {
       lastname: this.state.lastname,
     };
     console.log(registerInfo);
+    axios.post
   }
 
   render() {
     return (
-      <form
-        class="register-form animate__animated animate__fadeInUp"
-        onSubmit={this.onSubmit}
-      >
-        <div class="form-names-container">
-          <div class="form-div long-input">
-            <label>First:</label>
-            <input
-              id="firstname-submit"
-              type="text"
-              value={this.state.firstname}
-              onChange={this.onChangeFirstname}
-            />
-          </div>
-          <div class="form-div long-input">
-            <label>Last:</label>
-            <input
-              id="lastname-submit"
-              type="text"
-              value={this.state.lastname}
-              onChange={this.onChangeLastname}
-            />
-          </div>
-        </div>
-        <div class="form-div">
-          <label>Username:</label>
-          <input
-            id="username-submit"
-            type="text"
-            value={this.state.username}
-            onChange={this.onChangeUsername}
-          />
-        </div>
-        <div class="form-div">
-          <label>Email:</label>
-          <input
-            id="email-submit"
-            type="text"
-            value={this.state.email}
-            onChange={this.onChangeEmail}
-          />
-        </div>
-        <div class="form-div">
-          <label>Password:</label>
-          <input
-            id="password-submit"
-            type="text"
-            value={this.state.password}
-            onChange={this.onChangePassword}
-          />
-        </div>
-        <div class="form-div-button">
-          <button class="register-button" href="#">
-            Register
-          </button>
-        </div>
-      </form>
+        <form class="register-form animate__animated animate__fadeInUp animate__delay-1s" onSubmit={this.onSubmit}> 
+            <div class="form-names-container">
+                <div class="form-div long-input">
+                    <label>First:</label>
+                    <input id="firstname-submit" type="text" value={this.state.firstname} onChange={this.onChangeFirstname} />
+                </div>
+                <div class="form-div long-input">
+                    <label>Last:</label>
+                    <input id="lastname-submit" type="text" value={this.state.lastname} onChange={this.onChangeLastname} />
+                </div>
+            </div>
+            <div class="form-div">
+                    <label>Username:</label>
+                    <input id="username-submit" type="text" value={this.state.username} onChange={this.onChangeUsername} />
+            </div>
+            <div class="form-div">
+                    <label>Email:</label>
+                    <input id="email-submit" type="text" value={this.state.email} onChange={this.onChangeEmail} />
+            </div>
+            <div class="form-div">
+                <label>Password:</label>
+                <input id="password-submit" type="text" value={this.state.password} onChange={this.onChangePassword} />
+            </div>
+            <div class="form-div-button">
+                <button class="register-button" href="#">Register</button>
+            </div>
+        </form>
     );
   }
+
+  
 }

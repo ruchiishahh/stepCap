@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Results from "./results";
 import Result from "./result";
 
 class Search extends Component {
@@ -13,14 +14,18 @@ class Search extends Component {
 
   state = {
     input: "",
+    filteredResults: [],
     results: [
       { id: 1, name: "Erin", desc: "hello World" },
+
       { id: 2, name: "Ruchi", desc: "hello World" },
       { id: 3, name: "Owen", desc: "hello World" },
+      { id: 1, name: "everest", desc: "hello World" },
     ],
   };
 
   searchOnChange = (event) => {
+    console.log(event.target.value);
     console.log("onChange called: ", event.target.value);
     this.setState({
       input: event.target.value,
@@ -28,6 +33,10 @@ class Search extends Component {
   };
 
   render() {
+    const filteredResults = this.state.results.filter((result) => {
+      return result.name.toLowerCase().includes(this.state.input.toLowerCase());
+    });
+
     return (
       <div>
         <h1>Search Page</h1>
@@ -39,12 +48,7 @@ class Search extends Component {
             onChange={this.searchOnChange}
           />
         </div>
-        <div>
-          {this.state.results.map((result) => (
-            <Result result={result} />
-          ))}
-          ;
-        </div>
+        <Results results={filteredResults} input={this.state.input} />
       </div>
     );
   }

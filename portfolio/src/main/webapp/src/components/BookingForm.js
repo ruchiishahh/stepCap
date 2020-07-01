@@ -5,11 +5,11 @@ export default class BookingForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      bookingName: "",
-      bookingDate: "",
-      bookingDuration: "",
-      bookingDescription: "",
-      bookingPrice: "",
+      booking_name: "",
+      booking_date: "",
+      booking_duration: "",
+      booking_description: "",
+      booking_price: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,48 +32,48 @@ export default class BookingForm extends React.Component {
         <h1>Want to Book a Service?</h1>
         <form>
           <input
-            name="bookingName"
+            name="booking_name"
             placeholder="Booking Name"
-            value={this.state.bookingName}
+            value={this.state.booking_name}
             onChange={this.handleChange}
           />
 
           <br />
 
           <input
-            name="bookingDate"
+            name="booking_date"
             placeholder="Booking Date"
             type="date"
-            value={this.state.bookingDate}
+            value={this.state.booking_date}
             onChange={this.handleChange}
           />
 
           <br />
 
           <input
-            name="bookingDuration"
+            name="booking_duration"
             placeholder="Booking Duration (mins)"
             type="number"
-            value={this.state.bookingDuration}
+            value={this.state.booking_duration}
             onChange={this.handleChange}
           />
 
           <br />
 
           <input
-            name="bookingDescription"
+            name="booking_description"
             placeholder="Booking Description"
-            value={this.state.bookingDescription}
+            value={this.state.booking_description}
             onChange={this.handleChange}
           />
 
           <br />
 
           <input
-            name="bookingPrice"
+            name="booking_price"
             placeholder="Booking Price ($)"
             type="number"
-            value={this.state.bookingPrice}
+            value={this.state.booking_price}
             onChange={this.handleChange}
           />
 
@@ -89,11 +89,11 @@ export default class BookingForm extends React.Component {
 
         <hr />
         <h2> Entered information: </h2>
-        <p>Your Booking Name: {this.state.bookingName}</p>
-        <p>Your Booking Date: {this.state.bookingDate} </p>
-        <p>Your Booking Duration: {this.state.bookingDuration} (mins)</p>
-        <p>Your Booking Description: {this.state.bookingDescription} </p>
-        <p>Your Booking Price: ${this.state.bookingPrice} </p>
+        <p>Your Booking Name: {this.state.booking_name}</p>
+        <p>Your Booking Date: {this.state.booking_date} </p>
+        <p>Your Booking Duration: {this.state.booking_duration} (mins)</p>
+        <p>Your Booking Description: {this.state.booking_description} </p>
+        <p>Your Booking Price: ${this.state.booking_price} </p>
       </main>
     );
   }

@@ -18,7 +18,7 @@ export default class BookingForm extends React.Component {
   handleChange(event) {
     const { name, value, type, checked } = event.target;
     this.setState({
-      name: value,
+      [name]: value,
     });
   }
 

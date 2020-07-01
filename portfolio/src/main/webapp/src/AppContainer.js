@@ -17,17 +17,17 @@ export default class AppContainer extends Component {
     return (
       <div>
         <Router>
-          <Route
-            exact
-            path="/"
-            render={(props) => <LandingPage {...props} />}
-          ></Route>
-          <Route exact path="/search" component={Search} />
-          <Route
-            exact
-            path="/BookingForm"
-            render={(props) => <BookingForm {...props} />}
-          ></Route>
+            <Route
+                exact path="/"
+                render={(props) => <LandingPage {...props} />}>
+            </Route>
+
+            <Route exact path="/search" component={Search} />
+            
+            <Route
+                exact path="/BookingForm"
+                render={(props) => <BookingForm {...props} />}>
+            </Route>
         </Router>
       </div>
     );

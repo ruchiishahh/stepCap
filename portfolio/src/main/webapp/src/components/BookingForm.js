@@ -18,12 +18,12 @@ export default class BookingForm extends React.Component {
   handleChange(event) {
     const { name, value, type, checked } = event.target;
     this.setState({
-      [name]: value,
+      name: value,
     });
   }
 
   handleSubmit(event) {
-    console.log(this.state);
+    //TODO: take this data & send to DataStore
   }
 
   render() {
@@ -81,7 +81,7 @@ export default class BookingForm extends React.Component {
           <Button
             variant="contained"
             color="secondary"
-            onChange={this.handleSubmit}
+            onClick={this.handleSubmit}
           >
              Book Now 
           </Button>

@@ -30,7 +30,7 @@ export default class BookingForm extends React.Component {
     return (
       <main>
         <h1>Want to Book a Service?</h1>
-        <form>
+        <form action="/book-new-service" method="POST">
           <input
             name="booking_name"
             placeholder="Booking Name"

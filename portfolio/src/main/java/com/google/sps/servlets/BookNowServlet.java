@@ -29,7 +29,7 @@ public class BookNowServlet extends HttpServlet {
     bookingEntity.setProperty("booking_name", booking_name);
     bookingEntity.setProperty("booking_date", booking_date);
     bookingEntity.setProperty("booking_duration", booking_duration);
-    bookingEntity.setProperty("booking_description", booking_name);
+    bookingEntity.setProperty("booking_description", booking_description);
     bookingEntity.setProperty("booking_price", booking_price);
     
     bookingEntity.setProperty("timestamp", timestamp);

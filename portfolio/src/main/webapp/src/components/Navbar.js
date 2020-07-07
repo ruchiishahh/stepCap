@@ -23,6 +23,9 @@ export default class Navbar extends Component {
           <Link to="/BookingForm">
             <li>Profile</li>
           </Link>
+          <Link to="/Dashboard">
+            <li>Dashboard</li>
+          </Link>
         </div>
       </div>
     );

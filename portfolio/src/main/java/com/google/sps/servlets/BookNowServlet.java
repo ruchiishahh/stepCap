@@ -34,8 +34,8 @@ public class BookNowServlet extends HttpServlet {
     
     bookingEntity.setProperty("timestamp", timestamp);
 
-    //DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    //datastore.put(bookingEntity);
-    //response.sendRedirect("/index.html");
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(bookingEntity);
+    response.sendRedirect("/index.html");
   }
 }

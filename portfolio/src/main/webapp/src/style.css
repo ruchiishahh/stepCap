@@ -48,6 +48,25 @@ body {
   width: 100%;
 }
 
+.homepage-all-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-body-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 260px;
+  width: 100%;
+}
+
+
 input {
   color: white;
   /* border-radius: 2px; */
@@ -79,9 +98,15 @@ input:hover {
     width: 100%;
 }
 
+.logo-container {
+  font-size: 25px !important;
+  font-weight: 300;
+}
+
 .long-input {
   width: 45%;
 }
+
 
 nav {
   align-items: center;
@@ -189,10 +214,17 @@ nav {
 
 }
 
+.searchbar-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .section-container {
-  border: 1px solid #2EB887;
+  border: 1px solid white;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 60px;
+  height: 250px;
+  margin-bottom: 40px;
+  width: 100%;
+
 }

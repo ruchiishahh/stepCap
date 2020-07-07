@@ -26,7 +26,7 @@ export default class HomePage extends Component {
     return (
       <div class="homepage-all-container">
           <div class="homepage-header-container">
-              <div class="logo-container">TheCommons</div>
+              <div class="logo-container">theCOMMONS PROJECT</div>
               <div class="searchbar-container"><SearchBar /></div>
               <div class="options-container">
                   <Link to="/dashboard">Dashboard</Link>
@@ -36,11 +36,11 @@ export default class HomePage extends Component {
           </div>
           <div class="homepage-body-container">
               <div class="section-container">
-                  <div class="section-title">Categories |</div>
+                  <div class="section-title">Categories</div>
                   <div id="categories-container" class="row-container"></div>
               </div>
               <div class="section-container">
-                  <div class="section-title">In Demand |</div>
+                  <div class="section-title">In Demand</div>
                   <div id="popular-container" class="row-container"></div>
               </div>
           </div>

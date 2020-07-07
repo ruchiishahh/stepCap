@@ -1,15 +1,18 @@
+import axios from "axios";
 import React, { Component } from "react";
+
 import Results from "./results";
 import Result from "./result";
 
 class Search extends Component {
   constructor() {
     super();
-    console.log("Search - Contructor");
   }
 
   componentDidMount() {
-    console.log("Search - Mounted");
+    axios.get("/searchServlet").then((res) => {
+      console.log(res);
+    });
   }
 
   state = {
@@ -25,8 +28,6 @@ class Search extends Component {
   };
 
   searchOnChange = (event) => {
-    console.log(event.target.value);
-    console.log("onChange called: ", event.target.value);
     this.setState({
       input: event.target.value,
     });
@@ -38,7 +39,7 @@ class Search extends Component {
     });
 
     return (
-      <div>
+      <div className="search-container">
         <h1>Search Page</h1>
         <div>
           <label htmlFor="search"> Enter Search</label>

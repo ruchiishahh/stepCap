@@ -5,9 +5,7 @@ class Result extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log("Mounted: " + this.props.result.name);
-  }
+  componentDidMount() {}
 
   render() {
     return (

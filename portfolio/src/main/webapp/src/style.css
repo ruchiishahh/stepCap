@@ -85,3 +85,14 @@ nav {
   justify-content: center;
   width: 70%;
 }
+
+.search-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.result-container {
+  background-color: white;
+}

@@ -63,7 +63,7 @@ export default class RegisterForm extends Component {
       lastname: this.state.lastname,
     };
     console.log(registerInfo);
-    axios.post('http://localhost:8080/backend/register')
+    axios.post('http://localhost:8080/backend/registerwd')
   }
 
   render() {

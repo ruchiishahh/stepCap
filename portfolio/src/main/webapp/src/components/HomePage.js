@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 import axios from "axios";
 
 export default class HomePage extends Component {
@@ -34,8 +35,14 @@ export default class HomePage extends Component {
               </div>
           </div>
           <div class="homepage-body-container">
-              <div id="categories-container" class="row-container"></div>
-              <div id="popular-container" class="row-container"></div>
+              <div class="section-container">
+                  <div class="section-title">Categories |</div>
+                  <div id="categories-container" class="row-container"></div>
+              </div>
+              <div class="section-container">
+                  <div class="section-title">In Demand |</div>
+                  <div id="popular-container" class="row-container"></div>
+              </div>
           </div>
       </div>
     );

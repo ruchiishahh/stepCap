@@ -7,23 +7,21 @@ export default class SearchBar extends Component {
     super(props);
 
     this.state = {
-        username: "",
-        password: "",
-        email: "",
-        firstname: "",
-        lastname: "",
+       searchInput: '',
     };
-    
+  }
+
+  onChangeSearchInput(e) {
+    this.setState({
+      searchInput: e.target.value,
+    });
   }
 
   render() {
     return (
-      <div class="searchbar-all-container">
-          <div class="homepage-main-container">
-              <div class="searchbar-container">
-                  <SearchBar />
-              </div>
-
+      <div class="searchbar-container">
+          <div class="form-div long-input">
+              <input id="homepage-search" type="text" value={this.state.searchInput} onChange={this.onChangeSearchInput} />
           </div>
       </div>
     );

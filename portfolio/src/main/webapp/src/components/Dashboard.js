@@ -1,24 +1,36 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import PendingReqs from "./bookingcomponents/PendingReqs";
 
-export default class Dashboard extends React.Component {
+export default class BookingForm extends React.Component {
   constructor() {
     super();
-    this.state = {
-      booking_name: "",
-      booking_date: "",
-      booking_duration: "",
-      booking_description: "",
-      booking_price: "",
-    };
   }
-  
   render() {
     return (
       <main>
-        <h1>THIS IS THE DASHBOARD!</h1>
-        <h2> Pending Requests: </h2>
-        
+        <h1 className="dashboard-center-title">Dashboard Page</h1>
+        <div>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Paper elevation={3}>
+                <h2 className="dashboard-requests-center-title">
+                  Here are your Pending Requests
+                </h2>
+              </Paper>
+              <PendingReqs />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Paper>
+                <h2 className="dashboard-requests-center-title">
+                  Here are your Confirmed Requests
+                </h2>
+              </Paper>
+            </Grid>
+          </Grid>
+        </div>
       </main>
     );
   }

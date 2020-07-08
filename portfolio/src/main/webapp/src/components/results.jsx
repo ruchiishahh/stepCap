@@ -13,7 +13,6 @@ class Results extends Component {
         ;
       </div>
     );
-    ß;
   }
 }
 

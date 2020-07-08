@@ -9,6 +9,7 @@ export default class HomePage extends Component {
     this.logout = this.logout.bind(this);
     
     this.state = {
+        userId: "",
         username: "",
         password: "",
         email: "",
@@ -17,6 +18,16 @@ export default class HomePage extends Component {
     };
 
   };
+
+  componentDidMount() {
+      this.setState({
+          id: this.props.userInfo.user_id,
+          firstname: this.props.userInfo.firstname,
+          lastname: this.props.userInfo.lastname,
+          email: this.props.userInfo.email,
+      });
+      console.log("HomePage – Mount");
+  }
 
   logout() {
     console.log("logout ran");
@@ -30,7 +41,7 @@ export default class HomePage extends Component {
               <div class="searchbar-container"><SearchBar /></div>
               <div class="options-container">
                   <Link to="/dashboard">Dashboard</Link>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile">{this.state.firstname}</Link>
                   <button onclick={this.logout}>Logout</button>
               </div>
           </div>

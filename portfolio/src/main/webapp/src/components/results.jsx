@@ -10,10 +10,8 @@ class Results extends Component {
         {this.props.results.map((result) => (
           <Result result={result} />
         ))}
-        ;
       </div>
     );
-    ß;
   }
 }
 

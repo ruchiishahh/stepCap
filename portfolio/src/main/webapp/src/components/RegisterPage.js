@@ -80,6 +80,7 @@ export default class RegisterPage extends Component {
        .then(this.props.history.push('/home'))
        .catch((err)=>console.log(err));
   }
+  //yeet
 
   render() {
     return (

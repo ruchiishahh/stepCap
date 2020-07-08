@@ -13,7 +13,7 @@ class Result extends Component {
     return (
       <div className="result-container">
         <div>
-          {this.props.result.id} my name is {this.props.result.name}
+          my name is {this.props.result}
         </div>
       </div>
     );

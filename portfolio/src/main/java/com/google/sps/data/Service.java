@@ -16,11 +16,11 @@ public final class Service {
    * @param {!long} provider The id of this Service's provider.
    * @param {!long} averageRating This Service's average Rating.
    */
-  public Service(long service_id, String service_name, String service_description, long provider_id, String average_rating) {
+  public Service(long service_id, String service_name, String service_description, long provider_id, long average_rating) {
       this.service_id = service_id;
       this.service_name = service_name;
       this.service_description = service_description;
-      this.service_provider = service_provider;
+      this.provider_id = provider_id;
       this.average_rating = average_rating;
 }
 

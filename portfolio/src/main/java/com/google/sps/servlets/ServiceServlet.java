@@ -24,7 +24,7 @@ public class ServiceServlet extends HttpServlet {
     String description = request.getParameter("service_description");
     //TODO obtain provider ID from current user id
     long providerId;
-    long averageRating = request.getParameter("average_rating");
+    long averageRating;
 
     //TODO implement dynamic Service creation
     Entity service = new Entity("Service");

@@ -1,24 +1,16 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
+import PendingReqs from "./pendingreqs";
 
-export default class Dashboard extends React.Component {
+export default class BookingForm extends React.Component {
   constructor() {
     super();
-    this.state = {
-      booking_name: "",
-      booking_date: "",
-      booking_duration: "",
-      booking_description: "",
-      booking_price: "",
-    };
   }
-  
   render() {
     return (
       <main>
-        <h1>THIS IS THE DASHBOARD!</h1>
-        <h2> Pending Requests: </h2>
-        
+        <h1>Dashboard Page</h1>
+        <h2>Here are your Pending Requests</h2>
+        <PendingReqs />
       </main>
     );
   }

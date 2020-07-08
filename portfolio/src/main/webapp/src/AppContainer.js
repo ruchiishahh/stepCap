@@ -5,7 +5,7 @@ import BookingForm from "./components/BookingForm";
 import RegisterPage from "./components/RegisterPage";
 import HomePage from "./components/HomePage";
 import Search from "./components/search.jsx";
-
+import Dashboard from "./components/Dashboard";
 export default class AppContainer extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +30,11 @@ export default class AppContainer extends Component {
             <Route
                 exact path="/BookingForm"
                 render={(props) => <BookingForm {...props} />}>
+            </Route>
+
+            <Route
+                exact path="/Dashboard"
+                render={(props) => <Dashboard {...props} />}>
             </Route>
         </Router>
       </div>

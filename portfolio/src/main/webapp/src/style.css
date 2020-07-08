@@ -1,5 +1,5 @@
 body {
-    background-color: #2EB887 !important;
+    background-color: #2EB887;
     color: #434D66 !important;
     font-family: -apple-system, BlinkMacSystemFont, "signoria", "Signoria", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
     margin: 0;
@@ -26,6 +26,28 @@ body {
     letter-spacing: 0.06em !important;
     margin-bottom: 20px;
     margin-top: 100px;
+}
+
+.dashboard-center-title {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 2.3em;
+  font-weight: 300;
+  letter-spacing: 0.06em !important;
+  margin-bottom: 20px;
+  margin-left: 600px;
+}
+
+.dashboard-requests-center-title {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 2.3em;
+  font-weight: 300;
+  letter-spacing: 0.06em !important;
+  margin-bottom: 20px;
+  margin-left: 40px;
 }
 
 .form-div {
@@ -93,9 +115,9 @@ input:hover {
 }
 
 .landing-main-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .logo-container {
@@ -126,10 +148,10 @@ nav {
 }
 
 .landing-body-container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .navbar-logo-container {
@@ -195,12 +217,12 @@ nav {
 }
 
 .register-form {
-    /* border: 1px solid pink; */
-    display: flex;
-    flex-grow: 4;
-    flex-direction: column;
-    justify-content: center;
-    width: 70%;
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-grow: 4;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
 }
 
 .register-form-container {
@@ -211,7 +233,6 @@ nav {
   margin-bottom: 20px;
   margin-left: 20px;
   width: 100%;
-
 }
 
 .searchbar-container {

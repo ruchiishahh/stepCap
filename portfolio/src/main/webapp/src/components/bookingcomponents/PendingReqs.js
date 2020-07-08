@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { FixedSizeList } from "react-window";
+import { Button } from "@material-ui/core";
+import BookingInfoPopUp from "./BookingInfoPopUp";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,8 +20,16 @@ function renderRow(props) {
   const { index, style } = props;
 
   return (
-    <ListItem button style={style} key={index}>
-      <ListItemText primary={`Item ${index + 1}`} />
+    <ListItem alignItems="flex-start" button style={style} key={index}>
+      <ListItemText
+        disableTypography={false}
+        primary={`${index + 1} Booking Name`}
+        secondary="Date | Duration | Description | Price"
+      />
+      <BookingInfoPopUp />
+      <Button variant="contained" color="primary">
+        Confirm
+      </Button>
     </ListItem>
   );
 }

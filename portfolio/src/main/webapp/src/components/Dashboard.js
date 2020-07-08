@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PendingReqs from "./pendingreqs";
+import PendingReqs from "./bookingcomponents/PendingReqs";
 
 export default class BookingForm extends React.Component {
   constructor() {

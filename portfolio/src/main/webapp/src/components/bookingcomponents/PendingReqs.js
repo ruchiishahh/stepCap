@@ -9,10 +9,10 @@ import BookingInfoPopUp from "./BookingInfoPopUp";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    backgroundColor: theme.palette.background.paper,
     height: 400,
     maxWidth: 300,
-    backgroundColor: theme.palette.background.paper,
+    width: "100%",
   },
 }));
 

@@ -24,13 +24,14 @@ export default class BookingForm extends React.Component {
 
   handleSubmit(event) {
     //TODO: take this data & send to DataStore
+    console.log(this.state);
   }
 
   render() {
     return (
       <main>
         <h1>Want to Book a Service?</h1>
-        <form>
+        <form action="/book-new-service" method="POST">
           <input
             name="booking_name"
             placeholder="Booking Name"
@@ -82,6 +83,7 @@ export default class BookingForm extends React.Component {
             variant="contained"
             color="secondary"
             onClick={this.handleSubmit}
+            type="submit"
           >
              Book Now 
           </Button>

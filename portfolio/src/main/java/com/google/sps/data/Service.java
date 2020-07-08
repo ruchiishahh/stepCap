@@ -40,12 +40,12 @@ public final class Service {
   }
 
   /** Getter method for provider id. */
-  public String getProviderId() {
+  public long getProviderId() {
     return provider_id;
   }
 
   /** Getter method for average rating. */
-  public String getAverage() {
+  public long getAverage() {
     return average_rating;
   }
 }

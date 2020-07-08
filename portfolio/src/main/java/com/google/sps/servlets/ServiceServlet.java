@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /** Servlet responsible for handling memes. */
 @WebServlet("/service-handler")
-public class BookNowServlet extends HttpServlet {
+public class ServiceServlet extends HttpServlet {
 
   /** Get the datastore. */
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

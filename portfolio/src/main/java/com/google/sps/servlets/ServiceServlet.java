@@ -20,18 +20,18 @@ public class BookNowServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    String name = request.getParameter("serviceName");
-    String description = request.getParameter("serviceDesc");
+    String name = request.getParameter("service_name");
+    String description = request.getParameter("service_description");
     //TODO obtain provider ID from current user id
     long providerId;
-    long averageRating = request.getParameter("averageRating");
+    long averageRating = request.getParameter("average_rating");
 
     //TODO implement dynamic Service creation
     Entity service = new Entity("Service");
-    service.setProperty("name", "Tutoring");
-    service.setProperty("description", "I am a tutor at UC Berkeley and I tutor CS61B");
-    service.setProperty("provider", 123456789);
-    service.setProperty("averageRating", 4.0);
+    service.setProperty("service_name", "Tutoring");
+    service.setProperty("service_description", "I am a tutor at UC Berkeley and I tutor CS61B");
+    service.setProperty("provider_id", 123456789);
+    service.setProperty("average_rating", 4.0);
 
     datastore.put(service);
   }

@@ -6,6 +6,8 @@ import RegisterPage from "./components/RegisterPage";
 import HomePage from "./components/HomePage";
 import Search from "./components/search.jsx";
 import Dashboard from "./components/Dashboard";
+import ProfilePage from "./components/ProfilePage";
+
 export default class AppContainer extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +37,11 @@ export default class AppContainer extends Component {
             <Route
                 exact path="/Dashboard"
                 render={(props) => <Dashboard {...props} />}>
+            </Route>
+
+            <Route
+                exact path="/"
+                render={(props) => <ProfilePage {...props} />}>
             </Route>
         </Router>
       </div>

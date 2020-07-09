@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import Result from "./result";
+import Result from "./Result";
 
 class Results extends Component {
-
   componentDidMount() {
     console.log("Mounted: results");
   }

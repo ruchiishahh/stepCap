@@ -123,6 +123,7 @@ input:hover {
 .logo-container {
   font-size: 25px !important;
   font-weight: 300;
+  margin-top:10px;
 }
 
 .long-input {
@@ -193,6 +194,9 @@ nav {
   width: 14%;
 }
 
+.options-container {
+    margin-top: 10px;
+}
 .register-button {
   background-color: #2EB887;
   border: 1px solid #434D66;
@@ -238,6 +242,7 @@ nav {
 .searchbar-container {
   display: flex;
   flex-direction: row;
+  margin-top: 10px;
 }
 
 .section-container {

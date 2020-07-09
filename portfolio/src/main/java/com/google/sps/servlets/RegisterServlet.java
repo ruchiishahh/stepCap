@@ -1,6 +1,16 @@
 package com.google.sps.servlets;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.stream.Collectors;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;;
+import org.json.HTTP;
+import org.json.JSONObject;
+import org.json.JSONException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,23 +27,33 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.*;
+// import com.google.appengine.api.datastore.IncompleteKey;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 
+
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/backend-register")
+@WebServlet("/backend/registered")
 public class RegisterServlet extends HttpServlet {
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    
-    String username = request.getParameter("register-username");
-    String firstname = request.getParameter("register-firstname");
-    String lastname = request.getParameter("register-lastname");
-    String email = request.getParameter("register-email");
-    String password = request.getParameter("register-password");
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String reader = request.getReader().lines().collect(Collectors.joining());
+    JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
+
+    String username = jsonObj.get("username").getAsString();
+    String firstname = jsonObj.get("firstname").getAsString();;
+    String lastname = jsonObj.get("lastname").getAsString();;
+    String email = jsonObj.get("email").getAsString();
+    String password = jsonObj.get("password").getAsString();
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    // KeyFactory keyFactory = datastore.newKeyFactory().setKind("User");
+    // Key userKey = datastore.allocateId(keyFactory.newKey());
+    // System.out.println(userKey);
 
     Entity userEntity = new Entity("User");
     userEntity.setProperty("username", username);
@@ -41,12 +61,19 @@ public class RegisterServlet extends HttpServlet {
     userEntity.setProperty("lastname", lastname);
     userEntity.setProperty("email", email);
     userEntity.setProperty("password", password);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+     userEntity.setProperty("phone_number", "");
+    System.out.println(userEntity);
     datastore.put(userEntity);
-
-    response.sendRedirect("/home");
-
+    
+    System.out.println(userEntity.getKey().getId());
+    
+    Gson gson = new Gson();
+    String[] responses = new String[3]; 
+    responses[0] = "success";
+    responses[1] = "" + userEntity.getKey().getId();
+    String registerResponse = gson.toJson(responses);
+    response.setContentType("application/json");
+    response.getWriter().println(registerResponse);
   }
   
 }

@@ -6,14 +6,14 @@ class Result extends Component {
   }
 
   componentDidMount() {
-    console.log("Mounted: " + this.props.result.name);
+    console.log("Mounted: " + this.props.result.service_name);
   }
 
   render() {
     return (
       <div className="result-container">
         <div>
-          my name is {this.props.result}
+          my name is {this.props.result.service_name}
         </div>
       </div>
     );

@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import Result from "./result";
 
 class Results extends Component {
+
+  componentDidMount() {
+    console.log("Mounted: results");
+  }
+
   render() {
     console.log(this.props.results);
 

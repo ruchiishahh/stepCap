@@ -84,7 +84,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 260px;
+  height: 150px;
   width: 100%;
 }
 
@@ -184,19 +184,161 @@ nav {
 
 .navbar-options-container {
   align-items: flex-end;
-  /* border: 1px solid white; */
   display: flex;
   flex-direction: row;
   font-size: 1em;
   font-weight: 400;
   justify-content: space-between;
   letter-spacing: 0.04em !important;
-  width: 14%;
+  width: 20%;
 }
 
 .options-container {
-    margin-top: 10px;
+  align-items: center;
+  margin-top: 10px;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  font-size: 1em;
+  font-weight: 400;
+  justify-content: space-between;
+  letter-spacing: 0.04em !important;
+  height: 40px;
+  width: 20%;
+
 }
+
+#profile-about {
+  align-items: center;
+}
+
+.profile-column {
+  /* border: 1px solid grey; */
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  height: 1200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 33%;
+
+}
+
+.profile-description-container {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  align-items: center;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.profile-fact {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+.profile-facts-container {
+  align-items: flex-start;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.profile-image-container {
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 350px;
+  margin-top: 20px;
+  width: 350px;
+}
+
+.profile-page-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 150px;
+  width: 100%;
+}
+
+.profile-page-body-container {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profile-paragraph {
+  display: flex;
+  font-size: 17px !important;
+  font-weight: 400;
+  letter-spacing: 0.03em !important;
+  margin-top: 20px;
+  width: 85%;
+  
+}
+
+#skill-1 {
+  height: 30px;
+  width: 150px;
+}
+
+#skill-2 {
+  height: 30px;
+  width: 110px;
+}
+
+#skill-3 {
+  height: 30px;
+  width: 160px;
+}
+
+#skill-4 {
+  height: 30px;
+  width: 120px;
+}
+
+#skill-5 {
+  height: 30px;
+  width: 120px;
+}
+
+
+.profile-skill {
+  align-items: center;
+  background-color: salmon;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  justify-content: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-skills-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.profile-skills-title {
+  margin-top: 30px;
+}
+
+.profile-title-strong {
+  color: #434D66;
+  font-size: 32px !important;
+  font-weight: 400;
+  letter-spacing: 0.03em !important;
+  margin-top: 20px;
+}
+
 .register-button {
   background-color: #2EB887;
   border: 1px solid #434D66;
@@ -239,11 +381,19 @@ nav {
   width: 100%;
 }
 
+#searchbar {
+  width: 100%;
+}
+
 .searchbar-container {
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  justify-content: center;
+  margin-top: 6px;
+  width: 60%;
 }
+
 
 .section-container {
   border: 1px solid white;

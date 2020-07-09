@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Results from "./results";
 import Result from "./result";
+import axios from "axios";
+import { debounce } from "lodash";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 class Search extends Component {
   constructor() {
@@ -15,40 +19,32 @@ class Search extends Component {
   state = {
     input: "",
     filteredResults: [],
-    results: [
-      { id: 1, name: "Erin", desc: "hello World" },
-
-      { id: 2, name: "Ruchi", desc: "hello World" },
-      { id: 3, name: "Owen", desc: "hello World" },
-      { id: 1, name: "everest", desc: "hello World" },
-    ],
+    loadedResults: true,
   };
 
-  searchOnChange = (event) => {
-    console.log(event.target.value);
-    console.log("onChange called: ", event.target.value);
-    this.setState({
-      input: event.target.value,
-    });
-  };
+
+
+  searchOnChange = debounce((input) => {
+    this.setState({ input });
+
+    axios.post('http://localhost:8080/search-handler', {input: this.state.input})
+      .then(response => {
+          console.log(response)
+          this.setState({
+              filteredResults: response.data,
+              loadedResults: (response.data.length > 0) ? true : false,
+          })
+      })
+  }, 400);
 
   render() {
-    const filteredResults = this.state.results.filter((result) => {
-      return result.name.toLowerCase().includes(this.state.input.toLowerCase());
-    });
-
     return (
       <div>
-        <h1>Search Page</h1>
         <div>
-          <label htmlFor="search"> Enter Search</label>
-          <input
-            type="text"
-            value={this.state.input}
-            onChange={this.searchOnChange}
-          />
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" 
+          onChange={event => this.searchOnChange(event.target.value)}/>
         </div>
-        <Results results={filteredResults} input={this.state.input} />
+        {this.state.loadedResults ? (<Results results={this.state.filteredResults} input={this.state.input} />) : "No Results for your search."}  
       </div>
     );
   }

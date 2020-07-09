@@ -86,6 +86,7 @@ export default class RegisterPage extends Component {
   render() {
     return (
         <div class="landing-main-container">
+        <Navbar />
             <div class="landing-body-container">
                 <div id="landing-title" class="center-title animate__animated animate__fadeIn">THECOMMONS</div>
                 <div id="landing-tagline" class="center-text animate__animated animate__fadeIn">Help anyone. Get help on anything.</div>

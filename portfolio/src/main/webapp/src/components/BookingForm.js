@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 export default class BookingForm extends React.Component {
   constructor() {
@@ -88,6 +89,11 @@ export default class BookingForm extends React.Component {
              Book Now 
           </Button>
         </form>
+        <Button variant="contained" color="primary">
+            <Link to="/Dashboard">
+                <li>Dashboard</li>
+            </Link>
+        </Button>
 
         <hr />
         <h2> Entered information: </h2>

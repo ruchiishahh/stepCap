@@ -28,7 +28,7 @@ function renderRow(props) {
       />
       <BookingInfoPopUp />
       <Button variant="contained" color="primary">
-        Confirm
+        Pending
       </Button>
     </ListItem>
   );
@@ -44,7 +44,7 @@ export default function VirtualizedList() {
 
   return (
     <div className={classes.root}>
-      <FixedSizeList height={900} width={600} itemSize={46} itemCount={200}>
+      <FixedSizeList height={900} width={600} itemSize={100} itemCount={200}>
         {renderRow}
       </FixedSizeList>
     </div>

@@ -3,11 +3,18 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import PendingReqs from "./bookingcomponents/PendingReqs";
+import Button from "@material-ui/core/Button";
 
 export default class BookingForm extends React.Component {
   constructor() {
     super();
+    this.handleShowInfo = this.handleShowInfo.bind(this);
   }
+  
+  handleShowInfo(event) {
+      console.log("Inside of showInfo");
+  }
+    
   render() {
     return (
       <main>
@@ -20,6 +27,13 @@ export default class BookingForm extends React.Component {
                   Here are your Pending Requests
                 </h2>
               </Paper>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={this.handleShowInfo}
+                type="submit">
+                    Show Info
+              </Button>
               <PendingReqs />
             </Grid>
             <Grid item xs={12} sm={6}>

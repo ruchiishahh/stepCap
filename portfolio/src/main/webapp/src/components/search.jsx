@@ -3,6 +3,8 @@ import Results from "./results";
 import Result from "./result";
 import axios from "axios";
 import { debounce } from "lodash";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 class Search extends Component {
   constructor() {
@@ -27,8 +29,9 @@ class Search extends Component {
 
     axios.post('http://localhost:8080/search-handler', {input: this.state.input})
       .then(response => {
+          console.log(response)
           this.setState({
-              filteredResults: (response.data.length > 0) ? response.data : ["No Results"],
+              filteredResults: response.data,
               loadedResults: (response.data.length > 0) ? true : false,
           })
       })
@@ -37,14 +40,9 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <h1>Search Page</h1>
         <div>
-          <label htmlFor="search"> Enter Search</label>
-          <input
-            type="text"
-            id="input"
-            onChange={event => this.searchOnChange(event.target.value)}
-          />
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" 
+          onChange={event => this.searchOnChange(event.target.value)}/>
         </div>
         {this.state.loadedResults ? (<Results results={this.state.filteredResults} input={this.state.input} />) : "No Results for your search."}  
       </div>

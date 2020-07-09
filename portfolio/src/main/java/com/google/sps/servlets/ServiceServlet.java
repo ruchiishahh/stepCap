@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
 /** Servlet responsible for handling memes. */
 @WebServlet("/service-handler")
 public class ServiceServlet extends HttpServlet {
@@ -17,8 +18,9 @@ public class ServiceServlet extends HttpServlet {
   /** Get the datastore. */
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
+  //TODO change to toPost
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     String name = request.getParameter("service_name");
     String description = request.getParameter("service_description");
@@ -34,5 +36,7 @@ public class ServiceServlet extends HttpServlet {
     service.setProperty("average_rating", 4.0);
 
     datastore.put(service);
+    response.setContentType("text/html");
+    response.getWriter().println("hello world");
   }
 }

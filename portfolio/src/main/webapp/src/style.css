@@ -84,7 +84,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 260px;
+  height: 150px;
   width: 100%;
 }
 
@@ -184,18 +184,333 @@ nav {
 
 .navbar-options-container {
   align-items: flex-end;
-  /* border: 1px solid white; */
   display: flex;
   flex-direction: row;
   font-size: 1em;
   font-weight: 400;
   justify-content: space-between;
   letter-spacing: 0.04em !important;
-  width: 14%;
+  width: 20%;
 }
 
 .options-container {
-    margin-top: 10px;
+  align-items: center;
+  margin-top: 10px;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  font-size: 1em;
+  font-weight: 400;
+  justify-content: space-between;
+  letter-spacing: 0.04em !important;
+  height: 40px;
+  width: 20%;
+
+}
+
+#profile-about {
+  align-items: center;
+}
+
+.profile-column {
+  /* border: 1px solid grey; */
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  height: 1200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 33%;
+
+}
+
+.profile-description-container {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  align-items: center;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.profile-fact {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+.profile-facts-container {
+  align-items: flex-start;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.profile-image-container {
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 350px;
+  margin-top: 20px;
+  width: 350px;
+}
+
+.profile-page-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 150px;
+  width: 100%;
+}
+
+.profile-page-body-container {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profile-paragraph {
+  display: flex;
+  font-size: 17px !important;
+  font-weight: 400;
+  letter-spacing: 0.03em !important;
+  margin-top: 20px;
+  width: 85%;
+  
+}
+
+#skill-1 {
+  height: 30px;
+  width: 150px;
+}
+
+#skill-2 {
+  height: 30px;
+  width: 110px;
+}
+
+#skill-3 {
+  height: 30px;
+  width: 160px;
+}
+
+#skill-4 {
+  height: 30px;
+  width: 120px;
+}
+
+#skill-5 {
+  height: 30px;
+  width: 120px;
+}
+
+.profile-service {
+  /* background-color: white; */
+  /* border: 1px solid #434D66; */
+  /* border-radius: 10px; */
+  font-weight: 700;
+  height: 250px;
+  margin-top: 25px;
+  width: 90%;
+}
+
+.profile-service-add-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #2EB887;
+  font-weight: 700;
+  height: 20px;
+  margin-top: 15px;
+  width: 90%;
+}
+
+.profile-service-image-container {
+  align-items: flex-end;
+  background-color: #2EB887;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 5px;
+  width: 100%;
+  height: 200px;
+  /* border-bottom: 1px solid grey; */
+}
+
+.profile-service-info {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.profile-service-info-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile-service-price {
+  align-items: flex-end;
+  /* border: 1px solid black; */
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 5px;
+  width: 100%;
+}
+
+
+.profile-service-rating {
+  align-items:center;
+  background-color: gold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 110px;
+  height: 15px;
+}
+
+.profile-review {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  width: 95%;
+  height: 200px;
+}
+
+.profile-review-body {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+  height: 200px;
+}
+
+.profile-review-rating {
+  align-items:center;
+  background-color: gold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5px;
+  width: 110px;
+  height: 20px;
+}
+
+.profile-review-reviewer-name {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.profile-review-title {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 5px;
+}
+
+.profile-service-RSVP {
+  align-items:center;
+  border-radius: 8px;
+  background-color: gold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 110px;
+  height: 30px;
+}
+
+.profile-service-title {
+  align-items: flex-start;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 5px;
+  width: 100%;
+}
+
+#profile-services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile-reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-services-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 1000px;
+  width: 100%;
+}
+
+.profile-reviews-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 1000px;
+  width: 100%;
+}
+
+.profile-skill {
+  align-items: center;
+  background-color: salmon;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  justify-content: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-skills-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.profile-skills-title {
+  margin-top: 40px;
+  font-weight: 500;
+}
+
+.profile-title-strong {
+  color: #434D66;
+  font-size: 32px !important;
+  font-weight: 400;
+  letter-spacing: 0.03em !important;
+  margin-top: 20px;
+}
+
+#profile-title-reviews {
+  margin-bottom: 25px;
 }
 .register-button {
   background-color: #2EB887;
@@ -239,11 +554,19 @@ nav {
   width: 100%;
 }
 
+#searchbar {
+  width: 100%;
+}
+
 .searchbar-container {
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  justify-content: center;
+  margin-top: 6px;
+  width: 60%;
 }
+
 
 .section-container {
   border: 1px solid white;

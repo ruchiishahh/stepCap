@@ -55,8 +55,69 @@ export default class ProfilePage extends Component {
             </div>
             <div id="profile-services" class="profile-column">
               <div class="profile-title-strong center">Services</div>
+              <div class="profile-services-container">
+                <div class="profile-service">
+                  <div class="profile-service-image-container">
+                    <div class="profile-service-RSVP">RSVP</div>
+                  </div>
+                  <div class="profile-service-info">
+                    <div class="profile-service-info-column">
+                        <div class="profile-service-title">Math Tutoring</div>
+                        <div class="profile-service-rating"></div>
+                    </div>
+                    <div class="profile-service-price">$24/hr</div>
+                  </div>
+                </div>
+                <div class="profile-service">
+                  <div class="profile-service-image-container">
+                    <div class="profile-service-RSVP">RSVP</div>
+                  </div>
+                  <div class="profile-service-info">
+                  <div class="profile-service-info-column">
+                        <div class="profile-service-title">Minecraft Cannons</div>
+                        <div class="profile-service-rating"></div>
+                    </div>
+                    <div class="profile-service-price">$15/hr</div>
+                  </div>
+                </div>
+                <div class="profile-service">
+                  <div class="profile-service-image-container">
+                    <div class="profile-service-RSVP">RSVP</div>
+                  </div>
+                  <div class="profile-service-info">
+                    <div class="profile-service-info-column">
+                      <div class="profile-service-title">PC Maintenance</div>
+                      <div class="profile-service-rating"></div>
+                    </div>
+                    <div class="profile-service-price">$19/hr</div>
+                  </div>
+                </div>
+                <div class="profile-service-add-button">+</div>
+              </div>
             </div>
-            <div id="profile-misc" class="profile-column"></div>
+            <div id="profile-reviews" class="profile-column">
+              <div id="profile-title-reviews" class="profile-title-strong">Reviews</div>
+              <div class="profile-reviews-container">
+                <div class="profile-review">
+                  <div class="profile-review-reviewer-name">Owen Z. left a review for <strong>Minecraft Cannons </strong>on July 6th, 2020 (3 days ago)</div>
+                  <div class="profile-review-rating"></div>
+                  <div class="profile-review-title">Very rewarding</div>
+                  <div class="profile-review-body">I had a really good experience learning how to make sophisticated cannons for my faction. We won almost every battle with the cannon we built together!</div>
+                </div>
+                <div class="profile-review">
+                  <div class="profile-review-reviewer-name">Anton S. left a review for <strong>Math Tutoring</strong> on June 14th, 2020 (1 month ago)</div>
+                  <div class="profile-review-rating"></div>
+                  <div class="profile-review-title">Life Saver</div>
+                  <div class="profile-review-body">I had a really good experience learning how to make sophisticated cannons for my faction. We won almost every battle with the cannon we built together!</div>
+                </div>
+                <div class="profile-review">
+                  <div class="profile-review-reviewer-name">Valkyrie C. left a review for <strong>PC Maintenance</strong> on September 21st, 2019 (9 months ago)</div>
+                  <div class="profile-review-rating"></div>
+                  <div class="profile-review-title">Did not know how much clutter I had</div>
+                  <div class="profile-review-body">Owen was very efficient and deleted so many useless things from my laptop I didn't even know existed. I was going to buy a new one so saved me $500!</div>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
     );

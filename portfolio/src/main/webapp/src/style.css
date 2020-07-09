@@ -225,7 +225,7 @@ nav {
 }
 
 .profile-description-container {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   height: 700px;
@@ -307,6 +307,175 @@ nav {
   width: 120px;
 }
 
+.profile-service {
+  /* background-color: white; */
+  /* border: 1px solid #434D66; */
+  /* border-radius: 10px; */
+  font-weight: 700;
+  height: 250px;
+  margin-top: 25px;
+  width: 90%;
+}
+
+.profile-service-add-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #2EB887;
+  font-weight: 700;
+  height: 20px;
+  margin-top: 15px;
+  width: 90%;
+}
+
+.profile-service-image-container {
+  align-items: flex-end;
+  background-color: #2EB887;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 5px;
+  width: 100%;
+  height: 200px;
+  /* border-bottom: 1px solid grey; */
+}
+
+.profile-service-info {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.profile-service-info-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile-service-price {
+  align-items: flex-end;
+  /* border: 1px solid black; */
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 5px;
+  width: 100%;
+}
+
+
+.profile-service-rating {
+  align-items:center;
+  background-color: gold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 110px;
+  height: 15px;
+}
+
+.profile-review {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  width: 95%;
+  height: 200px;
+}
+
+.profile-review-body {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+  height: 200px;
+}
+
+.profile-review-rating {
+  align-items:center;
+  background-color: gold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5px;
+  width: 110px;
+  height: 20px;
+}
+
+.profile-review-reviewer-name {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.profile-review-title {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 5px;
+}
+
+.profile-service-RSVP {
+  align-items:center;
+  border-radius: 8px;
+  background-color: gold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 110px;
+  height: 30px;
+}
+
+.profile-service-title {
+  align-items: flex-start;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 5px;
+  width: 100%;
+}
+
+#profile-services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile-reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-services-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 1000px;
+  width: 100%;
+}
+
+.profile-reviews-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 1000px;
+  width: 100%;
+}
 
 .profile-skill {
   align-items: center;
@@ -328,7 +497,8 @@ nav {
 }
 
 .profile-skills-title {
-  margin-top: 30px;
+  margin-top: 40px;
+  font-weight: 500;
 }
 
 .profile-title-strong {
@@ -339,6 +509,9 @@ nav {
   margin-top: 20px;
 }
 
+#profile-title-reviews {
+  margin-bottom: 25px;
+}
 .register-button {
   background-color: #2EB887;
   border: 1px solid #434D66;

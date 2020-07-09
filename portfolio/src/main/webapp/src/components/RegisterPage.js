@@ -76,8 +76,9 @@ export default class RegisterPage extends Component {
                lastname: this.state.lastname,
            }
            this.props.passRegisterInfo(registerInfoUpdated);
+           this.props.history.push('/home');
        })
-       .then(this.props.history.push('/home'))
+    //    .then(this.props.history.push('/home'))
        .catch((err)=>console.log(err));
   }
   //yeet

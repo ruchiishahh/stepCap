@@ -9,7 +9,7 @@ export default class HomePage extends Component {
     this.logout = this.logout.bind(this);
     
     this.state = {
-        userId: "",
+        user_id: "",
         username: "",
         password: "",
         email: "",
@@ -20,13 +20,17 @@ export default class HomePage extends Component {
   };
 
   componentDidMount() {
+      console.log(this.props);
       this.setState({
-          id: this.props.userInfo.user_id,
+          user_id: this.props.userInfo.user_id,
           firstname: this.props.userInfo.firstname,
           lastname: this.props.userInfo.lastname,
           email: this.props.userInfo.email,
+      }, () => {
+        console.log("HomePage – Mount");
+        console.log(this.state);
       });
-      console.log("HomePage – Mount");
+      
   }
 
   logout() {
@@ -34,6 +38,7 @@ export default class HomePage extends Component {
   }
 
   render() {
+
     return (
       <div class="homepage-all-container">
           <div class="homepage-header-container">

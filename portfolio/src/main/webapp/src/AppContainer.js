@@ -6,6 +6,7 @@ import RegisterPage from "./components/RegisterPage";
 import HomePage from "./components/HomePage";
 import Search from "./components/search.jsx";
 import Dashboard from "./components/Dashboard";
+
 export default class AppContainer extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ export default class AppContainer extends Component {
 
     this.state = {
       loggedIn: false,
-      userId: '',
+      user_id: '',
       username: '',
       firstname: '',
       lastname: '',
@@ -21,6 +22,9 @@ export default class AppContainer extends Component {
     };
   }
   passRegisterInfo(registerInfoUpdated) {
+      console.log(registerInfoUpdated);
+      console.log(registerInfoUpdated.firstname);
+      console.log(this);
     this.setState({
         loggedIn: true,
         user_id: registerInfoUpdated.user_id,
@@ -28,8 +32,10 @@ export default class AppContainer extends Component {
         firstname: registerInfoUpdated.firstname,
         lastname: registerInfoUpdated.lastname,
         email: registerInfoUpdated.email,
+    }, () => {
+        console.log("App Container passRegisterInfo ran");
+        console.log(this.state);
     });
-    console.log("App Container passRegisterInfo ran");
   }
 
   render() {

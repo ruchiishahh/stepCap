@@ -272,3 +272,7 @@ nav {
   border: none;
   margin: 2px;
 }
+
+.result-container {
+  margin: 20px;
+}

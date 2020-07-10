@@ -5,15 +5,12 @@ import Results from "./Results";
 import { debounce } from "lodash";
 import axios from "axios";
 
-
-
-
 class SearchPage extends Component {
   state = {
     filters: [
         {id:0, text: "Alphabetical", active: true},
         {id:1, text: "Highest-Rated", active: true},
-
+        {id:2, text: "Lowest-Price", active: true},
     ],
     input: "",
     filteredResults: [],

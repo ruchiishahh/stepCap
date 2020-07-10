@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 class Filter extends Component {
 
+  componentWillUnmount() {
+    console.log("Left");
+  }
+
   render() {
     return <button 
     onClick={() => {this.props.onClick(this.props.filter.id)}}

@@ -12,8 +12,8 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
-          <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" 
+      <div className="searchbar-container">
+          <input className="searchbar form-control form-control-lg" type="text" placeholder="Search" 
           onChange={event => this.props.onChange(event.target.value)}/>
       </div>
     );

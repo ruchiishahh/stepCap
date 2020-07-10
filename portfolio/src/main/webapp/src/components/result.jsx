@@ -13,20 +13,17 @@ class Result extends Component {
 
   render() {
     return (
-<div className="card card-cascade">
+<div className="result-container card card-cascade">
 
-  <div className="view view-cascade overlay">
-    <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap" />
-    <a>
-      <div className="mask rgba-white-slight"></div>
-    </a>
+  <div className="result-img-container">
+    <img className="result-img" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap" />
   </div>
 
-  <div className="card-body card-body-cascade text-center">
+  <div className="card-body text-center">
 
     <h4 className="card-title"><strong>{this.props.result.service_name}</strong></h4>
-    <h6 className="font-weight-bold indigo-text py-2">FirstName LastName</h6>
-    <p className="card-text">{this.props.result.service_description}
+    <h6 className="font-weight-bold indigo-text py-2">Erin Limbo</h6>
+    <p className="card-text"> I am a tutor for CS61B.
     </p>
   </div>
 

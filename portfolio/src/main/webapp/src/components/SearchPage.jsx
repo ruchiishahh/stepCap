@@ -4,6 +4,8 @@ import Search from "./Search";
 import Results from "./Results";
 import { debounce } from "lodash";
 import axios from "axios";
+import Navbar from "./Navbar"
+
 
 class SearchPage extends Component {
   state = {
@@ -44,13 +46,15 @@ class SearchPage extends Component {
   render() {
     return (
       <div className="searchPage-container">
+        <Navbar />
         <div>
           {this.state.filters.map(filter => (
             filter.active && (<Filter key={filter.id} filter={filter} onClick={this.filterOnClick} />)
           ))}
         </div>
         <Search onChange={this.searchOnChange} loadedResults={this.state.loadedResults}/>
-        {this.state.loadedResults ? (<Results results={this.state.filteredResults}/>) : "No Results for your search."}  
+        {this.state.loadedResults ? (<Results results={this.state.filteredResults}/>) : "No Results for your search."}
+        <Results />  
       </div>
     );
   }

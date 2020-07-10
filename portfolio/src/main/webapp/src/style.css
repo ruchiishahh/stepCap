@@ -240,10 +240,22 @@ nav {
   width: 100%;
 }
 
+.searchPage-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .searchbar-container {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  width: 70%;
+}
+
+.searchbar {
+  width: 100% !important;
+  transition: none !important;
 }
 
 .section-container {
@@ -253,7 +265,6 @@ nav {
   height: 250px;
   margin-bottom: 40px;
   width: 100%;
-
 }
 
 .filter {
@@ -274,5 +285,24 @@ nav {
 }
 
 .result-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
   margin: 20px;
+  width: 800px;
+}
+
+.result-img-container {
+  height: 200px;
+  width: 500px;
+}
+
+.result-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.result-body {
+  flex: 3
 }

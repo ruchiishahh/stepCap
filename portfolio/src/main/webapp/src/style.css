@@ -7,6 +7,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.book-service-title {
+  border-bottom: 1px solid gray;
+}
+
 .center-text {
     align-items: center;
     display: flex;
@@ -512,6 +516,12 @@ nav {
 #profile-title-reviews {
   margin-bottom: 25px;
 }
+
+react-calendar__month-view__days__day--weekend {
+  color: purple !important;
+}
+
+
 .register-button {
   background-color: #2EB887;
   border: 1px solid #434D66;

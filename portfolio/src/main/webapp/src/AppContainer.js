@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-calendar/dist/Calendar.css';
 import BookingForm from "./components/BookingForm";
 import RegisterPage from "./components/RegisterPage";
 import HomePage from "./components/HomePage";
 import Search from "./components/search.jsx";
 import Dashboard from "./components/Dashboard";
 import ProfilePage from "./components/ProfilePage";
+import BookService from "./components/BookService";
 
 export default class AppContainer extends Component {
   constructor(props) {
@@ -77,6 +79,11 @@ export default class AppContainer extends Component {
             <Route
                 exact path="/profile"
                 render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
+            </Route>
+
+            <Route
+                exact path="/bookService"
+                render={(props) => <BookService {...props} userInfo={userInfo} />}>
             </Route>
         </Router>
       </div>

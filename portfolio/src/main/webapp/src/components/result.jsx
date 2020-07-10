@@ -13,12 +13,28 @@ class Result extends Component {
 
   render() {
     return (
-      <div className="result-container">
-        <div>
-          <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Picture of service"/>
-          my name is {this.props.result.service_name}
-        </div>
-      </div>
+<div className="card card-cascade">
+
+  <div className="view view-cascade overlay">
+    <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap" />
+    <a>
+      <div className="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <div className="card-body card-body-cascade text-center">
+
+    <h4 className="card-title"><strong>{this.props.result.service_name}</strong></h4>
+    <h6 className="font-weight-bold indigo-text py-2">FirstName LastName</h6>
+    <p className="card-text">{this.props.result.service_description}
+    </p>
+  </div>
+
+  <div className="card-footer text-muted text-center">
+    &#9733; &#9733; &#9733; &#9733; &#9734;
+  </div>
+
+</div>
     );
   }
 }

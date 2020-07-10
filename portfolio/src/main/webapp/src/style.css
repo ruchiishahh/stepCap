@@ -557,8 +557,10 @@ nav {
 
 .searchPage-container {
   align-items: center;
+  background-color: white !important;
   display: flex;
   flex-direction: column;
+}
 
 .searchbar-container {
   /* border: 1px solid black; */

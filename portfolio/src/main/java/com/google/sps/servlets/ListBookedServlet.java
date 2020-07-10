@@ -52,15 +52,14 @@ public class ListBookedServlet extends HttpServlet {
       int booking_duration = (int) entity.getProperty("booking_duration");
       String booking_description = (String) entity.getProperty("booking_description");
       int booking_price = (int) entity.getProperty("booking_price");
-      long timestamp = (long) entity.getProperty("timestamp");
       
+      long timestamp = (long) entity.getProperty("timestamp");
       Booking booking = new Booking(booking_id, booking_name, booking_date, booking_duration, booking_description, booking_price, timestamp);
       bookings.add(booking);
     }
     
     Gson gson = new Gson();
-
-    response.setContentType("application/json;");
+    response.setContentType("application/json");
     response.getWriter().println(gson.toJson(bookings));
   }
 }

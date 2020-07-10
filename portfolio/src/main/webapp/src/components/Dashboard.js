@@ -14,17 +14,45 @@ export default class BookingForm extends React.Component {
 
   state = {
     persons: [],
+    data: "",
   };
 
   handleShowInfo(event) {
     console.log("Inside of showInfo");
-    axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
-      console.log(res);
-      this.setState({ persons: res.data });
+    axios.get("http://localhost:8080/list-services")
+        .then((res) => {
+            console.log(res);
+            console.log(res.data);
+            //this.setState({ persons: res.data });
+        });
+
+    /*fetch('/list-services', {
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    
+    }).then(response => response.json()).then((bookings) => {
+        console.log("Inside of fetching");
+        console.log("Bookings: " + bookings);
+        console.log("Bookings Data: " + bookings.booking_name);
+        console.log("Single Booking: " + bookings[0]);
+        //bookings.forEach(booking => {
+            //this.setState({data: booking.booking_name});
+            //console.log("Booking: " + booking);
+        //})
     });
+    */
+    //fetch('/list-services').then(response => console.log("Response" + response.type));
+    //fetch('/list-services').then(response => response.json()).then(data => console.log(data));
+
+    //fetch('/list-services').then(response => response.json()).then(data => console.log(data));
+    //axios.get("http://localhost:8080/list-services").then((res) => {
+    //  console.log(res);
+    //  this.setState({ persons: res.data });
+    //});
   }
 
-  componentdidMount() {}
 
   render() {
     return (
@@ -47,9 +75,7 @@ export default class BookingForm extends React.Component {
                 Show Info
               </Button>
               <ul>
-                {this.state.persons.map((person) => (
-                  <li> {person.name}</li>
-                ))}
+                <li> {this.state.data} </li>
               </ul>
               <PendingReqs />
             </Grid>

@@ -7,6 +7,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+
 .center-text {
     align-items: center;
     display: flex;
@@ -554,17 +555,22 @@ nav {
   width: 100%;
 }
 
-#searchbar {
-  width: 100%;
-}
+.searchPage-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 
 .searchbar-container {
   /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-top: 6px;
-  width: 60%;
+  margin-top: 10px;
+  width: 70%;
+}
+
+.searchbar {
+  width: 100% !important;
+  transition: none !important;
 }
 
 
@@ -575,5 +581,44 @@ nav {
   height: 250px;
   margin-bottom: 40px;
   width: 100%;
+}
 
+.filter {
+  border: solid 2px #2EB887 !important;
+  color: #2EB887 !important;
+  margin: 10px;
+}
+
+.filter:hover {
+  color: white !important;
+  transform: scale(1.1);
+}
+
+.remove-filter {
+  background-color: white;
+  border: none;
+  margin: 2px;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  margin: 20px;
+  width: 800px;
+}
+
+.result-img-container {
+  height: 200px;
+  width: 500px;
+}
+
+.result-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.result-body {
+  flex: 3
 }

@@ -7,6 +7,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+
 .center-text {
     align-items: center;
     display: flex;
@@ -253,4 +254,21 @@ nav {
   margin-bottom: 40px;
   width: 100%;
 
+}
+
+.filter {
+  border: solid 2px #2EB887 !important;
+  color: #2EB887 !important;
+  margin: 10px;
+}
+
+.filter:hover {
+  color: white !important;
+  transform: scale(1.1);
+}
+
+.remove-filter {
+  background-color: white;
+  border: none;
+  margin: 2px;
 }

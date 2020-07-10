@@ -6,6 +6,7 @@ import RegisterPage from "./components/RegisterPage";
 import HomePage from "./components/HomePage";
 import SearchPage from "./components/SearchPage";
 import Dashboard from "./components/Dashboard";
+import ProfilePage from "./components/ProfilePage";
 
 export default class AppContainer extends Component {
   constructor(props) {
@@ -79,11 +80,16 @@ export default class AppContainer extends Component {
             render={(props) => <BookingForm {...props} />}
           ></Route>
 
-          <Route
-            exact
-            path="/Dashboard"
-            render={(props) => <Dashboard {...props} />}
-          ></Route>
+            <Route
+                exact path="/Dashboard"
+                render={(props) => <Dashboard {...props} />}>
+            </Route>
+
+            <Route
+                exact path="/profile"
+                render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
+            </Route>
+
         </Router>
       </div>
     );

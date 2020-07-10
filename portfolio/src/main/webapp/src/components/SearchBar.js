@@ -20,8 +20,8 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div class="searchbar-container">
-          <div class="form-div long-input">
-              <input id="homepage-search" type="text" value={this.state.searchInput} onChange={this.onChangeSearchInput} />
+          <div class="form-div">
+              <input id="searchbar" type="text" value={this.state.searchInput} onChange={this.onChangeSearchInput} />
           </div>
       </div>
     );

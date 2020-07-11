@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 
 export default class BookingForm extends React.Component {
   constructor() {

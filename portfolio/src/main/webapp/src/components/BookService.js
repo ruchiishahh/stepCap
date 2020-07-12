@@ -48,7 +48,7 @@ export default class BookService extends React.Component {
                                 <div class="book-service-center">
                                     <button class="book-service-button">Book Now</button>
                                 </div>
-                                <div class="book-service-options-container">
+                                {/* <div class="book-service-options-container">
                                     <div class="book-service-option">
                                         <div class="book-service-column">
                                             <div class="book-service-option-title"></div>
@@ -56,8 +56,13 @@ export default class BookService extends React.Component {
                                         </div>
                                         <div></div>
                                     </div>
-                                </div>
+                                </div> */}
+
                             </div>
+                        </div>
+                        <div class="book-service-row">
+                            <div class="book-service-detail"></div>
+
                         </div>
                     </div>
                 </div>

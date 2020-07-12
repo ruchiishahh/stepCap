@@ -7,8 +7,120 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.book-service-center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.book-service-row {
+  display: flex;
+  flex-direction: row;
+  padding-left: 60px;
+  padding-right: 60px;
+  width: 100%;
+}
+
+.book-service-header-container {
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100px;
+  width: 100%;
+}
+
+.book-service-all-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-service-body-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-service-button{
+  background-color: #F2b203;
+  border: none;
+  border-radius: 9px;
+  font-size: 18px;
+  font-weight: 500;
+  height: 30px;
+  outline: none !important;
+
+  width: 90%;
+
+}
+
+.book-service-booking-container {
+  border: 1px solid lightgrey;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  width: 50%;
+}
+
+.book-service-f6f6f6-theme {
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  /* padding-left: 60px; */
+}
+
+.book-service-info-avg-rating {
+  align-items:center;
+  background-color: gold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px;
+  width: 100px;
+  height: 10px;
+}
+
+.book-service-info-container {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.book-service-info-title {
+  color: black;
+  font-family:-apple-system, BlinkMacSystemFont, "signoria", "Signoria", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+  font-size: 35px;
+  font-weight: 800px;
+}
+
+.book-service-image-container {
+  background-color: #2EB887;
+  height: 460px;
+  margin: 20px;
+  width: 50%;
+}
+
 .book-service-title {
-  border-bottom: 1px solid gray;
+  align-items: flex-start;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 10px;
+  width: 100%;
+  
+  /* border-bottom: 1px solid gray; */
+}
+
+.react-calendar.book-service-calendar {
+  /* margin: 20px; */
+  width: 100%;
 }
 
 .center-text {

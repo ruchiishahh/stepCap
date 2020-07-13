@@ -9,13 +9,11 @@ import axios from "axios";
 export default class BookingForm extends React.Component {
   constructor() {
     super();
+    this.state = {
+        pendingReqInfo: [],  
+    }
     this.handleShowInfo = this.handleShowInfo.bind(this);
   }
-
-  state = {
-    persons: [],
-    data: "",
-  };
 
   handleShowInfo(event) {
     console.log("Inside of showInfo");
@@ -23,36 +21,9 @@ export default class BookingForm extends React.Component {
         .then((res) => {
             console.log(res);
             console.log(res.data);
-            //this.setState({ persons: res.data });
+            this.setState({ pendingReqInfo: res.data });        
         });
-
-    /*fetch('/list-services', {
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-    
-    }).then(response => response.json()).then((bookings) => {
-        console.log("Inside of fetching");
-        console.log("Bookings: " + bookings);
-        console.log("Bookings Data: " + bookings.booking_name);
-        console.log("Single Booking: " + bookings[0]);
-        //bookings.forEach(booking => {
-            //this.setState({data: booking.booking_name});
-            //console.log("Booking: " + booking);
-        //})
-    });
-    */
-    //fetch('/list-services').then(response => console.log("Response" + response.type));
-    //fetch('/list-services').then(response => response.json()).then(data => console.log(data));
-
-    //fetch('/list-services').then(response => response.json()).then(data => console.log(data));
-    //axios.get("http://localhost:8080/list-services").then((res) => {
-    //  console.log(res);
-    //  this.setState({ persons: res.data });
-    //});
   }
-
 
   render() {
     return (
@@ -74,10 +45,9 @@ export default class BookingForm extends React.Component {
               >
                 Show Info
               </Button>
-              <ul>
-                <li> {this.state.data} </li>
-              </ul>
-              <PendingReqs />
+                {this.state.pendingReqInfo.map((info) => (
+                  <PendingReqs name={info.booking_name} date={info.booking_date} duration={info.booking_duration} description={info.booking_description} price={info.booking_price}/>
+                ))}
             </Grid>
             <Grid item xs={12} sm={6}>
               <Paper>

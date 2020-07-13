@@ -15,6 +15,48 @@ body {
   margin-top: 10px;
 }
 
+.book-service-factcard {
+  background-color: white;
+  border: 1px solid lightgrey;
+  height: 500px;
+  margin: 20px;
+  width: 30%;
+}
+
+.book-service-detail-container {
+  background-color: white;
+  border: 1px solid lightgrey;
+  height: 500px;
+  margin: 20px;
+  width: 60%;
+}
+
+.book-service-detail-section {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+#book-service-detail-title {
+  border-bottom: 1px solid lightgrey;
+  width: 95%;
+}
+
+#book-service-review-title {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 95%;
+}
+
+#book-service-fact-title {
+  margin-top: 165px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 95%;
+}
+
 .book-service-row {
   display: flex;
   flex-direction: row;
@@ -50,9 +92,7 @@ body {
   font-weight: 500;
   height: 30px;
   outline: none !important;
-
   width: 90%;
-
 }
 
 .book-service-booking-container {
@@ -103,6 +143,34 @@ body {
   height: 460px;
   margin: 20px;
   width: 50%;
+}
+
+.book-service-paragraph {
+  color: black !important;
+  display: flex;
+  font-size: 15px !important;
+  font-weight: 300;
+  letter-spacing: 0.03em !important;
+  margin: 15px;
+}
+
+.book-service-highlight {
+  color: black !important;
+  display: flex;
+  font-size: 15px !important;
+  font-weight: 300;
+  letter-spacing: 0.03em !important;
+  margin: 10px;
+}
+
+.book-service-review-container {
+  background-color: white;
+  border: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  margin: 20px;
+  width: 60%;
 }
 
 .book-service-title {
@@ -164,6 +232,14 @@ body {
   letter-spacing: 0.06em !important;
   margin-bottom: 20px;
   margin-left: 40px;
+}
+
+.fas {
+  padding: 15px;
+}
+
+.far {
+  padding: 15px;
 }
 
 .form-div {
@@ -395,7 +471,6 @@ nav {
   letter-spacing: 0.03em !important;
   margin-top: 20px;
   width: 85%;
-  
 }
 
 #skill-1 {

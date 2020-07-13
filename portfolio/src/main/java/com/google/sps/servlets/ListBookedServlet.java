@@ -48,26 +48,13 @@ public class ListBookedServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
       System.out.println("first");
       long booking_id = entity.getKey().getId();
-      System.out.println("BOOKING_ID: " + booking_id);
 
       String booking_name = (String) entity.getProperty("booking_name");
-      System.out.println("BOOKING_NAME: " + booking_name);
-
       String booking_date = (String) entity.getProperty("booking_date");
-      System.out.println("BOOKING_DATE: " + booking_date);
-
       long booking_duration = (long) entity.getProperty("booking_duration");
-      System.out.println("BOOKING_DURATIOn: " + booking_duration);
-
       String booking_description = (String) entity.getProperty("booking_description");
-      System.out.println("BOOKING_DESCRIPTION: " + booking_description);
-
       long booking_price = (Long) entity.getProperty("booking_price");
-      System.out.println("PRICE: " + booking_price);
-
-      
       long timestamp = (long) entity.getProperty("timestamp");
-      System.out.println("timestamp: " + timestamp);
 
       Booking booking = new Booking(booking_id, booking_name, booking_date, booking_duration, booking_description, booking_price, timestamp);
       bookings.add(booking);

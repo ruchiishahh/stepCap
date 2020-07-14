@@ -12,3 +12,10 @@ portfolio/target/portfolio-1/script*
 target
 /target
 src/main/webapp/.cache
+/portfolio/.settings
+settings
+factorypath
+.factorypath
+.project
+/portfolio/.factorypath
+/portfolio/.project

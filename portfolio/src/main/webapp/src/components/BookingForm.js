@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import Calendar from 'react-calendar';
 
 export default class BookingForm extends React.Component {
   constructor() {
     super();
     this.state = {
+      date: new Date(),
       booking_name: "",
       booking_date: "",
       booking_duration: "",
@@ -15,6 +17,8 @@ export default class BookingForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  onChangeCalendar = date => this.setState({date})
 
   handleChange(event) {
     const { name, value, type, checked } = event.target;
@@ -47,6 +51,7 @@ export default class BookingForm extends React.Component {
     return (
       <main>
         <h1>Want to Book a Service?</h1>
+        <Calendar onChange={this.onChangeCalendar} value={this.state.date}/>
         <form action="/book-new-service" method="POST">
           <input
             name="booking_name"

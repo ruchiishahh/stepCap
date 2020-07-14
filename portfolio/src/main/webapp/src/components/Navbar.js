@@ -17,11 +17,17 @@ export default class Navbar extends Component {
           <Link to="/">
             <li>Register</li>
           </Link>
+          <Link to="/profile">
+            <li>Profile</li>
+          </Link>
           <Link to="/search">
             <li>Search</li>
           </Link>
           <Link to="/BookingForm">
-            <li>Profile</li>
+            <li>Book</li>
+          </Link>
+          <Link to="/bookService">
+            <li>Service</li>
           </Link>
           <Link to="/dashboard">
             <li>Dashboard</li>

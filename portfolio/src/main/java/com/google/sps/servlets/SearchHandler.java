@@ -36,18 +36,19 @@ public class SearchHandler extends HttpServlet {
 
   /** Get the datastore. */
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
-    String input = jsonObj.get("input").getAsString();
+    String input = jsonObj.get("input").getAsString().toUpperCase();
 
-    System.out.println(input);
-    Filter inputFilter = new FilterPredicate("service_name", FilterOperator.GREATER_THAN_OR_EQUAL, input);
+    Query query = new Query("Service");
+    if (!input.equals("")) {
+       Filter inputFilter = new FilterPredicate("service_name", FilterOperator.GREATER_THAN_OR_EQUAL, input);
+       query.setFilter(inputFilter);
+    }
 
-    Query query = new Query("Service").setFilter(inputFilter);
 
     PreparedQuery results = datastore.prepare(query);
     List<Entity> resultsList = results.asList(FetchOptions.Builder.withLimit(20));
@@ -63,7 +64,6 @@ public class SearchHandler extends HttpServlet {
       Service service = new Service(service_id, service_name, service_description, provider_id, average_rating);
       services.add(service);
     }
-    System.out.println(services.get(0));
 
     response.setContentType("application/json;");
     String json = gson.toJson(services);

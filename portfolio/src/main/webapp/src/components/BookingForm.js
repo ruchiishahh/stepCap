@@ -25,6 +25,21 @@ export default class BookingForm extends React.Component {
 
   handleSubmit(event) {
     //TODO: take this data & send to DataStore
+    const booking_info = {
+        booking_name: this.state.booking_name,
+        booking_date: this.state.booking_date,
+        booking_description: this.state.booking_description,
+        booking_duration: this.state.booking_duration,
+        booking_price: this.state.booking_price,
+    }
+    axios.post('http://localhost:8080/book-new-service', booking_info)
+       .then(res => {
+           console.log(res);
+           console.log(this);
+           console.log(this.props);
+           this.props.history.push('/dashboard');
+           //this.props.history.push('/Dashboard');
+       })
     console.log(this.state);
   }
 
@@ -83,17 +98,13 @@ export default class BookingForm extends React.Component {
           <Button
             variant="contained"
             color="secondary"
-            onClick={this.handleSubmit}
+            // onClick={this.handleSubmit}
             type="submit"
           >
              Book Now 
           </Button>
         </form>
-        <Button variant="contained" color="primary">
-            <Link to="/Dashboard">
-                <li>Dashboard</li>
-            </Link>
-        </Button>
+        
 
         <hr />
         <h2> Entered information: </h2>

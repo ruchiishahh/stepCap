@@ -9,22 +9,21 @@ import axios from "axios";
 export default class BookingForm extends React.Component {
   constructor() {
     super();
+    this.state = {
+        pendingReqInfo: [],  
+    }
     this.handleShowInfo = this.handleShowInfo.bind(this);
   }
 
-  state = {
-    persons: [],
-  };
-
   handleShowInfo(event) {
     console.log("Inside of showInfo");
-    axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
-      console.log(res);
-      this.setState({ persons: res.data });
-    });
+    axios.get("http://localhost:8080/list-services")
+        .then((res) => {
+            console.log(res);
+            console.log(res.data);
+            this.setState({ pendingReqInfo: res.data });        
+        });
   }
-
-  componentdidMount() {}
 
   render() {
     return (
@@ -46,12 +45,9 @@ export default class BookingForm extends React.Component {
               >
                 Show Info
               </Button>
-              <ul>
-                {this.state.persons.map((person) => (
-                  <li> {person.name}</li>
+                {this.state.pendingReqInfo.map((info) => (
+                  <PendingReqs name={info.booking_name} date={info.booking_date} duration={info.booking_duration} description={info.booking_description} price={info.booking_price}/>
                 ))}
-              </ul>
-              <PendingReqs />
             </Grid>
             <Grid item xs={12} sm={6}>
               <Paper>

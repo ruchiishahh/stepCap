@@ -46,21 +46,22 @@ public class ListBookedServlet extends HttpServlet {
 
     List<Booking> bookings = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
+      System.out.println("first");
       long booking_id = entity.getKey().getId();
+
       String booking_name = (String) entity.getProperty("booking_name");
       String booking_date = (String) entity.getProperty("booking_date");
-      int booking_duration = (int) entity.getProperty("booking_duration");
+      long booking_duration = (long) entity.getProperty("booking_duration");
       String booking_description = (String) entity.getProperty("booking_description");
-      int booking_price = (int) entity.getProperty("booking_price");
+      long booking_price = (Long) entity.getProperty("booking_price");
       long timestamp = (long) entity.getProperty("timestamp");
-      
+
       Booking booking = new Booking(booking_id, booking_name, booking_date, booking_duration, booking_description, booking_price, timestamp);
       bookings.add(booking);
     }
     
     Gson gson = new Gson();
-
-    response.setContentType("application/json;");
+    response.setContentType("application/json");
     response.getWriter().println(gson.toJson(bookings));
   }
 }

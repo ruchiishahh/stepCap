@@ -11,14 +11,14 @@ public final class Booking {
   //private final long service_id;
   private final String booking_name;
   private final String booking_date;
-  private final int booking_duration;
+  private final long booking_duration;
   private final String booking_description;
-  private final int booking_price;
+  private final long booking_price;
   //private boolean is_confirmed_customer;
   //private boolean is_confirmed_provider;
   private final long timestamp;
 
-  public Booking(long booking_id, String booking_name, String booking_date, int booking_duration, String booking_description, int booking_price, long timestamp) {
+  public Booking(long booking_id, String booking_name, String booking_date, long booking_duration, String booking_description, long booking_price, long timestamp) {
     this.booking_id = booking_id;
     //this.customer_id = customer_id;
     //this.provider_id = provider_id;

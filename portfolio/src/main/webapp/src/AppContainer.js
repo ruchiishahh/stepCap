@@ -81,7 +81,7 @@ export default class AppContainer extends Component {
           ></Route>
 
             <Route
-                exact path="/Dashboard"
+                exact path="/dashboard"
                 render={(props) => <Dashboard {...props} />}>
             </Route>
 

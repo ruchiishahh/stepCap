@@ -9,6 +9,7 @@ import Search from "./components/search.jsx";
 import Dashboard from "./components/Dashboard";
 import ProfilePage from "./components/ProfilePage";
 import BookService from "./components/BookService";
+import CreateService from "./components/createService";
 
 export default class AppContainer extends Component {
   constructor(props) {
@@ -84,6 +85,11 @@ export default class AppContainer extends Component {
             <Route
                 exact path="/bookService"
                 render={(props) => <BookService {...props} userInfo={userInfo} />}>
+            </Route>
+
+            <Route
+                exact path="/createService"
+                render={(props) => <CreateService {...props} userInfo={userInfo} />}>
             </Route>
         </Router>
       </div>

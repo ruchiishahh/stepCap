@@ -13,25 +13,24 @@ class Result extends Component {
 
   render() {
     return (
-<div className="result-container card card-cascade">
+    <div className="result-container card card-cascade">
 
-  <div className="result-img-container">
-    <img className="result-img" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap" />
-  </div>
+    <div className="result-img-container">
+        <img className="result-img" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap" />
+    </div>
 
-  <div className="card-body text-center">
+    <div className="card-body text-center">
 
-    <h4 className="card-title"><strong>{this.props.result.service_name}</strong></h4>
-    <h6 className="font-weight-bold indigo-text py-2">Erin Limbo</h6>
-    <p className="card-text"> I am a tutor for CS61B.
-    </p>
-  </div>
+        <h4 className="card-title"><strong>{this.props.result.service_name}</strong></h4>
+        <h6 className="font-weight-bold indigo-text py-2">{this.props.result.provider_id}</h6>
+        <p className="card-text"> {this.props.result.service_description} </p>
+    </div>
 
-  <div className="card-footer text-muted text-center">
-    &#9733; &#9733; &#9733; &#9733; &#9734;
-  </div>
+    <div className="card-footer text-muted text-center">
+        &#9733; &#9733; &#9733; &#9733; &#9734;
+    </div>
 
-</div>
+    </div>
     );
   }
 }

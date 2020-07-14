@@ -19,6 +19,17 @@ class SearchPage extends Component {
     loadedResults: true,
   };
 
+  componentDidMount() {
+    axios.post("http://localhost:8080/search-handler", {input: ""})
+      .then(response => {
+        console.log(response);
+        this.setState({
+            filteredResults: response.data,
+            loadedResults: response.data.length > 0 ? true : false,
+        })
+      })
+  }
+
   searchOnChange = debounce((input) => {
     this.setState({ input });
     console.log(this.state.input);
@@ -44,6 +55,7 @@ class SearchPage extends Component {
   }
 
   render() {
+
     return (
       <div className="searchPage-container">
         <Navbar />
@@ -53,8 +65,7 @@ class SearchPage extends Component {
           ))}
         </div>
         <Search onChange={this.searchOnChange} loadedResults={this.state.loadedResults}/>
-        {this.state.loadedResults ? (<Results results={this.state.filteredResults}/>) : "No Results for your search."}
-        <Results />  
+        <Results input={this.state.input} results={this.state.filteredResults}/>
       </div>
     );
   }

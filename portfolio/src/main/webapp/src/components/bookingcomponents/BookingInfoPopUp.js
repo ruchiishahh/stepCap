@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal() {
+export default function SimpleModal(props) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -45,11 +45,11 @@ export default function SimpleModal() {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Booking Name</h2>
-      <p id="simple-modal-description">Booking Date</p>
-      <p id="simple-modal-description">Booking Duration</p>
-      <p id="simple-modal-description">Booking Description</p>
-      <p id="simple-modal-description">Booking Price</p>
+      <h2 id="simple-modal-title">Booking Name: {props.name}</h2>
+      <p id="simple-modal-description">Booking Date: {props.date}</p>
+      <p id="simple-modal-description">Booking Duration: {props.duration}</p>
+      <p id="simple-modal-description">Booking Description: {props.description}</p>
+      <p id="simple-modal-description">Booking Price: {props.price}</p>
     </div>
   );
 

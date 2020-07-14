@@ -36,7 +36,5 @@ public class ServiceServlet extends HttpServlet {
     service.setProperty("average_rating", 4.0);
 
     datastore.put(service);
-    response.setContentType("text/html");
-    response.getWriter().println("hello world");
   }
 }

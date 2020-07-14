@@ -15,6 +15,7 @@ class Results extends Component {
     }
 
     return (
+
       <div>
       {displayResults(filteredResults)}
         {filteredResults.map((result) => (

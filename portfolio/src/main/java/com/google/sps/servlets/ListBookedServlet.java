@@ -52,11 +52,11 @@ public class ListBookedServlet extends HttpServlet {
       String booking_name = (String) entity.getProperty("booking_name");
       String booking_date = (String) entity.getProperty("booking_date");
       long booking_duration = (long) entity.getProperty("booking_duration");
-      String booking_description = (String) entity.getProperty("booking_description");
+      String booking_optional_note = (String) entity.getProperty("booking_optional_note");
       long booking_price = (Long) entity.getProperty("booking_price");
       long timestamp = (long) entity.getProperty("timestamp");
 
-      Booking booking = new Booking(booking_id, booking_name, booking_date, booking_duration, booking_description, booking_price, timestamp);
+      Booking booking = new Booking(booking_id, booking_name, booking_date, booking_duration, booking_optional_note, booking_price, timestamp);
       bookings.add(booking);
     }
     

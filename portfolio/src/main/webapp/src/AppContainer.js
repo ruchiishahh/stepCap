@@ -15,6 +15,7 @@ export default class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.passRegisterInfo = this.passRegisterInfo.bind(this);
+    this.passServiceInfo = this.passServiceInfo.bind(this);
 
     this.state = {
       loggedIn: false,
@@ -23,6 +24,7 @@ export default class AppContainer extends Component {
       firstname: "",
       lastname: "",
       email: "",
+      service_id: "",
     };
   }
   passRegisterInfo(registerInfoUpdated) {
@@ -43,6 +45,15 @@ export default class AppContainer extends Component {
         console.log(this.state);
       }
     );
+  }
+
+  passServiceInfo(serviceInfo) {
+    consolelog("inside app", serviceInfo);
+    this.setState({
+      service_id: serviceInfo,
+    }), () => {
+      console.log("App Container passServiceInfo ran");
+    }
   }
 
   render() {
@@ -75,7 +86,11 @@ export default class AppContainer extends Component {
             render={(props) => <HomePage {...props} userInfo={userInfo} />}
           ></Route>
 
-          <Route exact path="/search" component={SearchPage} />
+          <Route 
+            exact 
+            path="/search" 
+            render={(props) => <SearchPage {...props} passServiceInfoToApp={this.passServiceInfoToApp}/>}
+          ></Route>
 
           <Route
             exact

@@ -140,8 +140,8 @@ body {
 }
 
 .book-service-image-container {
-  background-color: #2EB887;
-  height: 460px;
+  background-color: lightgray;
+  height: 800px;
   margin: 20px;
   width: 50%;
 }

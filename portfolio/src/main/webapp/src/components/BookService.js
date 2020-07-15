@@ -12,7 +12,7 @@ export default class BookService extends React.Component {
       //booking_date: new Date(),
       booking_date: "",
       booking_duration: "",
-      booking_description: "",
+      booking_optional_note: "",
       booking_price: "",
     };
     this.handleChange = this.handleChange.bind(this);
@@ -47,7 +47,7 @@ export default class BookService extends React.Component {
 
             <div class="book-service-body-container">
               <div class="book-service-info-container">
-                <div class="book-service-info-title" name="booking_name">
+                <div class="book-service-info-title">
                   Teach Modern Computer Skills to Elderly
                 </div>
                 <div class="book-service-info-provider">
@@ -72,6 +72,14 @@ export default class BookService extends React.Component {
                     />
 
                     <input
+                      name="booking_name"
+                      placeholder="Teach Modern Computer Skills to Elderly"
+                      class="book-service-paragraph"
+                      value={this.state.booking_name}
+                      onChange={this.handleChange}
+                    />
+
+                    <input
                       name="booking_date"
                       placeholder="Booking Date"
                       class="book-service-paragraph"
@@ -89,10 +97,10 @@ export default class BookService extends React.Component {
                       onChange={this.handleChange}
                     />
                     <input
-                      name="booking_description"
+                      name="booking_optional_note"
                       class="book-service-paragraph"
-                      placeholder="Booking Description"
-                      value={this.state.booking_description}
+                      placeholder="Booking Optional Note"
+                      value={this.state.booking_optional_note}
                       onChange={this.handleChange}
                     />
                     <input
@@ -216,7 +224,7 @@ export default class BookService extends React.Component {
           {this.state.booking_date}
         </p>
         <p>Your Booking Duration: {this.state.booking_duration} (mins)</p>
-        <p>Your Booking Description: {this.state.booking_description} </p>
+        <p>Your Booking Optional Note: {this.state.booking_optional_note} </p>
         <p>Your Booking Price: ${this.state.booking_price} </p>
       </main>
     );

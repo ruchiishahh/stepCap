@@ -23,9 +23,6 @@ export default class Navbar extends Component {
           <Link to="/search">
             <li>Search</li>
           </Link>
-          <Link to="/BookingForm">
-            <li>Book</li>
-          </Link>
           <Link to="/bookService">
             <li>Service</li>
           </Link>

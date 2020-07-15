@@ -9,11 +9,19 @@ class Result extends Component {
 
   componentDidMount() {
     console.log("Mounted: " + this.props.result.service_name);
+    console.log(this.props.result)
   }
+
+  passServiceInfo(e) {
+    console.log(e);
+    this.props.passServiceInfo("testId");
+  }
+
+  
 
   render() {
     return (
-    <div className="result-container card card-cascade">
+    <div id={this.props.result.service_id} className="result-container card card-cascade" onClick={this.passServiceInfo}>
 
     <div className="result-img-container">
         <img className="result-img" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap" />

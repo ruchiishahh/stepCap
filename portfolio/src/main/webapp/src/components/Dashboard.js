@@ -46,7 +46,7 @@ export default class BookingForm extends React.Component {
                 Show Info
               </Button>
                 {this.state.pendingReqInfo.map((info) => (
-                  <PendingReqs name={info.booking_name} date={info.booking_date} duration={info.booking_duration} description={info.booking_description} price={info.booking_price}/>
+                  <PendingReqs name={info.booking_name} date={info.booking_date} duration={info.booking_duration} note={info.booking_optional_note} price={info.booking_price}/>
                 ))}
             </Grid>
             <Grid item xs={12} sm={6}>

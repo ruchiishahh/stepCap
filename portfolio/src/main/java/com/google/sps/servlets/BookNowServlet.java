@@ -21,7 +21,7 @@ public class BookNowServlet extends HttpServlet {
     String booking_name = request.getParameter("booking_name");
     String booking_date = request.getParameter("booking_date");
     long booking_duration = Long.parseLong(request.getParameter("booking_duration"));
-    String booking_description = request.getParameter("booking_description");
+    String booking_optional_note = request.getParameter("booking_optional_note");
     long booking_price = Long.parseLong(request.getParameter("booking_price"));
     long timestamp = System.currentTimeMillis();
     Entity bookingEntity = new Entity("Booking");
@@ -29,13 +29,15 @@ public class BookNowServlet extends HttpServlet {
 
     bookingEntity.setProperty("booking_date", booking_date);
     bookingEntity.setProperty("booking_duration", booking_duration);
-    bookingEntity.setProperty("booking_description", booking_description);
+    bookingEntity.setProperty("booking_optional_note", booking_optional_note);
     bookingEntity.setProperty("booking_price", booking_price);
     
     bookingEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(bookingEntity);
+    //System.out.println("BROWSER URL: " + request.getRequestURI());
+    //response.sendRedirect("http://localhost:8080/Dashboard");
     //response.sendRedirect(request.getRequestURI());
     // response.sendRedirect("/BookingForm");
   }

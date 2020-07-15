@@ -5,6 +5,7 @@ import Results from "./Results";
 import { debounce } from "lodash";
 import axios from "axios";
 import Navbar from "./Navbar"
+import { Link } from "react-router-dom";
 
 
 class SearchPage extends Component {
@@ -59,7 +60,6 @@ class SearchPage extends Component {
     this.props.passServiceInfo(info);
   }
   render() {
-
     return (
       <div className="searchPage-container">
         <Navbar />

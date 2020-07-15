@@ -48,7 +48,7 @@ export default function SimpleModal(props) {
       <h2 id="simple-modal-title">Booking Name: {props.name}</h2>
       <p id="simple-modal-description">Booking Date: {props.date}</p>
       <p id="simple-modal-description">Booking Duration: {props.duration}</p>
-      <p id="simple-modal-description">Booking Description: {props.description}</p>
+      <p id="simple-modal-description">Booking Optional Note: {props.note}</p>
       <p id="simple-modal-description">Booking Price: {props.price}</p>
     </div>
   );

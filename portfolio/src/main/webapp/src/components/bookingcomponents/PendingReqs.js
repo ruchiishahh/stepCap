@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 import BookingInfoPopUp from "./BookingInfoPopUp";
 
 export default function VirtualizedList(props) {
-  const { name, date, duration, description, price } = props;
+  const { name, date, duration, note, price } = props;
   return (
     <div>
       <ListItem alignItems="flex-start">
@@ -14,13 +14,13 @@ export default function VirtualizedList(props) {
           disableTypography={false}
           //primary={name}
           primary={`Booking Name: ${name}`}
-          secondary={`Booking Date: ${date} | Duration: ${duration} | Description: ${description} | Price: ${price}`}
+          secondary={`Booking Date: ${date} | Duration: ${duration} | Optional Note: ${note} | Price: ${price}`}
         />
         <BookingInfoPopUp
           name={name}
           date={date}
           duration={duration}
-          description={description}
+          note={note}
           price={price}
         />
         <Button variant="contained" color="primary">

@@ -82,6 +82,14 @@ export default class AppContainer extends Component {
 
           <Route
             exact
+            path="/temp"
+            render={(props) => (
+              <ProfilePage />
+            )}
+          ></Route>
+          
+          <Route
+            exact
             path="/home"
             render={(props) => <HomePage {...props} userInfo={userInfo} />}
           ></Route>

@@ -35,7 +35,12 @@ class Result extends Component {
         <h6 className="font-weight-bold indigo-text py-2">{this.props.result.provider_id}</h6>
         <p className="card-text"> {this.props.result.service_description} </p>
         <div>
-          <Link to={linkToService}>View Service</Link>
+          <Link to={{
+            pathName: linkToService,
+            state: {
+              provider_id: this.props.result.provider_id,
+            }
+            }}>View Service</Link>
           <Link to={linkToProfile}>View Profile</Link>
         </div>
     </div>

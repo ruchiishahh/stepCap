@@ -821,3 +821,46 @@ react-calendar__month-view__days__day--weekend {
 .result-body {
   flex: 3
 }
+
+.service-form{
+  position: fixed;
+  width: 500px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px; /* Negative half of height. */
+  margin-left: -250px; /* Negative half of width. */
+  z-index: 100;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.closeForm {
+  align-self: flex-end;
+  border: solid 4px #2EB887 !important;
+  background-color: #3ece9b;
+  border-radius: 30%;
+  float: right;
+  font-size: 17px;
+}
+
+.blur {
+  filter: blur(12px);
+}
+
+.input-desc {
+  font-size: 13px;
+  min-height: 80px;
+  overflow-wrap: anywhere;
+}
+
+.submitService {
+  float: left;
+  margin-left: auto;
+  margin-top: 5px;
+  width: 50%;
+}

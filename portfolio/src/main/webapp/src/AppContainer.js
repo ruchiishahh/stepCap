@@ -71,7 +71,7 @@ export default class AppContainer extends Component {
               />
             )}
           ></Route>
-
+          
           <Route
             exact
             path="/home"
@@ -95,10 +95,10 @@ export default class AppContainer extends Component {
                 render={(props) => <Dashboard {...props} />}>
             </Route>
 
-            {/* <Route
+            <Route
                 exact path="/profile"
                 render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
-            </Route> */}
+            </Route>
 
             <Route
                 exact path="/profile/:provider_id"

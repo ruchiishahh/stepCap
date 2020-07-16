@@ -11,7 +11,6 @@ export default class ProfilePage extends Component {
     this.closeForm = this.closeForm.bind(this);
     this.setClass = this.setClass.bind(this);
 
-
     this.state = {
       loggedIn: '',
       user_id: '',

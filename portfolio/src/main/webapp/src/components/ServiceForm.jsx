@@ -16,7 +16,8 @@ class ServiceForm extends Component {
             provider_id: this.state.provider_id,
             average_rating: this.state.average_rating,
         }
-        axios.post("http://localhost:8080/service-handler", data)
+        axios.post("http://localhost:8080/service-handler", data);
+        this.props.closeForm();
     }
 
     handleChange = (inputName, e) => {
@@ -44,7 +45,7 @@ class ServiceForm extends Component {
                         <input required type="text" onChange={e => this.handleChange("name", e)}/>
                         <label>Service Description</label>
                         <textarea name="description" onChange={e => this.handleChange("desc", e)} className="input-desc"></textarea>
-                        <input type="submit" className="submitService" />
+                        <input type="submit" className="submitService" onClick={this.handleFormSubmit}/>
                     </div>
                 </div>
             </div>

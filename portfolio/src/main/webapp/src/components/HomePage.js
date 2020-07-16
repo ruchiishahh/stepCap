@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import axios from "axios";
+import MapContainer from "./MapContainer";
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -60,6 +61,7 @@ export default class HomePage extends Component {
                   <div id="popular-container" class="row-container"></div>
               </div>
           </div>
+          <MapContainer />
       </div>
     );
   }

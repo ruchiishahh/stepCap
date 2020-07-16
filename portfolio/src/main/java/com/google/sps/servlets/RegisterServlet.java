@@ -61,7 +61,8 @@ public class RegisterServlet extends HttpServlet {
     userEntity.setProperty("lastname", lastname);
     userEntity.setProperty("email", email);
     userEntity.setProperty("password", password);
-     userEntity.setProperty("phone_number", "");
+    userEntity.setProperty("phone_number", "");
+    userEntity.setProperty("average_rating", 5.0);
     System.out.println(userEntity);
     datastore.put(userEntity);
     

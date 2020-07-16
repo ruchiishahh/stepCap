@@ -11,17 +11,12 @@ class Result extends Component {
     console.log("Mounted: " + this.props.result.service_name);
     console.log(this.props.result)
   }
-
-  passServiceInfo(e) {
-    console.log(e);
-    this.props.passServiceInfo("testId");
-  }
-
   
 
   render() {
     let linkToProfile = `/profile/${this.props.result.provider_id}`;
     let linkToService = `/service/${this.props.result.service_id}`;
+    console.log(linkToProfile, linkToService);
     return (
     <div id={this.props.result.service_id} className="result-container card card-cascade" onClick={this.passServiceInfo}>
 
@@ -35,12 +30,8 @@ class Result extends Component {
         <h6 className="font-weight-bold indigo-text py-2">{this.props.result.provider_id}</h6>
         <p className="card-text"> {this.props.result.service_description} </p>
         <div>
-          <Link to={{
-            pathName: linkToService,
-            state: {
-              provider_id: this.props.result.provider_id,
-            }
-            }}>View Service</Link>
+          
+              <Link to={linkToService}>View Service 2</Link>
           <Link to={linkToProfile}>View Profile</Link>
         </div>
     </div>
@@ -53,5 +44,12 @@ class Result extends Component {
     );
   }
 }
+
+// <Link to={{
+//             pathName: `/service/${this.props.result.service_id}`,
+//             serviceProps: {
+//               provider_id: this.props.result.provider_id,
+//             }
+//             }}>View Service</Link>
 
 export default Result;

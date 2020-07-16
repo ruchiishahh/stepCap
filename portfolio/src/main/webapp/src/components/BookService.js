@@ -19,6 +19,20 @@ export default class BookService extends React.Component {
     this.onChangeCalendar = this.onChangeCalendar.bind(this);
   }
 
+  componentDidMount() {
+    const { service_id } = this.props.match.params;
+    const { provider_id } = this.props.location.state;
+    serviceInfo = {
+        service_id: service_id,
+        provider_id: provider_id
+    }
+    axios.post('http://localhost:8080/service-info', serviceInfo)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+  }
+
   onChangeCalendar = (booking_date) => this.setState({ booking_date });
 
   handleChange(event) {

@@ -14,17 +14,13 @@ class Results extends Component {
       }
     }
 
-    const passServiceInfo = (info) => {
-      console.log("inside results", info);
-      this.props.passServiceInfo(info);
-    }
 
     return (
 
       <div>
       {displayResults(filteredResults)}
         {filteredResults.map((result) => (
-          <Result result={result} passServiceInfo={this.passServiceInfo}/>
+          <Result result={result}/>
         ))}
       
       </div>

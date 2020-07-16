@@ -10,7 +10,6 @@ export default class BookService extends React.Component {
     this.state = {
       booking_name: "Teach Modern Computer Skills to Elderly",
       booking_date: new Date(),
-      //booking_date: "",
       booking_duration: "",
       booking_optional_note: "",
       booking_price: "",
@@ -113,15 +112,6 @@ export default class BookService extends React.Component {
                          Book Now 
                       </Button>
                     </div>
-                    {/* <div class="book-service-options-container">
-                                    <div class="book-service-option">
-                                        <div class="book-service-column">
-                                            <div class="book-service-option-title"></div>
-                                            <div class="book-service-price"></div>
-                                        </div>
-                                        <div></div>
-                                    </div>
-                                </div> */}
                   </div>
                 </div>
                 <div class="book-service-row">
@@ -206,27 +196,8 @@ export default class BookService extends React.Component {
           </div>
         </form>
 
-        <hr />
-        <h2> Entered information: </h2>
-        <p>Your Booking Name: {this.state.booking_name}</p>
-        <p>Your Date: {console.log(this.state.booking_date)}</p>
-        <p>Your Booking Duration: {this.state.booking_duration} (mins)</p>
-        <p>Your Booking Optional Note: {this.state.booking_optional_note} </p>
-        <p>Your Booking Price: ${this.state.booking_price} </p>
       </main>
     );
   }
 }
 
-{
-  /* <div class="book-service-info-container"></div>
-<div class="book-service-calendar-container">
-    <div class="book-service-title">Select a Date</div>
-    <Calendar onChange={this.onChangeCalendar} value={this.state.date} />
-</div>
-<div class="book-service-options-container">
-    <div class="book-service-options-number">
-        <input ></input>
-    </div>
-</div> */
-}

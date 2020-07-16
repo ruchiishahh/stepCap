@@ -103,13 +103,18 @@ export default class AppContainer extends Component {
                 render={(props) => <Dashboard {...props} />}>
             </Route>
 
-            <Route
+            {/* <Route
                 exact path="/profile"
+                render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
+            </Route> */}
+
+            <Route
+                exact path="/profile/:provider_id"
                 render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
             </Route>
 
             <Route
-                exact path="/bookService"
+                exact path="/service/:service_id"
                 render={(props) => <BookService {...props} userInfo={userInfo} />}>
             </Route>
 

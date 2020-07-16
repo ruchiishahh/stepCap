@@ -17,6 +17,16 @@ export default class ProfilePage extends Component {
     }
   }
 
+  componentDidMount() {
+    const { provider_id } = this.props.match.params;
+    console.log(provider_id);
+    axios.post('http://localhost:8080/profile-info', provider_id)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div class="profile-page-all-container">

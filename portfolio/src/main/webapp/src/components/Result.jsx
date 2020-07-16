@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { Link } from "react-router-dom";
 
 class Result extends Component {
   constructor(props) {
@@ -20,6 +20,8 @@ class Result extends Component {
   
 
   render() {
+    let linkToProfile = `/profile/${this.props.result.provider_id}`;
+    let linkToService = `/service/${this.props.result.service_id}`;
     return (
     <div id={this.props.result.service_id} className="result-container card card-cascade" onClick={this.passServiceInfo}>
 
@@ -32,6 +34,10 @@ class Result extends Component {
         <h4 className="card-title"><strong>{this.props.result.service_name}</strong></h4>
         <h6 className="font-weight-bold indigo-text py-2">{this.props.result.provider_id}</h6>
         <p className="card-text"> {this.props.result.service_description} </p>
+        <div>
+          <Link to={linkToService}>View Service</Link>
+          <Link to={linkToProfile}>View Profile</Link>
+        </div>
     </div>
 
     <div className="card-footer text-muted text-center">

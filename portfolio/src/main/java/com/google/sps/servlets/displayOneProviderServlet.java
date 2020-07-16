@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;;
-import com.google.sps.data.Service;
+import com.google.sps.data.Provider;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ import com.google.appengine.api.datastore.EntityNotFoundException;
 
 /** Servlet responsible for handling memes. */
 @WebServlet("/service-info")
-public class displayOneServiceServlet extends HttpServlet {
+public class displayOneProviderServlet extends HttpServlet {
 
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 

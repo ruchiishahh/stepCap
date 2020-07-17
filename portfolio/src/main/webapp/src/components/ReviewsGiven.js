@@ -14,15 +14,15 @@ export default function VirtualizedList(props) {
           primary={
             <React.Fragment>
               <div class="profile-review-reviewer-name">
-                ${name} left a review for <strong>Minecraft Cannons</strong> on
+                {name} left a review for <strong>Minecraft Cannons</strong> on
                 July 6th, 2020(3 days ago)
               </div>
             </React.Fragment>
           }
           secondary={
             <React.Fragment>
-              <div class="profile-review-rating">{rating}</div>
-              <div class="profile-review-title">Very rewarding</div>
+              <div class="profile-review-rating">{rating} stars </div>
+              {/*<div class="profile-review-title">Very rewarding</div> */}
               <div class="profile-review-body">{description}</div>
             </React.Fragment>
           }

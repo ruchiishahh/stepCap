@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import ServiceForm from "./ServiceForm";
 import ReviewsForm from "./ReviewsForm";
-import axios from "axios";
+import axios from "axios"
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import { Button } from "@material-ui/core";
+import ReviewsGiven from "./ReviewsGiven";
 
 export default class ProfilePage extends Component {
   constructor(props) {
@@ -13,6 +20,7 @@ export default class ProfilePage extends Component {
     this.openReviewForm = this.openReviewForm.bind(this);
     this.closeReviewForm = this.closeReviewForm.bind(this);
     this.setClass = this.setClass.bind(this);
+    this.handleShowInfo = this.handleShowInfo.bind(this);
     this.state = {
       loggedIn: '',
       user_id: '',
@@ -22,10 +30,11 @@ export default class ProfilePage extends Component {
       lastname: '',
       showForm: false,
       showReviewForm: false,
+      reviewsReqInfo: [],
     }
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     const { provider_id } = this.props.match.params;
     console.log(provider_id);
     axios.post('http://localhost:8080/profile-info', provider_id)
@@ -33,7 +42,7 @@ export default class ProfilePage extends Component {
         console.log(data);
       })
       .catch(err => console.log(err));
-  }
+  }*/
 
   openForm() {
     this.setState({showForm: true})
@@ -47,6 +56,15 @@ export default class ProfilePage extends Component {
   }
   closeReviewForm() {
     this.setState({showReviewForm: false})
+  }
+
+  handleShowInfo(event) {
+    console.log("Inside of showInfo");
+    axios.get("http://localhost:8080/reviews-displayer").then((res) => {
+      console.log(res);
+      console.log(res.data);
+      this.setState({ reviewsReqInfo: res.data });
+    }); 
   }
 
   setClass() {
@@ -67,7 +85,7 @@ export default class ProfilePage extends Component {
     return (
       <div>
         {showForm ? <ServiceForm closeForm={this.closeForm}/> : null}
-        {showReviewForm ? <ReviewsForm closeForm={this.closeReviewForm}/> : null}
+        {showReviewForm ? <ReviewsForm closeReviewForm={this.closeReviewForm}/> : null}
         <div class={blur}>
           <div class="profile-page-header-container">
             <div class="logo-container">theCOMMONS PROJECT</div>
@@ -146,8 +164,17 @@ export default class ProfilePage extends Component {
             </div>
             <div id="profile-reviews" class="profile-column">
               <div id="profile-title-reviews" class="profile-title-strong">Reviews</div>
+              <Button onClick={this.handleShowInfo}>SHOW REVIEWS</Button>
+                  {this.state.reviewsReqInfo.map((info) => (
+                    <ReviewsGiven
+                      name={info.review_name}
+                      description={info.review_description}
+                      service_id={info.service_id}
+                      rating={info.review_rating}
+                    />
+                  ))}
               <div class="profile-reviews-container">
-                <div class="profile-review">
+                {/*<div class="profile-review">
                   <div class="profile-review-reviewer-name">Owen Z. left a review for <strong>Minecraft Cannons </strong>on July 6th, 2020 (3 days ago)</div>
                   <div class="profile-review-rating"></div>
                   <div class="profile-review-title">Very rewarding</div>
@@ -164,7 +191,7 @@ export default class ProfilePage extends Component {
                   <div class="profile-review-rating"></div>
                   <div class="profile-review-title">Did not know how much clutter I had</div>
                   <div class="profile-review-body">Owen was very efficient and deleted so many useless things from my laptop I didn't even know existed. I was going to buy a new one so saved me $500!</div>
-                </div>
+                </div> */}
                 <button onClick={this.openReviewForm} class="profile-service-add-button">Create a Review</button>
               </div>
             </div>

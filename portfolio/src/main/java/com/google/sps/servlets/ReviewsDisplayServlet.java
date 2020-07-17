@@ -34,7 +34,8 @@ public class ReviewsDisplayServlet extends HttpServlet {
   private static final Gson gson = new Gson();
   
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    //System.out.println("I'm in DOGET of ReviewsDisplay");
     Query query = new Query("Review").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -44,10 +45,13 @@ public class ReviewsDisplayServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
         long review_id = entity.getKey().getId();
         String review_name = (String) entity.getProperty("review_name");
+        //System.out.println("In get method review_name: " + review_name);
         String review_description = (String) entity.getProperty("review_description");
         long service_id = (Long) entity.getProperty("service_id");
         Double review_rating = (Double) entity.getProperty("review_rating");
-        Review review = new Review(review_id, review_name, review_description, service_id, review_rating);
+        long timestamp = (long) entity.getProperty("timestamp");
+        
+        Review review = new Review(review_id, review_name, review_description, service_id, review_rating, timestamp);
         reviews.add(review);
     }
 

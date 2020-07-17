@@ -106,7 +106,7 @@ export default class AppContainer extends Component {
             </Route>
 
             <Route
-                exact path="/service/:service_id"
+                exact path="/bookService"
                 render={(props) => <BookService {...props} userInfo={userInfo} />}>
             </Route>
 

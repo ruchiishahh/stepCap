@@ -36,6 +36,7 @@ public class BookNowServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(bookingEntity);
+    response.sendRedirect("/");
     //System.out.println("BROWSER URL: " + request.getRequestURI());
     //response.sendRedirect("http://localhost:8080/Dashboard");
     //response.sendRedirect(request.getRequestURI());

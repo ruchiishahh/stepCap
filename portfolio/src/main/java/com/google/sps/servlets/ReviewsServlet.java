@@ -6,8 +6,9 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;;
+import com.google.gson.JsonParser;
 import com.google.sps.data.Service;
+import com.google.sps.data.Review;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +36,7 @@ public class ReviewsServlet extends HttpServlet {
     String description = jsonObj.get("review_description").getAsString();
     //TODO obtain service ID from current service
     long serviceId;
-    long review_rating;
+    Double review_rating;
 
     System.out.println(name);
     System.out.println(description);

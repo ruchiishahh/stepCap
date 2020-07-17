@@ -245,9 +245,7 @@ export default class BookService extends React.Component {
             </div>
           </div>
         </form>
-
       </main>
     );
   }
 }
-

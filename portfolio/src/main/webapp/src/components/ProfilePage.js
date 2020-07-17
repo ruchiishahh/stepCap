@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import ServiceForm from "./ServiceForm";
+import ReviewsForm from "./ReviewsForm";
 import axios from "axios";
 
 export default class ProfilePage extends Component {
@@ -9,8 +10,9 @@ export default class ProfilePage extends Component {
     super(props);
     this.openForm = this.openForm.bind(this);
     this.closeForm = this.closeForm.bind(this);
+    this.openReviewForm = this.openReviewForm.bind(this);
+    this.closeReviewForm = this.closeReviewForm.bind(this);
     this.setClass = this.setClass.bind(this);
-
     this.state = {
       loggedIn: '',
       user_id: '',
@@ -19,6 +21,7 @@ export default class ProfilePage extends Component {
       firstname: '',
       lastname: '',
       showForm: false,
+      showReviewForm: false,
     }
   }
 
@@ -39,19 +42,32 @@ export default class ProfilePage extends Component {
     this.setState({showForm: false})
   }
 
+  openReviewForm() {
+    this.setState({showReviewForm: true})
+  }
+  closeReviewForm() {
+    this.setState({showReviewForm: false})
+  }
+
   setClass() {
-    if (this.state.showForm) {
+    if (this.state.showForm || this.state.showReviewForm) {
       return "profile-page-all-container blur";
     }
     return "profile-page-all-container";
   }
 
+
+
+
   render() {
     const showForm = this.state.showForm;
+    const showReviewForm = this.state.showReviewForm;
     const blur = this.setClass();
+
     return (
       <div>
         {showForm ? <ServiceForm closeForm={this.closeForm}/> : null}
+        {showReviewForm ? <ReviewsForm closeForm={this.closeReviewForm}/> : null}
         <div class={blur}>
           <div class="profile-page-header-container">
             <div class="logo-container">theCOMMONS PROJECT</div>
@@ -149,6 +165,7 @@ export default class ProfilePage extends Component {
                   <div class="profile-review-title">Did not know how much clutter I had</div>
                   <div class="profile-review-body">Owen was very efficient and deleted so many useless things from my laptop I didn't even know existed. I was going to buy a new one so saved me $500!</div>
                 </div>
+                <button onClick={this.openReviewForm} class="profile-service-add-button">Create a Review</button>
               </div>
             </div>
           </div>

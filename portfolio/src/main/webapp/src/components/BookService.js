@@ -3,34 +3,70 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import SearchBar from "./SearchBar";
+import axios from "axios";
 
 export default class BookService extends React.Component {
   constructor() {
     super();
     this.state = {
-      booking_name: "Teach Modern Computer Skills to Elderly",
-      booking_date: new Date(),
-      booking_duration: "",
-      booking_optional_note: "",
-      booking_price: "",
+        provider_id: "",
+        provider_name: "",
+        booking_id: "",
+        booking_name: "",
+        //booking_date: new Date(),
+        booking_date: "", 
+        booking_duration: "",
+        booking_description_duration: "",
+        booking_optional_note: "",
+        booking_price: "",
+        booking_description_price: "",
+        booking_description_overview: "",
+        booking_description_highlights: "",
+        booking_description_needs_traveling: "",
+        booking_description_requirements: "",
+        booking_average_rating: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.onChangeCalendar = this.onChangeCalendar.bind(this);
   }
 
-  /*componentDidMount() {
+  componentDidMount() {
     const { service_id } = this.props.match.params;
-    const { provider_id } = this.props.location.state;
-    serviceInfo = {
+    let serviceInfo = {
         service_id: service_id,
-        provider_id: provider_id
     }
     axios.post('http://localhost:8080/service-info', serviceInfo)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(err => console.log(err));
-  } */
+        .then((data) => {
+            console.log(data);
+            this.setState({
+                provider_id: data.provider_id;
+                booking_id: data.service_id;
+                booking_name: data.service_name,
+                booking_average_rating: data.average_rating
+                booking_description_duration: "",
+                booking_description_price: "",
+                booking_description_overview: data.service_description,
+                booking_description_highlights: "",
+                booking_description_needs_traveling: "",
+                booking_description_requirements: "",
+            }, () => {
+                let providerInfo = {
+                    provider_id: provider_id,
+                }
+                axios.post('http://localhost:8080/provider-info', providerInfo)
+                    .then((data) => {
+                        console.log(data);
+                        this.setState({
+                            provider_name: data.provider_name,
+                            provider_email: data.provider_email,
+                            provider_phone: data.provider_phone,
+                        })
+                    })
+                    .catch(err => console.log(err));
+                })
+        })
+        .catch(err => console.log(err));
+  }
 
   onChangeCalendar = (booking_date) => this.setState({ booking_date });
 
@@ -61,7 +97,7 @@ export default class BookService extends React.Component {
             <div class="book-service-body-container">
               <div class="book-service-info-container">
                 <div class="book-service-info-title">
-                  Teach Modern Computer Skills to Elderly
+                  {this.state.service_name}
                 </div>
                 <div class="book-service-info-provider">
                   <small>&nbsp; By: Bob John</small>

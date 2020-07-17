@@ -45,32 +45,30 @@ public class displayOneServiceServlet extends HttpServlet {
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
 
-    long service_id = jsonObj.get("service_id").getAsLong();
-    // long provider_id = jsonObj.get("provider_id").getAsLong();
+    long provider_id = jsonObj.get("provider_id").getAsLong();
 
-    System.out.println(service_id);
-    // System.out.println(provider_id);
-    Key newKey = KeyFactory.createKey("Service", service_id);
+    System.out.println(provider_id);
 
-    // Entity service = new Entity();
+    Key newKey = KeyFactory.createKey("User", provider_id);
+
     
     try {
-        Entity service = datastore.get(newKey);
-        System.out.println(service.toString());
+        Entity provider = datastore.get(newKey);
+        System.out.println(provider.toString());
 
-        // long service_id_new = service.getKey().getId();
-        String service_name = capitalize((String) service.getProperty("service_name"));
-        String service_description = (String) service.getProperty("service_description");
-        long provider_id = (long) service.getProperty("provider_id");
-        Double average_rating = (Double) service.getProperty("average_rating");
-        Service serviceObj = new Service(service_id, service_name, service_description, provider_id, average_rating);
+        String provider_firstname = capitalize((String) provider.getProperty("firstname"));
+        String provider_lastname = capitalize((String) provider.getProperty("lastname"));
+        String provider_email = (String) provider.getProperty("email");
+        String provider_phone = (String) provider.getProperty("phone_number");
+        Double average_rating = (Double) provider.getProperty("average_rating");
+        Provider providerObj = new Provider(provider_id, provider_firstname,  provider_lastname, provider_email, provider_phone, average_rating);
 
         Gson gson = new Gson();
-        String serviceInfo = gson.toJson(serviceObj);
+        String providerInfo = gson.toJson(providerObj);
         response.setContentType("application/json;");
-        response.getWriter().println(serviceInfo);
+        response.getWriter().println(providerInfo);
     } catch (EntityNotFoundException e){
-        System.out.println("entity not found");
+        System.out.println("provider not found");
         Gson gson = new Gson();
         String[] failureResponse = new String[1]; 
         failureResponse[0] = "failure";
@@ -79,6 +77,5 @@ public class displayOneServiceServlet extends HttpServlet {
     }
     
   
-
   }
 }

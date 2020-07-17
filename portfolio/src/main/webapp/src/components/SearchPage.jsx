@@ -55,10 +55,6 @@ class SearchPage extends Component {
       console.log(this.state.filters);
   }
 
-  passServiceInfo(info) {
-    console.log("inside searchpage", info);
-    this.props.passServiceInfo(info);
-  }
   render() {
     return (
       <div className="searchPage-container">
@@ -69,7 +65,7 @@ class SearchPage extends Component {
           ))}
         </div>
         <Search onChange={this.searchOnChange} loadedResults={this.state.loadedResults}/>
-        <Results input={this.state.input} results={this.state.filteredResults} passServiceInfo={this.passServiceInfo}/>
+        <Results input={this.state.input} results={this.state.filteredResults}/>
       </div>
     );
   }

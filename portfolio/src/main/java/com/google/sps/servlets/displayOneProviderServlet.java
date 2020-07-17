@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 
 /** Servlet responsible for handling memes. */
-@WebServlet("/service-info")
+@WebServlet("/provider-info")
 public class displayOneProviderServlet extends HttpServlet {
 
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

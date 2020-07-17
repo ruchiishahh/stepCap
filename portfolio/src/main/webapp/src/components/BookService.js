@@ -39,10 +39,10 @@ export default class BookService extends React.Component {
         .then((data) => {
             console.log(data);
             this.setState({
-                provider_id: data.provider_id;
-                booking_id: data.service_id;
+                provider_id: data.provider_id,
+                booking_id: data.service_id,
                 booking_name: data.service_name,
-                booking_average_rating: data.average_rating
+                booking_average_rating: data.average_rating,
                 booking_description_duration: "",
                 booking_description_price: "",
                 booking_description_overview: data.service_description,

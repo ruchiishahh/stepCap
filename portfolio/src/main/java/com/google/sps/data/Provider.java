@@ -1,7 +1,7 @@
 package com.google.sps.data;
 
 /** Class containing the data for Services. */
-public final class Service {
+public final class Provider {
 
   private final long provider_id;
   private final String provider_firstname;

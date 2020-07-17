@@ -6,6 +6,7 @@ import { debounce } from "lodash";
 import axios from "axios";
 import Navbar from "./Navbar"
 import { Link } from "react-router-dom";
+import CalendarContainer from "./CalendarContainer";
 
 
 class SearchPage extends Component {
@@ -66,6 +67,7 @@ class SearchPage extends Component {
         </div>
         <Search onChange={this.searchOnChange} loadedResults={this.state.loadedResults}/>
         <Results input={this.state.input} results={this.state.filteredResults}/>
+        <CalendarContainer />
       </div>
     );
   }

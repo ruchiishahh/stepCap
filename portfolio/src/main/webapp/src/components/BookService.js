@@ -100,7 +100,7 @@ export default class BookService extends React.Component {
                   {this.state.service_name}
                 </div>
                 <div class="book-service-info-provider">
-                  <small>&nbsp; By: Bob John</small>
+                  <small>&nbsp; By: {this.state.provider_name}</small>
                 </div>
                 <div class="book-service-info-avg-rating"></div>
               </div>
@@ -174,13 +174,7 @@ export default class BookService extends React.Component {
                         Overview
                       </div>
                       <div class="book-service-paragraph">
-                        I will teach all the fundamental skills on a computer so
-                        that your family member can be self sufficient. Package
-                        includes walkthrough of how to download software
-                        independently, learing Microsoft Word, Powerpoint, and
-                        excel, how to create and check your email, and helpful
-                        sites to use. I will also install anti-malware software
-                        for your prefered browser.
+                        {this.state.booking_description_overview}
                       </div>
                     </div>
                     <div class="book-service-detail-section">
@@ -191,7 +185,7 @@ export default class BookService extends React.Component {
                         Highlights
                       </div>
                       <div class="book-service-highlight">
-                        Learn Microsoft Word, Powerpoint, Excel
+                        {this.state.booking_description_highlights}
                       </div>
                       <div class="book-service-highlight">
                         Learn how to setup and use an online email account
@@ -213,18 +207,19 @@ export default class BookService extends React.Component {
                     </div>
                     <div class="book-service-facts-container">
                       <div class="book-service-fact">
-                        <i class="fas fa-location-arrow"></i>I will meet you at
-                        your home
+                        <i class="fas fa-location-arrow"></i>
+                        {this.state.booking_description_needs_traveling? "This service requires you to travel" : "I will meet you at your desired location"}
                       </div>
                       <div class="book-service-fact">
-                        <i class="far fa-clock"></i>1-2 hours
+                        <i class="far fa-clock"></i>
+                        {this.state.booking_description_duration}
                       </div>
                       <div class="book-service-fact">
-                        <i class="fas fa-exclamation-circle"></i>You will need a
-                        working computer
+                        <i class="fas fa-exclamation-circle"></i>
+                        {this.state.booking_description_requirements}
                       </div>
                       <div class="book-service-fact">
-                        <i class="fas fa-phone"></i>(124) 315-5592
+                        <i class="fas fa-phone"></i>{this.state.provider_phone}
                       </div>
                     </div>
                   </div>

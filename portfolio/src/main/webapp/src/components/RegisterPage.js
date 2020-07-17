@@ -13,6 +13,7 @@ export default class RegisterPage extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeFirstname = this.onChangeFirstname.bind(this);
     this.onChangeLastname = this.onChangeLastname.bind(this);
+    this.onChangePhone = this.onChangePhone.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -21,6 +22,7 @@ export default class RegisterPage extends Component {
       email: "",
       firstname: "",
       lastname: "",
+      phone: "",
     };
   }
 
@@ -39,6 +41,12 @@ export default class RegisterPage extends Component {
   onChangeEmail(e) {
     this.setState({
       email: e.target.value,
+    });
+  }
+
+onChangePhone(e) {
+    this.setState({
+      phone: e.target.value,
     });
   }
 
@@ -109,6 +117,10 @@ export default class RegisterPage extends Component {
                         <div class="form-div">
                             <label>Email:</label>
                             <input id="email-submit" type="text" value={this.state.email} onChange={this.onChangeEmail} />
+                        </div>
+                        <div class="form-div">
+                            <label>Phone:</label>
+                            <input id="email-submit" type="text" value={this.state.phone} onChange={this.onChangePhone} />
                         </div>
                         <div class="form-div">
                             <label>Password:</label>

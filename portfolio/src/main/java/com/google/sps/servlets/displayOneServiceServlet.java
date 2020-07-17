@@ -32,12 +32,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /** Servlet responsible for handling memes. */
 @WebServlet("/service-info")
-public class displayServiceServlet extends HttpServlet {
+public class displayOneServiceServlet extends HttpServlet {
 
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    /*
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
 
@@ -57,5 +58,6 @@ public class displayServiceServlet extends HttpServlet {
     Gson gson = new Gson();
     String serviceInfo = gson.toJson(service);
     response.getWriter().println(serviceInfo);
+    */
   }
 }

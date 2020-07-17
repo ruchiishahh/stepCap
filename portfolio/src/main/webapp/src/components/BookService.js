@@ -18,7 +18,7 @@ export default class BookService extends React.Component {
     this.onChangeCalendar = this.onChangeCalendar.bind(this);
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     const { service_id } = this.props.match.params;
     const { provider_id } = this.props.location.state;
     serviceInfo = {
@@ -30,7 +30,7 @@ export default class BookService extends React.Component {
         console.log(data);
       })
       .catch(err => console.log(err));
-  }
+  } */
 
   onChangeCalendar = (booking_date) => this.setState({ booking_date });
 
@@ -209,9 +209,7 @@ export default class BookService extends React.Component {
             </div>
           </div>
         </form>
-
       </main>
     );
   }
 }
-

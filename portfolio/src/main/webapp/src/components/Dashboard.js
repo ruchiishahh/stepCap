@@ -12,11 +12,11 @@ export default class BookingForm extends React.Component {
     this.state = {
         pendingReqInfo: [],  
     }
-    this.handleShowInfo = this.handleShowInfo.bind(this);
+    //this.handleShowInfo = this.handleShowInfo.bind(this);
   }
 
-  handleShowInfo(event) {
-    console.log("Inside of showInfo");
+  componentDidMount() {
+    //console.log("Inside of showInfo");
     axios.get("http://localhost:8080/list-services")
         .then((res) => {
             console.log(res);
@@ -37,14 +37,6 @@ export default class BookingForm extends React.Component {
                   Here are your Pending Requests
                 </h2>
               </Paper>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.handleShowInfo}
-                type="submit"
-              >
-                Show Info
-              </Button>
                 {this.state.pendingReqInfo.map((info) => (
                   <PendingReqs name={info.booking_name} date={info.booking_date} duration={info.booking_duration} note={info.booking_optional_note} price={info.booking_price}/>
                 ))}

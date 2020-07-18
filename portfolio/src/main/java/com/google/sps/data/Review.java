@@ -8,13 +8,15 @@ public final class Review {
   private final String review_description;
   private final long service_id;
   private final Double review_rating;
+  private final long timestamp;
 
-  public Review(long review_id, String review_name, String review_description, long service_id, Double review_rating) {
+  public Review(long review_id, String review_name, String review_description, long service_id, Double review_rating, long timestamp) {
       this.review_id = review_id;
       this.review_name = review_name;
       this.review_description = review_description;
       this.service_id = service_id;
       this.review_rating = review_rating;
+      this.timestamp = timestamp;
 }
 
   /** Getter method for id. */

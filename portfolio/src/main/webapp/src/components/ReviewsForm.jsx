@@ -7,7 +7,7 @@ class ReviewsForm extends Component {
         review_description: '',
         service_id: 1234567,
         review_rating: 0,
-     }
+    }
 
     handleFormSubmit = () => {
         const data = {
@@ -16,8 +16,9 @@ class ReviewsForm extends Component {
             service_id: this.state.service_id,
             review_rating: this.state.review_rating,
         }
+        console.log("Information inputted: " + data.review_name);
         axios.post("http://localhost:8080/reviews-handler", data);
-        this.props.closeForm();
+        this.props.closeReviewForm();
     }
 
     handleChange = (inputName, e) => {
@@ -38,7 +39,7 @@ class ReviewsForm extends Component {
         return ( 
             <div className="service-form-container">
                 <div className="service-form">
-                    <button className="closeForm" onClick={this.props.closeForm}>&#10005;</button>
+                    <button className="closeForm" onClick={this.props.closeReviewForm}>&#10005;</button>
                     <div className="form">
                         <h1>Create a Review</h1>
                         <label>Review Name</label>

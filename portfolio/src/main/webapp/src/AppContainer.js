@@ -66,7 +66,6 @@ export default class AppContainer extends Component {
             render={(props) => (
               <RegisterPage
                 {...props}
-                userInfo={userInfo}
                 passRegisterInfo={this.passRegisterInfo}
               />
             )}

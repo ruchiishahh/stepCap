@@ -833,6 +833,12 @@ react-calendar__month-view__days__day--weekend {
   z-index: 100;
 }
 
+.service-form-container {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
 .form {
   display: flex;
   flex-direction: column;

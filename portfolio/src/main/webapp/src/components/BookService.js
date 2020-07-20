@@ -77,6 +77,17 @@ export default class BookService extends React.Component {
     });
   }
 
+  bookService = () => {
+      console.log("bookService initiated");
+      axios.post("http://localhost:8080/book-new-service")
+        .then((res) => {
+            console.log("inside bookService .then()");
+            console.log(res.data);
+            // Insert new event with google calendar
+
+        })
+  };
+
   render() {
     return (
       <main>
@@ -158,6 +169,7 @@ export default class BookService extends React.Component {
                         variant="contained"
                         color="secondary"
                         type="submit"
+                        onClick={this.bookService}
                       >
                          Book Now 
                       </Button>

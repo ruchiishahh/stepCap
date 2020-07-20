@@ -10,10 +10,10 @@ class ServiceForm extends Component {
         service_highlights: '',
         service_needs_traveling: 3,
         service_requirements: '',
-
      }
 
     handleFormSubmit = () => {
+        console.log("inside handleFormSubmit");
         const data = {
             provider_id: this.state.provider_id,
             service_name: this.state.service_name,
@@ -23,9 +23,11 @@ class ServiceForm extends Component {
             service_needs_traveling: this.state.service_needs_traveling,
             service_requirements: this.state.service_requirements,
         }
+        console.log(data);
         axios.post("http://localhost:8080/service-handler", data)
             .then((res) => {
                 console.log(res.data);
+                console.log(this);
                 this.props.closeForm();
             })
     }
@@ -35,9 +37,25 @@ class ServiceForm extends Component {
             case "name":
                 this.setState({service_name: e.target.value});
                 break;
-            case "desc":
-                this.setState({service_description: e.target.value});
+            case "overview":
+                this.setState({service_overview: e.target.value});
+                console.log(this.state.service_overview);
+                break;
+            case "highlights":
+                this.setState({service_highlights: e.target.value});
                 console.log(this.state.service_description);
+                break;
+            case "price":
+                this.setState({service_price: e.target.value});
+                console.log(this.state.service_description);
+                break;
+            case "duration":
+                this.setState({service_duration: e.target.value});
+                console.log(this.state.service_description);
+                break;
+            case "requirements":
+                this.setState({service_requirements: e.target.value});
+                console.log(this.state.service_requirements);
                 break;
             default:
                 return null;
@@ -46,7 +64,7 @@ class ServiceForm extends Component {
 
     setTraveling = (e) => {
         console.log(e);
-        console.log(e.value.target);
+        console.log(e.target.value);
         this.setState({
             service_needs_traveling: e.target.value,
         });
@@ -64,7 +82,7 @@ class ServiceForm extends Component {
                         <input required type="text" onChange={e => this.handleChange("name", e)}/>
 
                         <label>Overview:</label>
-                        <textarea name="description" onChange={e => this.handleChange("desc", e)} className="input-desc"></textarea>
+                        <textarea name="description" onChange={e => this.handleChange("overview", e)} className="input-desc"></textarea>
 
                         <label>Highlights:</label>
                         <textarea name="description" onChange={e => this.handleChange("highlights", e)} className="input-desc"></textarea>

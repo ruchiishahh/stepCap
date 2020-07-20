@@ -39,11 +39,12 @@ public class ServiceServlet extends HttpServlet {
 
     Entity service = new Entity("Service");
     service.setProperty("service_name", name);
-    service.setProperty("service_overview", description);
-    service.setProperty("service_highlights", description);
-    service.setProperty("service_duration", description);
-    service.setProperty("service_price", description);
-    service.setProperty("service_requirements", description);
+    service.setProperty("service_overview", overview);
+    service.setProperty("service_highlights", highlights);
+    service.setProperty("service_duration", duration);
+    service.setProperty("service_price", price);
+    service.setProperty("service_requirements", requirements);
+    service.setProperty("service_travel_options", travel_options);
     service.setProperty("provider_id", 154829301);
     service.setProperty("average_rating", 5.0);
     datastore.put(service);

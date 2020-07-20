@@ -16,10 +16,7 @@ export default class RegisterPage extends Component {
     this.onChangePhone = this.onChangePhone.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    console.log(this.props.userInfo);
-
     this.state = {
-        // user_id: this.props.userInfo.user_id,
         username: "",
         password: "",
         email: "",
@@ -95,7 +92,7 @@ onChangePhone(e) {
   render() {
     return (
         <div class="landing-main-container">
-        <Navbar userInfo={this.props.userInfo.}/>
+        <Navbar/>
             <div class="landing-body-container">
                 <div id="landing-title" class="center-title animate__animated animate__fadeIn">THECOMMONS</div>
                 <div id="landing-tagline" class="center-text animate__animated animate__fadeIn">Help anyone. Get help on anything.</div>

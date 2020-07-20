@@ -11,6 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Button } from "@material-ui/core";
 import ReviewsGiven from "./ReviewsGiven";
+import ServicesCreated from "./ServicesCreated";
 
 export default class ProfilePage extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ export default class ProfilePage extends Component {
       showForm: false,
       showReviewForm: false,
       reviewsReqInfo: [],
+      servicesReqInfo: [],
     };
   }
 
@@ -51,6 +53,14 @@ export default class ProfilePage extends Component {
       console.log(res.data);
       this.setState({ reviewsReqInfo: res.data });
     });
+
+    axios.post("http://localhost:8080/search-handler", {input: ""})
+      .then(response => {
+        console.log(response);
+        this.setState({
+            servicesReqInfo: response.data,
+        })
+      })
   }
 
   openForm() {
@@ -175,7 +185,17 @@ export default class ProfilePage extends Component {
                 <Grid item xs={4} sm={8}>
                   <Paper elevation={3}>
                     <div class="profile-services-container">
-                      <div class="profile-service">
+                        <List style={{maxHeight: '100%', overflow: 'auto'}}>
+                                {this.state.servicesReqInfo.map((info) => (
+                                <ServicesCreated
+                                name={info.service_name}
+                                description={info.service_description}
+                                provider={info.provider_id}
+                                rating={info.average_rating}
+                                />
+                            ))}    
+                        </List>  
+                      {/*<div class="profile-service">
                         <div class="profile-service-image-container">
                           <div class="profile-service-RSVP">RSVP</div>
                         </div>
@@ -216,7 +236,7 @@ export default class ProfilePage extends Component {
                           </div>
                           <div class="profile-service-price">$19/hr</div>
                         </div>
-                      </div>
+                      </div> */ }
                     </div>
                   </Paper>
                 </Grid>

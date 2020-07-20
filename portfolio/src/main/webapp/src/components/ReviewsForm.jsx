@@ -35,6 +35,9 @@ class ReviewsForm extends Component {
             case "service":
                 this.setState({service_name: e.target.value});
                 break;    
+            case "rating":
+                this.setState({review_rating: e.target.value});
+                break;  
             default:
                 return null;
         }
@@ -53,6 +56,8 @@ class ReviewsForm extends Component {
                         <textarea name="description" onChange={e => this.handleChange("desc", e)} className="input-desc"></textarea>
                         <label>Service Name</label>
                         <input required type="text" onChange={e => this.handleChange("service", e)}/>
+                        <label>Review Rating (stars)</label>
+                        <input required type="number" onChange={e => this.handleChange("rating", e)}/>
                         <input type="submit" className="submitService" onClick={this.handleFormSubmit}/>
                     </div>
                 </div>

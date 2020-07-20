@@ -37,7 +37,7 @@ public class ReviewsServlet extends HttpServlet {
     String service_name = jsonObj.get("service_name").getAsString();
     //TODO obtain service ID from current service
     //long serviceId;
-    Double review_rating;
+    Double review_rating = jsonObj.get("review_rating").getAsDouble();
     long timestamp = System.currentTimeMillis();
 
     System.out.println("Here is the review name" + name);
@@ -49,7 +49,7 @@ public class ReviewsServlet extends HttpServlet {
     review.setProperty("review_description", description);
     review.setProperty("service_name", service_name);
     //review.setProperty("service_id", 154829301);
-    review.setProperty("review_rating", 4.0);
+    review.setProperty("review_rating", review_rating);
     review.setProperty("timestamp", timestamp);
     datastore.put(review);
 

@@ -58,12 +58,17 @@ public class displayOneServiceServlet extends HttpServlet {
         Entity service = datastore.get(newKey);
         System.out.println(service.toString());
 
-        // long service_id_new = service.getKey().getId();
         String service_name = capitalize((String) service.getProperty("service_name"));
-        String service_description = (String) service.getProperty("service_description");
+        String service_overview = (String) service.getProperty("service_overview");
+        String service_highlights = (String) service.getProperty("service_highlights");
+        String service_requirements = (String) service.getProperty("service_requirements");
+        String service_duration = capitalize((String) service.getProperty("service_duration"));
+        String service_price = capitalize((String) service.getProperty("service_price"));
         long provider_id = (long) service.getProperty("provider_id");
         Double average_rating = (Double) service.getProperty("average_rating");
-        Service serviceObj = new Service(service_id, service_name, service_description, provider_id, average_rating);
+        int travel_options = (int) service.getProperty("service_travel_options");
+
+        Service serviceObj = new Service(service_id, service_name, service_overview, service_highlights, service_requirements, provider_id, average_rating, service_duration, service_price, service_travel_options);
 
         Gson gson = new Gson();
         String serviceInfo = gson.toJson(serviceObj);

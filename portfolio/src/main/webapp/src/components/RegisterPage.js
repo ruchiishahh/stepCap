@@ -70,6 +70,7 @@ onChangePhone(e) {
       email: this.state.email,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
+      phone: this.state.phone
     };
     console.log(registerInfo);
     axios.post('http://localhost:8080/backend/registered', registerInfo)
@@ -80,6 +81,7 @@ onChangePhone(e) {
                user_id: res.data[1],
                username: this.state.username,
                email: this.state.email,
+               phone: this.state.phone,
                firstname: this.state.firstname,
                lastname: this.state.lastname,
            }

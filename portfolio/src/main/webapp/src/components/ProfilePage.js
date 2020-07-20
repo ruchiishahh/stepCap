@@ -27,12 +27,26 @@ export default class ProfilePage extends Component {
 
   componentDidMount() {
     const { provider_id } = this.props.match.params;
+    // TODO: This needs to be changed later with the locationState Link property to differentiate the loggedin user and browsing someone else's profile
+    this.setState({
+        user_id: provider_id,
+    })
     console.log(provider_id);
-    axios.post('http://localhost:8080/profile-info', provider_id)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(err => console.log(err));
+    let providerInfo = {
+        provider_id: provider_id,
+    }
+    axios.post('http://localhost:8080/provider-info', providerInfo)
+        .then((data) => {
+            console.log(data);
+            this.setState({
+                provider_name: data.provider_name,
+                provider_email: data.provider_email,
+                provider_phone: data.provider_phone,
+            }, () => {
+                console.log(this.state);
+            })
+        })
+        .catch(err => console.log(err));
   }
 
   openForm() {
@@ -66,7 +80,7 @@ export default class ProfilePage extends Component {
 
     return (
       <div>
-        {showForm ? <ServiceForm closeForm={this.closeForm}/> : null}
+        {showForm ? <ServiceForm userInfo={this.state.user_id} closeForm={this.closeForm}/> : null}
         {showReviewForm ? <ReviewsForm closeForm={this.closeReviewForm}/> : null}
         <div class={blur}>
           <div class="profile-page-header-container">

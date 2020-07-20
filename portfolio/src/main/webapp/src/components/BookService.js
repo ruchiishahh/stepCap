@@ -36,23 +36,25 @@ export default class BookService extends React.Component {
         service_id: service_id,
     }
     axios.post('http://localhost:8080/service-info', serviceInfo)
-        .then((data) => {
-            console.log(data);
+        .then((res) => {
+            console.log(res);
             this.setState({
-                provider_id: data.provider_id,
-                booking_id: data.service_id,
-                booking_name: data.service_name,
-                booking_average_rating: data.average_rating,
+                provider_id: res.data.provider_id,
+                booking_id: res.data.service_id,
+                booking_name: res.data.service_name,
+                booking_average_rating: res.data.average_rating,
                 booking_description_duration: "",
                 booking_description_price: "",
-                booking_description_overview: data.service_description,
+                booking_description_overview: res.data.service_description,
                 booking_description_highlights: "",
                 booking_description_needs_traveling: "",
                 booking_description_requirements: "",
             }, () => {
+                console.log(this.state);
                 let providerInfo = {
-                    provider_id: data.provider_id,
+                    provider_id: this.state.provider_id
                 }
+                console.log(providerInfo);
                 axios.post('http://localhost:8080/provider-info', providerInfo)
                     .then((data) => {
                         console.log(data);
@@ -75,7 +77,7 @@ export default class BookService extends React.Component {
     this.setState({
       [name]: value,
     });
-  }
+  };
 
   bookService = () => {
       console.log("bookService initiated");
@@ -83,9 +85,55 @@ export default class BookService extends React.Component {
         .then((res) => {
             console.log("inside bookService .then()");
             console.log(res.data);
-            // Insert new event with google calendar
+            const gapi = window.gapi;
+            const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
+			const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
+			const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+			const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+
+            gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
+
+            gapi.auth2.getAuthInstance().signIn().then(() => {
+			var event = {
+                'summary': 'Test Event 1',
+                'location': '800 Howard St., San Francisco, CA 94103',
+                'description': 'Really great refreshments',
+                'start': {
+                    'dateTime': '2020-06-28T09:00:00-07:00',
+                    'timeZone': 'America/Los_Angeles'
+                },
+                'end': {
+                    'dateTime': '2020-07-18T17:00:00-07:00',
+                    'timeZone': 'America/Los_Angeles'
+                },
+                'recurrence': [
+                    'RRULE:FREQ=DAILY;COUNT=2'
+                ],
+                'attendees': [
+                    {'email': 'owenzhang76@gmail.com'},
+                    {'email': 'sbrin@example.com'}
+                ],
+                'reminders': {
+                    'useDefault': false,
+                    'overrides': [
+                        {'method': 'email', 'minutes': 24 * 60},
+                        {'method': 'popup', 'minutes': 10}
+                    ]
+                }
+			}
+
+            var request = gapi.client.calendar.events.insert({
+			    'calendarId': 'primary',
+			    'resource': event,
+			});
+
+            request.execute(event => {
+			    console.log(event);
+			    window.open(event.htmlLink);
+			});
 
         })
+    })
   };
 
   render() {

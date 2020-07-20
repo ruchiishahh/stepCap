@@ -21,6 +21,7 @@ export default class AppContainer extends Component {
       username: "",
       firstname: "",
       lastname: "",
+      phone: "",
       email: "",
       service_id: "",
     };
@@ -38,6 +39,7 @@ export default class AppContainer extends Component {
         firstname: registerInfoUpdated.firstname,
         lastname: registerInfoUpdated.lastname,
         email: registerInfoUpdated.email,
+        phone: registerInfoUpdated.phone,
       },
       () => {
         console.log("App Container passRegisterInfo ran");
@@ -55,6 +57,7 @@ export default class AppContainer extends Component {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       email: this.state.email,
+      phone: this.state.phone,
     };
 
     return (

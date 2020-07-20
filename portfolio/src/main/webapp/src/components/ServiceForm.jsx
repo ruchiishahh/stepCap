@@ -2,25 +2,39 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class ServiceForm extends Component {
-    state = { 
-        provider_id: 1234567,
-        service_name: '',
-        service_overview: '',
-        service_price: '',
-        service_highlights: '',
-        service_needs_traveling: 3,
-        service_requirements: '',
-     }
+    constructor(props) {
+        super(props);
+        this.state = { 
+            provider_id: 0,
+            service_name: '',
+            service_overview: '',
+            service_price: '',
+            service_highlights: '',
+            service_needs_traveling: 3,
+            service_requirements: '',
+            service_duration: '60',
+        }
+    }
+
+    componentDidMount() {
+        console.log(this.props.userInfo);
+        this.setState({
+            provider_id: this.props.userInfo,
+        }, () => {
+            console.log("form mounted, ", this.state);
+        });
+    }
 
     handleFormSubmit = () => {
         console.log("inside handleFormSubmit");
         const data = {
             provider_id: this.state.provider_id,
             service_name: this.state.service_name,
-            service_overview: this.state.service_description,
+            service_overview: this.state.service_overview,
             service_price: this.state.service_price,
-            service_highlights: this.service_highlights,
+            service_highlights: this.state.service_highlights,
             service_needs_traveling: this.state.service_needs_traveling,
+            service_duration: this.state.service_duration,
             service_requirements: this.state.service_requirements,
         }
         console.log(data);
@@ -43,15 +57,15 @@ class ServiceForm extends Component {
                 break;
             case "highlights":
                 this.setState({service_highlights: e.target.value});
-                console.log(this.state.service_description);
+                console.log(this.state.service_highlights);
                 break;
             case "price":
                 this.setState({service_price: e.target.value});
-                console.log(this.state.service_description);
+                console.log(this.state.service_price);
                 break;
             case "duration":
                 this.setState({service_duration: e.target.value});
-                console.log(this.state.service_description);
+                console.log(this.state.service_duration);
                 break;
             case "requirements":
                 this.setState({service_requirements: e.target.value});

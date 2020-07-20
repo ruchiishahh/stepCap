@@ -12,11 +12,9 @@ export default class BookingForm extends React.Component {
     this.state = {
         pendingReqInfo: [],  
     }
-    //this.handleShowInfo = this.handleShowInfo.bind(this);
   }
 
   componentDidMount() {
-    //console.log("Inside of showInfo");
     axios.get("http://localhost:8080/list-services")
         .then((res) => {
             console.log(res);

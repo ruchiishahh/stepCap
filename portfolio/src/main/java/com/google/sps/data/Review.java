@@ -1,4 +1,7 @@
 package com.google.sps.data;
+import java.util.Date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 
 /** Class containing the data for Reviews. */
 public final class Review {
@@ -10,7 +13,7 @@ public final class Review {
   private final String service_name;
   private final Double review_rating;
   private final long timestamp;
-  //private final String review_date;
+  private final String review_date;
 
   public Review(long review_id, String review_name, String review_description, String service_name, Double review_rating, long timestamp) {
       this.review_id = review_id;
@@ -20,9 +23,11 @@ public final class Review {
       this.service_name = service_name;
       this.review_rating = review_rating;
       this.timestamp = timestamp;
+      Date date = new Date(timestamp);
+      Format format = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
+      this.review_date = format.format(date);
       
-      
-}
+    }
 
   /** Getter method for id. */
   public long getId() {
@@ -52,5 +57,10 @@ public final class Review {
   /** Getter method for review rating. */
   public Double getReviewRating() {
     return review_rating;
+  }
+
+  /** Getter method for review date. */
+  public String getReviewDate() {
+    return review_date;
   }
 }

@@ -246,6 +246,7 @@ export default class ProfilePage extends Component {
                                 //service_id={info.service_id}
                                 service_name={info.service_name}
                                 rating={info.review_rating}
+                                date={info.review_date}
                                 />
                             ))}    
                         </List>                 

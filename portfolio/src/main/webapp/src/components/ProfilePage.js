@@ -238,36 +238,16 @@ export default class ProfilePage extends Component {
                     </div>
 
                     <div class="profile-reviews-container">
-                      {/*<Button onClick={this.handleShowInfo}>
-                        SHOW REVIEWS
-          </Button>*/}
-                      {this.state.reviewsReqInfo.map((info) => (
-                        <ReviewsGiven
-                          name={info.review_name}
-                          description={info.review_description}
-                          service_id={info.service_id}
-                          rating={info.review_rating}
-                        />
-                      ))}
-
-                      {/*<div class="profile-review">
-                  <div class="profile-review-reviewer-name">Owen Z. left a review for <strong>Minecraft Cannons </strong>on July 6th, 2020 (3 days ago)</div>
-                  <div class="profile-review-rating"></div>
-                  <div class="profile-review-title">Very rewarding</div>
-                  <div class="profile-review-body">I had a really good experience learning how to make sophisticated cannons for my faction. We won almost every battle with the cannon we built together!</div>
-                </div>
-                <div class="profile-review">
-                  <div class="profile-review-reviewer-name">Anton S. left a review for <strong>Math Tutoring</strong> on June 14th, 2020 (1 month ago)</div>
-                  <div class="profile-review-rating"></div>
-                  <div class="profile-review-title">Life Saver</div>
-                  <div class="profile-review-body">I had a really good experience learning how to make sophisticated cannons for my faction. We won almost every battle with the cannon we built together!</div>
-                </div>
-                <div class="profile-review">
-                  <div class="profile-review-reviewer-name">Valkyrie C. left a review for <strong>PC Maintenance</strong> on September 21st, 2019 (9 months ago)</div>
-                  <div class="profile-review-rating"></div>
-                  <div class="profile-review-title">Did not know how much clutter I had</div>
-                  <div class="profile-review-body">Owen was very efficient and deleted so many useless things from my laptop I didn't even know existed. I was going to buy a new one so saved me $500!</div>
-                </div> */}
+                        <List style={{maxHeight: '100%', overflow: 'auto'}}>
+                                {this.state.reviewsReqInfo.map((info) => (
+                                <ReviewsGiven
+                                name={info.review_name}
+                                description={info.review_description}
+                                service_id={info.service_id}
+                                rating={info.review_rating}
+                                />
+                            ))}    
+                        </List>                 
                     </div>
                   </Paper>
                 </Grid>

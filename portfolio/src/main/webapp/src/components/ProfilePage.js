@@ -228,15 +228,9 @@ export default class ProfilePage extends Component {
                 </button>
               </div>
               <div id="profile-reviews" class="profile-column">
+                <div id="profile-title-reviews" class="profile-title-strong">Reviews</div>
                 <Grid item xs={4} sm={8}>
                   <Paper elevation={3}>
-                    <div
-                      id="profile-title-reviews"
-                      class="profile-title-strong"
-                    >
-                      Reviews
-                    </div>
-
                     <div class="profile-reviews-container">
                         <List style={{maxHeight: '100%', overflow: 'auto'}}>
                                 {this.state.reviewsReqInfo.map((info) => (

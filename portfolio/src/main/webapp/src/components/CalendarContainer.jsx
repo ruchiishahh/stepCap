@@ -5,7 +5,7 @@ function CalendarContainer() {
     const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
     const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
     const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-    const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+    const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
     const handleClick = () => {
         gapi.load('client:auth2', () => {
@@ -26,19 +26,19 @@ function CalendarContainer() {
                     'location': '800 Howard St., San Francisco, CA 94103',
                     'description': 'Really great refreshments',
                     'start': {
-                        'dateTime': '2020-06-28T09:00:00-07:00',
+                        'dateTime': '2020-07-21T09:00:00-07:00',
                         'timeZone': 'America/Los_Angeles'
                     },
                     'end': {
-                        'dateTime': '2020-07-18T17:00:00-07:00',
+                        'dateTime': '2020-07-21T17:00:00-07:00',
                         'timeZone': 'America/Los_Angeles'
                     },
                     'recurrence': [
                         'RRULE:FREQ=DAILY;COUNT=2'
                     ],
                     'attendees': [
-                        {'email': 'lpage@example.com'},
-                        {'email': 'sbrin@example.com'}
+                        {'email': 'owenzhange@google.com'},
+                        {'email': 'shahruchi@google.com'}
                     ],
                     'reminders': {
                         'useDefault': false,
@@ -49,43 +49,20 @@ function CalendarContainer() {
                     }
                 }
 
-                gapi.client.calendar.events.list({
+
+                var request = gapi.client.calendar.events.insert({
                     'calendarId': 'primary',
-                    'timeMin': (new Date()).toISOString(),
-                    'showDeleted': false,
-                    'singleEvents': true,
-                    'maxResults': 10,
-                    'orderBy': 'startTime'
-                    }).then(function(response) {
-                    console.log(response);
+                    'resource': event,
+                    'sendNotifications': true,
+                })
 
-                    var events = response.result.items;
-                    appendPre('Upcoming events:');
-
-                    if (events.length > 0) {
-                        for (i = 0; i < events.length; i++) {
-                        var event = events[i];
-                        var when = event.start.dateTime;
-                        if (!when) {
-                            when = event.start.date;
-                        }
-                        appendPre(event.summary + ' (' + when + ')')
-                        }
-                    } else {
-                        appendPre('No upcoming events found.');
-                    }
-                });           
-
-                // var request = gapi.client.calendar.events.insert({
-                //     'calendarId': 'primary',
-                //     'resource': event,
-                // })
-
-                // request.execute(event => {
-                //     console.log(event)
-                // window.open(event.htmlLink)
-                // })
-            });
+                request.execute(event => {
+                    console.log(event)
+                    window.open(event.htmlLink)
+                })
+            }).catch(e => {
+                console.log(e);
+            }) ;
         });
     }
 

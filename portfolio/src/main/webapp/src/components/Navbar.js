@@ -5,9 +5,13 @@ import axios from "axios";
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.state  {
+        userId: '',
+    };
   }
 
   render() {
+    let profileUrl = `/profile/${userId}`;
     return (
       <div class="navbar-main-container">
         <div class="navbar-logo-container">
@@ -17,7 +21,7 @@ export default class Navbar extends Component {
           <Link to="/">
             <li>Register</li>
           </Link>
-          <Link to="/profile">
+          <Link to='/profile'>
             <li>Profile</li>
           </Link>
           <Link to="/search">

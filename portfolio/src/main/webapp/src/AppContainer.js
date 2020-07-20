@@ -15,8 +15,6 @@ export default class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.passRegisterInfo = this.passRegisterInfo.bind(this);
-   
-
     this.state = {
       loggedIn: false,
       user_id: "",
@@ -27,6 +25,7 @@ export default class AppContainer extends Component {
       service_id: "",
     };
   }
+
   passRegisterInfo(registerInfoUpdated) {
     console.log(registerInfoUpdated);
     console.log(registerInfoUpdated.firstname);
@@ -51,7 +50,7 @@ export default class AppContainer extends Component {
   render() {
     let userInfo = {
       loggedIn: this.state.loggedIn,
-      user_id: this.state.id,
+      user_id: this.state.user_id,
       username: this.state.username,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
@@ -67,6 +66,7 @@ export default class AppContainer extends Component {
             render={(props) => (
               <RegisterPage
                 {...props}
+                userInfo={userInfo}
                 passRegisterInfo={this.passRegisterInfo}
               />
             )}

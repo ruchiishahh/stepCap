@@ -16,13 +16,16 @@ export default class RegisterPage extends Component {
     this.onChangePhone = this.onChangePhone.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
+    console.log(this.props.userInfo);
+
     this.state = {
-      username: "",
-      password: "",
-      email: "",
-      firstname: "",
-      lastname: "",
-      phone: "",
+        // user_id: this.props.userInfo.user_id,
+        username: "",
+        password: "",
+        email: "",
+        firstname: "",
+        lastname: "",
+        phone: "",
     };
   }
 
@@ -86,15 +89,13 @@ onChangePhone(e) {
            this.props.passRegisterInfo(registerInfoUpdated);
            this.props.history.push('/home');
        })
-    //    .then(this.props.history.push('/home'))
        .catch((err)=>console.log(err));
   }
-  //yeet
 
   render() {
     return (
         <div class="landing-main-container">
-        <Navbar />
+        <Navbar userInfo={this.props.userInfo.}/>
             <div class="landing-body-container">
                 <div id="landing-title" class="center-title animate__animated animate__fadeIn">THECOMMONS</div>
                 <div id="landing-tagline" class="center-text animate__animated animate__fadeIn">Help anyone. Get help on anything.</div>

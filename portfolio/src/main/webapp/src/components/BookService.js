@@ -51,7 +51,7 @@ export default class BookService extends React.Component {
                 booking_description_requirements: "",
             }, () => {
                 let providerInfo = {
-                    provider_id: provider_id,
+                    provider_id: data.provider_id,
                 }
                 axios.post('http://localhost:8080/provider-info', providerInfo)
                     .then((data) => {

@@ -16,12 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
-/** Servlet responsible for handling memes. */
 @WebServlet("/service-handler")
 public class ServiceServlet extends HttpServlet {
 
-  /** Get the datastore. */
+
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   //TODO change to toPost
@@ -32,22 +30,29 @@ public class ServiceServlet extends HttpServlet {
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
     
     String name = jsonObj.get("service_name").getAsString().toLowerCase();
-    String description = jsonObj.get("service_description").getAsString();
-    //TODO obtain provider ID from current user id
-    long providerId;
-    long averageRating;
+    String overview = jsonObj.get("service_overview").getAsString();
+    String highlights = jsonObj.get("service_highlights").getAsString();
+    String price = jsonObj.get("service_price").getAsString();
+    int travel_options = jsonObj.get("service_needs_traveling").getAsInt();
+    String duration = jsonObj.get("service_duration").getAsString();
+    String requirements = jsonObj.get("service_requirements").getAsString();
 
-    System.out.println(name);
-    System.out.println(description);
-    
-    //TODO implement dynamic Service creation
     Entity service = new Entity("Service");
     service.setProperty("service_name", name);
-    service.setProperty("service_description", description);
+    service.setProperty("service_overview", description);
+    service.setProperty("service_highlights", description);
+    service.setProperty("service_duration", description);
+    service.setProperty("service_price", description);
+    service.setProperty("service_requirements", description);
     service.setProperty("provider_id", 154829301);
-    service.setProperty("average_rating", 4.0);
+    service.setProperty("average_rating", 5.0);
     datastore.put(service);
 
-    response.sendRedirect("/");
+    Gson gson = new Gson();
+    String[] responses = new String[3]; 
+    responses[0] = "success";
+    String createServiceResponse = gson.toJson(responses);
+    response.setContentType("application/json");
+    response.getWriter().println(createServiceResponse);
   }
 }

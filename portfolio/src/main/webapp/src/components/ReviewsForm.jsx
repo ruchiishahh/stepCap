@@ -5,7 +5,8 @@ class ReviewsForm extends Component {
     state = { 
         review_name: '',
         review_description: '',
-        service_id: 1234567,
+        //service_id: 1234567,
+        service_name: '',
         review_rating: 0,
     }
 
@@ -13,7 +14,8 @@ class ReviewsForm extends Component {
         const data = {
             review_name: this.state.review_name,
             review_description: this.state.review_description,
-            service_id: this.state.service_id,
+            //service_id: this.state.service_id,
+            service_name: this.state.service_name,
             review_rating: this.state.review_rating,
         }
         console.log("Information inputted: " + data.review_name);
@@ -30,6 +32,9 @@ class ReviewsForm extends Component {
                 this.setState({review_description: e.target.value});
                 console.log(this.state.review_description);
                 break;
+            case "service":
+                this.setState({service_name: e.target.value});
+                break;    
             default:
                 return null;
         }
@@ -46,6 +51,8 @@ class ReviewsForm extends Component {
                         <input required type="text" onChange={e => this.handleChange("name", e)}/>
                         <label>Review Description</label>
                         <textarea name="description" onChange={e => this.handleChange("desc", e)} className="input-desc"></textarea>
+                        <label>Service Name</label>
+                        <input required type="text" onChange={e => this.handleChange("service", e)}/>
                         <input type="submit" className="submitService" onClick={this.handleFormSubmit}/>
                     </div>
                 </div>

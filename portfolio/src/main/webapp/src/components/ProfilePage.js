@@ -243,7 +243,8 @@ export default class ProfilePage extends Component {
                                 <ReviewsGiven
                                 name={info.review_name}
                                 description={info.review_description}
-                                service_id={info.service_id}
+                                //service_id={info.service_id}
+                                service_name={info.service_name}
                                 rating={info.review_rating}
                                 />
                             ))}    

@@ -47,11 +47,12 @@ public class ReviewsDisplayServlet extends HttpServlet {
         String review_name = (String) entity.getProperty("review_name");
         //System.out.println("In get method review_name: " + review_name);
         String review_description = (String) entity.getProperty("review_description");
-        long service_id = (Long) entity.getProperty("service_id");
+        String service_name = (String) entity.getProperty("service_name");
+        //long service_id = (Long) entity.getProperty("service_id");
         Double review_rating = (Double) entity.getProperty("review_rating");
         long timestamp = (long) entity.getProperty("timestamp");
         
-        Review review = new Review(review_id, review_name, review_description, service_id, review_rating, timestamp);
+        Review review = new Review(review_id, review_name, review_description, service_name, review_rating, timestamp);
         reviews.add(review);
     }
 

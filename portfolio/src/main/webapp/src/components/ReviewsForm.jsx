@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Rating from "@material-ui/lab/Rating";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 class ReviewsForm extends Component {
     state = { 
@@ -34,16 +37,14 @@ class ReviewsForm extends Component {
                 break;
             case "service":
                 this.setState({service_name: e.target.value});
-                break;    
-            case "rating":
-                this.setState({review_rating: e.target.value});
-                break;  
+                break;      
             default:
                 return null;
         }
     }
 
     render() { 
+
         return ( 
             <div className="service-form-container">
                 <div className="service-form">
@@ -56,8 +57,16 @@ class ReviewsForm extends Component {
                         <textarea name="description" onChange={e => this.handleChange("desc", e)} className="input-desc"></textarea>
                         <label>Service Name</label>
                         <input required type="text" onChange={e => this.handleChange("service", e)}/>
-                        <label>Review Rating (stars)</label>
-                        <input required type="number" onChange={e => this.handleChange("rating", e)}/>
+                        <Box component="fieldset" mb={3} borderColor="transparent">
+                            <Typography component="legend">Review Rating</Typography>
+                            <Rating
+                            name="simple-controlled"
+                            value={this.state.review_rating}
+                            onChange={(event, newValue) => {
+                                this.setState({ review_rating: newValue });
+                            }}
+                            />
+                        </Box>
                         <input type="submit" className="submitService" onClick={this.handleFormSubmit}/>
                     </div>
                 </div>

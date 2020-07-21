@@ -39,6 +39,9 @@ import com.google.appengine.api.images.ServingUrlOptions;
 @WebServlet("/backend/registered")
 public class RegisterServlet extends HttpServlet {
 
+  /** The data containing the current user information. */
+  UserService userService = UserServiceFactory.getUserService();
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String reader = request.getReader().lines().collect(Collectors.joining());

@@ -24,9 +24,9 @@ public class BookNowServlet extends HttpServlet {
     String booking_optional_note = request.getParameter("booking_optional_note");
     long booking_price = Long.parseLong(request.getParameter("booking_price"));
     long timestamp = System.currentTimeMillis();
+    
     Entity bookingEntity = new Entity("Booking");
     bookingEntity.setProperty("booking_name", booking_name);
-
     bookingEntity.setProperty("booking_date", booking_date);
     bookingEntity.setProperty("booking_duration", booking_duration);
     bookingEntity.setProperty("booking_optional_note", booking_optional_note);

@@ -9,8 +9,14 @@ export default class BookService extends React.Component {
   constructor() {
     super();
     this.state = {
+        user_id: "",
+        user_name: "",
+        user_email: "",
+        user_phone: "",
         provider_id: "",
         provider_name: "",
+        provider_email: "",
+        provider_phone: "",
         booking_id: "",
         booking_name: "",
         //booking_date: new Date(),
@@ -39,6 +45,20 @@ export default class BookService extends React.Component {
     axios.post('http://localhost:8080/service-info', serviceInfo)
         .then((res) => {
             console.log(res);
+            let travelQuote = "";
+            switch(res.data.service_travel_options) {
+                case 1:
+                    travelQuote = "I will travel to your desired location";
+                    break;
+                case 2:
+                    travelQuote = "This service will require you to travel";
+                    break;
+                case 3:
+                    travelQuote = "You can decide where to meet";
+                    break;
+                default:
+                    travelQuote = "You can decide where to meet";
+            };
             this.setState({
                 provider_id: res.data.provider_id,
                 booking_id: res.data.service_id,
@@ -48,7 +68,7 @@ export default class BookService extends React.Component {
                 booking_description_price: res.data.service_price,
                 booking_description_overview: res.data.service_overview,
                 booking_description_highlights: res.data.service_highlights,
-                booking_description_needs_traveling: res.data.service_travel_options,
+                booking_description_needs_traveling: travelQuote,
                 booking_description_requirements: res.data.service_requirements,
             }, () => {
                 console.log(this.state);
@@ -63,21 +83,33 @@ export default class BookService extends React.Component {
                             provider_name: res.data.provider_firstname + " " + res.data.provider_lastname,
                             provider_email: res.data.provider_email,
                             provider_phone: res.data.provider_phone,
-                            
                         }, () => {
-                            this.setState({isLoading: false}, () => {
-                                console.log(this.state);
-                                console.log("Axios requests finished");
-                            })
-
+                            let userInfo = {
+                                user_id: this.props.userInfo.user_id,
+                            }
+                            console.log(userInfo);
+                            // TODO: Discuss whether to create new servlet with same functionality but for user instead of provider
+                            axios.post('http://localhost:8080/provider-info', userInfo)
+                                .then((res) => {
+                                    console.log(res.data);
+                                    this.setState({
+                                        user_name: res.data.provider_firstname + " " + res.data.provider_lastname,
+                                        user_email: res.data.provider_email,
+                                        user_phone: res.data.provider_phone,
+                                    }, () => {
+                                        this.setState({isLoading: false}, () => {
+                                            console.log(this.state);
+                                            console.log('Axios requests finished');
+                                        })
+                                    })
+                                })
+                                .catch(err => console.log(err));
                         })
                     })
                     .catch(err => console.log(err));
                 })
         })
         .catch(err => console.log(err));
-
-
   }
 
   onChangeCalendar = (booking_date) => this.setState({ booking_date });
@@ -91,6 +123,7 @@ export default class BookService extends React.Component {
 
   bookService = () => {
       console.log("bookService initiated");
+      console.log(this.state);
       axios.post("http://localhost:8080/book-new-service")
         .then((res) => {
             console.log("inside bookService .then()");
@@ -99,52 +132,109 @@ export default class BookService extends React.Component {
             const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
 			const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
 			const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-			const SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+			const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-            gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
+            const handleClick = () => {
+                gapi.load('client:auth2', () => {
+                    console.log('inside bookService gapi.load()');
+                    gapi.client.init({
+                        apiKey: API_KEY,
+                        clientId: CLIENT_ID,
+                        discoveryDocs: DISCOVERY_DOCS,
+                        scope: SCOPES
+                    })
 
-            gapi.auth2.getAuthInstance().signIn().then(() => {
-			var event = {
-                'summary': 'Test Event 1',
-                'location': '800 Howard St., San Francisco, CA 94103',
-                'description': 'Really great refreshments',
-                'start': {
-                    'dateTime': '2020-06-28T09:00:00-07:00',
-                    'timeZone': 'America/Los_Angeles'
-                },
-                'end': {
-                    'dateTime': '2020-07-18T17:00:00-07:00',
-                    'timeZone': 'America/Los_Angeles'
-                },
-                'recurrence': [
-                    'RRULE:FREQ=DAILY;COUNT=2'
-                ],
-                'attendees': [
-                    {'email': 'owenzhang76@gmail.com'},
-                    {'email': 'sbrin@example.com'}
-                ],
-                'reminders': {
-                    'useDefault': false,
-                    'overrides': [
-                        {'method': 'email', 'minutes': 24 * 60},
-                        {'method': 'popup', 'minutes': 10}
-                    ]
-                }
-			}
+                    gapi.auth2.getAuthInstance().signIn()
+                        .then(() => {
+                            // let unixStartTimeStamp = parseInt((this.state.booking_date.getTime() / 1000).toFixed(0));
+                            // let unixEndTimeStamp = new date()
+                            var event = {
+                                'summary': this.state.booking_name,
+                                'location': this.state.travel_options,
+                                'description': this.state.overview,
+                                'start': {
+                                    'dateTime': '2020-07-21T09:00:00-07:00',
+                                    'timeZone': 'America/Los_Angeles'
+                                },
+                                'end': {
+                                    'dateTime': '2020-07-21T17:00:00-07:00',
+                                    'timeZone': 'America/Los_Angeles'
+                                },
+                                'recurrence': [
+                                    'RRULE:FREQ=DAILY;COUNT=2'
+                                ],
+                                'attendees': [
+                                    {'email': this.state.provider_email},
+                                    {'email': this.state.user_email},
+                                    {'email': 'owenzhang76@gmail.com'}
+                                ],
+                                'reminders': {
+                                    'useDefault': false,
+                                    'overrides': [
+                                    {'method': 'email', 'minutes': 24 * 60},
+                                    {'method': 'popup', 'minutes': 10}
+                                    ]
+                                }
+                            }
 
-            var request = gapi.client.calendar.events.insert({
-			    'calendarId': 'primary',
-			    'resource': event,
-			});
+                            var request = gapi.client.calendar.events.insert({
+                                'calendarId': 'primary',
+                                'resource': event,
+                                'sendNotifications': true,
+                            })
 
-            request.execute(event => {
-			    console.log(event);
-			    window.open(event.htmlLink);
-			});
+                            request.execute(event => {
+                                console.log(event)
+                                window.open(event.htmlLink)
+                            })
+                        })
+                        .catch(e => {
+                            console.log(e);
+                    });
+                });
+            }
+            // gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
 
+            // gapi.auth2.getAuthInstance().signIn().then(() => {
+			// var event = {
+            //     'summary': 'Test Event 1',
+            //     'location': '800 Howard St., San Francisco, CA 94103',
+            //     'description': 'Really great refreshments',
+            //     'start': {
+            //         'dateTime': '2020-06-28T09:00:00-07:00',
+            //         'timeZone': 'America/Los_Angeles'
+            //     },
+            //     'end': {
+            //         'dateTime': '2020-07-18T17:00:00-07:00',
+            //         'timeZone': 'America/Los_Angeles'
+            //     },
+            //     'recurrence': [
+            //         'RRULE:FREQ=DAILY;COUNT=2'
+            //     ],
+            //     'attendees': [
+            //         {'email': 'owenzhang76@gmail.com'},
+            //         {'email': 'sbrin@example.com'}
+            //     ],
+            //     'reminders': {
+            //         'useDefault': false,
+            //         'overrides': [
+            //             {'method': 'email', 'minutes': 24 * 60},
+            //             {'method': 'popup', 'minutes': 10}
+            //         ]
+            //     }
+			// }
+
+            // var request = gapi.client.calendar.events.insert({
+			//     'calendarId': 'primary',
+			//     'resource': event,
+			// });
+
+            // request.execute(event => {
+			//     console.log(event);
+			//     window.open(event.htmlLink);
+			// });
         })
-    })
-  };
+    };
 
   render() {
     

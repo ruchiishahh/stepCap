@@ -24,7 +24,7 @@ public final class Review {
       this.review_rating = review_rating;
       this.timestamp = timestamp;
       Date date = new Date(timestamp);
-      Format format = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
+      Format format = new SimpleDateFormat("EEE, d MMM yyyy");
       this.review_date = format.format(date);
       
     }

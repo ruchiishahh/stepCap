@@ -60,7 +60,7 @@ export default class BookService extends React.Component {
                     .then((res) => {
                         console.log(res);
                         this.setState({
-                            provider_name: res.data.provider_name,
+                            provider_name: res.data.provider_firstname + " " + res.data.provider_lastname,
                             provider_email: res.data.provider_email,
                             provider_phone: res.data.provider_phone,
                             

@@ -20,12 +20,12 @@ public final class Service {
    * @param {!long} provider The id of this Service's provider.
    * @param {!long} averageRating This Service's average Rating.
    */
-  public Service(long service_id, String service_name, String service_overview, String service_highlights, String service_requirements, long provider_id, Double average_rating, long service_duration, long service_price, int service_travel_options ) {
+  public Service(long service_id, String service_name, String service_overview, String service_highlights, String service_requirements, long provider_id, Double average_rating, String service_duration, String service_price, int service_travel_options ) {
       this.service_id = service_id;
       this.service_name = service_name;
       this.service_overview = service_overview;
       this.service_highlights = service_highlights;
-      this.service_requirements = service_requirements
+      this.service_requirements = service_requirements;
       this.provider_id = provider_id;
       this.average_rating = average_rating;
       this.service_duration = service_duration;
@@ -43,10 +43,7 @@ public final class Service {
     return service_name;
   }
 
-  /** Getter method for service description. */
-  public String getDesc() {
-    return service_description;
-  }
+ 
 
   /** Getter method for provider id. */
   public long getProviderId() {

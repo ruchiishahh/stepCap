@@ -63,6 +63,7 @@ public class ServiceServlet extends HttpServlet {
     System.out.println(duration);
     String requirements = jsonObj.get("service_requirements").getAsString();
     System.out.println(requirements);
+    long provider_id = jsonObj.get("provider_id").getAsLong();
 
     Entity service = new Entity("Service");
     service.setProperty("service_name", name);
@@ -72,7 +73,7 @@ public class ServiceServlet extends HttpServlet {
     service.setProperty("service_price", price);
     service.setProperty("service_requirements", requirements);
     service.setProperty("service_travel_options", travel_options);
-    service.setProperty("provider_id", 154829301);
+    service.setProperty("provider_id", provider_id);
     service.setProperty("average_rating", 5.0);
     System.out.println(service);
     datastore.put(service);

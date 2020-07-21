@@ -64,11 +64,11 @@ public class SearchHandler extends HttpServlet {
     for (Entity entity : resultsList) {
       long service_id = entity.getKey().getId();
       String service_name = capitalize((String) entity.getProperty("service_name"));
-      String service_description = (String) entity.getProperty("service_description");
+      String service_overview = (String) entity.getProperty("service_overview");
       long provider_id = (long) entity.getProperty("provider_id");
       Double average_rating = (Double) entity.getProperty("average_rating");
 
-      Service service = new Service(service_id, service_name, service_description, provider_id, average_rating);
+      Service service = new Service(service_id, service_name, service_overview, "", "", provider_id, average_rating, "", "", 0);
       services.add(service);
     }
 

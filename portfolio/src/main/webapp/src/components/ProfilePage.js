@@ -54,13 +54,14 @@ export default class ProfilePage extends Component {
       this.setState({ reviewsReqInfo: res.data });
     });
 
-    axios.post("http://localhost:8080/search-handler", {input: ""})
-      .then(response => {
+    axios
+      .post("http://localhost:8080/search-handler", { input: "" })
+      .then((response) => {
         console.log(response);
         this.setState({
-            servicesReqInfo: response.data,
-        })
-      })
+          servicesReqInfo: response.data,
+        });
+      });
   }
 
   openForm() {
@@ -100,7 +101,6 @@ export default class ProfilePage extends Component {
     const blur = this.setClass();
 
     return (
-      <Grid container spacing={3}>
         <div>
           {showForm ? <ServiceForm closeForm={this.closeForm} /> : null}
           {showReviewForm ? (
@@ -123,8 +123,7 @@ export default class ProfilePage extends Component {
                 <div class="profile-image-container">
                   <img src=""></img>
                 </div>
-                <Grid item xs={4} sm={8}>
-                  <Paper elevation={3}>
+                
                     <div class="profile-description-container">
                       <div class="profile-title-strong">
                         {(this.state.firstname, this.state.lastname)}Owen Zhang
@@ -176,26 +175,24 @@ export default class ProfilePage extends Component {
                         </div>
                       </div>
                     </div>
-                  </Paper>
-                </Grid>
+                  
               </div>
 
               <div id="profile-services" class="profile-column">
                 <div class="profile-title-strong center">Services</div>
-                <Grid item xs={4} sm={8}>
-                  <Paper elevation={3}>
+               
                     <div class="profile-services-container">
-                        <List style={{maxHeight: '100%', overflow: 'auto'}}>
-                                {this.state.servicesReqInfo.map((info) => (
-                                <ServicesCreated
-                                name={info.service_name}
-                                description={info.service_description}
-                                provider={info.provider_id}
-                                rating={info.average_rating}
-                                />
-                            ))}    
-                        </List>  
-                      {/*<div class="profile-service">
+                      <List style={{ maxHeight: "100%", overflow: "auto" }}>
+                        {this.state.servicesReqInfo.map((info) => (
+                          <ServicesCreated
+                            name={info.service_name}
+                            description={info.service_description}
+                            provider={info.provider_id}
+                            rating={info.average_rating}
+                          />
+                        ))}
+                      </List>
+                      <div class="profile-service">
                         <div class="profile-service-image-container">
                           <div class="profile-service-RSVP">RSVP</div>
                         </div>
@@ -236,10 +233,9 @@ export default class ProfilePage extends Component {
                           </div>
                           <div class="profile-service-price">$19/hr</div>
                         </div>
-                      </div> */ }
+                      </div>
                     </div>
-                  </Paper>
-                </Grid>
+                  
                 <button
                   onClick={this.openForm}
                   class="profile-service-add-button"
@@ -248,25 +244,25 @@ export default class ProfilePage extends Component {
                 </button>
               </div>
               <div id="profile-reviews" class="profile-column">
-                <div id="profile-title-reviews" class="profile-title-strong">Reviews</div>
-                <Grid item xs={4} sm={8}>
-                  <Paper elevation={3}>
+                <div id="profile-title-reviews" class="profile-title-strong">
+                  Reviews
+                </div>
+                
                     <div class="profile-reviews-container">
-                        <List style={{maxHeight: '100%', overflow: 'auto'}}>
-                                {this.state.reviewsReqInfo.map((info) => (
-                                <ReviewsGiven
-                                name={info.review_name}
-                                description={info.review_description}
-                                //service_id={info.service_id}
-                                service_name={info.service_name}
-                                rating={info.review_rating}
-                                date={info.review_date}
-                                />
-                            ))}    
-                        </List>                 
+                      <List style={{ maxHeight: "100%", overflow: "auto" }}>
+                        {this.state.reviewsReqInfo.map((info) => (
+                          <ReviewsGiven
+                            name={info.review_name}
+                            description={info.review_description}
+                            //service_id={info.service_id}
+                            service_name={info.service_name}
+                            rating={info.review_rating}
+                            date={info.review_date}
+                          />
+                        ))}
+                      </List>
                     </div>
-                  </Paper>
-                </Grid>
+                  
                 <button
                   onClick={this.openReviewForm}
                   class="profile-service-add-button"
@@ -277,7 +273,6 @@ export default class ProfilePage extends Component {
             </div>
           </div>
         </div>
-      </Grid>
     );
   }
 }

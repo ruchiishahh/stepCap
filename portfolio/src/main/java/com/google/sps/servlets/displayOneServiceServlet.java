@@ -30,7 +30,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 
-/** Servlet responsible for handling memes. */
 @WebServlet("/service-info")
 public class displayOneServiceServlet extends HttpServlet {
 

@@ -64,7 +64,7 @@ export default class RegisterPage extends Component {
       lastname: this.state.lastname,
     };
     console.log(registerInfo);
-    axios.post('http://localhost:8080/backend/registered', registerInfo)
+    axios.post('http://thecommons-281818.appspot.com/backend/registered', registerInfo)
        .then(res => {
            console.log(res.data);
            console.log(this.props);

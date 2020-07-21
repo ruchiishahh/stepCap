@@ -35,7 +35,7 @@ export default class BookService extends React.Component {
     let serviceInfo = {
         service_id: service_id,
     }
-    axios.post('http://localhost:8080/service-info', serviceInfo)
+    axios.post('http://thecommons-281818.appspot.com/service-info', serviceInfo)
         .then((data) => {
             console.log(data);
             this.setState({

@@ -16,7 +16,7 @@ class ServiceForm extends Component {
             provider_id: this.state.provider_id,
             average_rating: this.state.average_rating,
         }
-        axios.post("http://localhost:8080/service-handler", data);
+        axios.post("http://thecommons-281818.appspot.com/service-handler", data);
         this.props.closeForm();
     }
 

@@ -46,7 +46,7 @@ export default class ProfilePage extends Component {
 
   componentDidMount() {
     console.log("Inside of showInfo");
-    axios.get("http://localhost:8080/reviews-displayer").then((res) => {
+    axios.get("http://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
       console.log(res);
       console.log(res.data);
       this.setState({ reviewsReqInfo: res.data });

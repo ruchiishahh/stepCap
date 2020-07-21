@@ -12,13 +12,16 @@
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@types/react": "^16.9.41",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "google-maps-react": "^2.0.6",
     "lodash": "^4.17.18",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-rating": "^2.0.5",
     "react-router-dom": "^5.2.0",
     "react-window": "^1.8.5"
   },

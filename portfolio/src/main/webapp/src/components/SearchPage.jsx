@@ -21,7 +21,7 @@ class SearchPage extends Component {
   };
 
   componentDidMount() {
-    axios.post("http://localhost:8080/search-handler", {input: ""})
+    axios.post("http://thecommons-281818.appspot.com/search-handler", {input: ""})
       .then(response => {
         console.log(response);
         this.setState({
@@ -35,7 +35,7 @@ class SearchPage extends Component {
     this.setState({ input });
     console.log(this.state.input);
     axios
-      .post("http://localhost:8080/search-handler", { input: this.state.input })
+      .post("http://thecommons-281818.appspot.com/search-handler", { input: this.state.input })
       .then((response) => {
         console.log(response);
         this.setState({

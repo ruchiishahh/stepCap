@@ -36,6 +36,7 @@ export default class BookService extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.onChangeCalendar = this.onChangeCalendar.bind(this);
+
   }
 
   componentWillMount() {
@@ -91,13 +92,14 @@ export default class BookService extends React.Component {
                             }
                             console.log(userInfo);
                             // TODO: Discuss whether to create new servlet with same functionality but for user instead of provider
-                            axios.post('http://localhost:8080/provider-info', userInfo)
+                            axios.post('http://localhost:8080/user-info', userInfo)
                                 .then((res) => {
                                     console.log(res.data);
                                     this.setState({
-                                        user_name: res.data.provider_firstname + " " + res.data.provider_lastname,
-                                        user_email: res.data.provider_email,
-                                        user_phone: res.data.provider_phone,
+                                        user_name: res.data.user_firstname + " " + res.data.user_lastname,
+                                        user_email: res.data.user_email,
+                                        user_phone: res.data.user_phone,
+                                        user_id: userInfo.user_id,
                                     }, () => {
                                         this.setState({isLoading: false}, () => {
                                             console.log(this.state);
@@ -122,81 +124,82 @@ export default class BookService extends React.Component {
       [name]: value,
     });
   };
+  
+//   createCalendarEvent = () => {
+    // const gapi = window.gapi;
+    // const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
+    // const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
+    // const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+    // const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-  createCalendarEvent = () => {
-    const gapi = window.gapi;
-    const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
-    const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
-    const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-    const SCOPES = "https://www.googleapis.com/auth/calendar.events";
+//     gapi.load('client:auth2', () => {
 
-    gapi.load('client:auth2', () => {
+//         console.log('inside bookService gapi.load()');
+//         gapi.client.init({
+//             apiKey: API_KEY,
+//             clientId: CLIENT_ID,
+//             discoveryDocs: DISCOVERY_DOCS,
+//             scope: SCOPES
+//         })
 
-        console.log('inside bookService gapi.load()');
-        gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: DISCOVERY_DOCS,
-            scope: SCOPES
-        })
+//         gapi.client.load('calendar', 'v3', () => console.log('Calendar v3 works!'));
 
-        gapi.client.load('calendar', 'v3', () => console.log('Calendar v3 works!'));
+//         gapi.auth2.getAuthInstance().signIn()
+//             .then(() => {
+//                 let unixStartTimeStamp = parseInt((this.state.booking_date.getTime() / 1000).toFixed(0));
+//                 console.log(unixStartTimeStamp);
+//                 // let unixEndTimeStamp = new date()
+//                 var event = {
+//                     'summary': this.state.booking_name,
+//                     'location': this.state.travel_options,
+//                     'description': this.state.overview,
+//                     'start': {
+//                         'dateTime': '2020-07-21T09:00:00-07:00',
+//                         'timeZone': 'America/Los_Angeles'
+//                     },
+//                     'end': {
+//                         'dateTime': '2020-07-21T17:00:00-07:00',
+//                         'timeZone': 'America/Los_Angeles'
+//                     },
+//                     'recurrence': [
+//                         'RRULE:FREQ=DAILY;COUNT=2'
+//                     ],
+//                     'attendees': [
+//                         {'email': this.state.provider_email},
+//                         {'email': this.state.user_email},
+//                         {'email': 'owenzhang76@gmail.com'}
+//                     ],
+//                     'reminders': {
+//                         'useDefault': false,
+//                         'overrides': [
+//                             {'method': 'email', 'minutes': 24 * 60},
+//                             {'method': 'popup', 'minutes': 10}
+//                         ]
+//                     }
+//                 }
 
-        gapi.auth2.getAuthInstance().signIn()
-            .then(() => {
-                let unixStartTimeStamp = parseInt((this.state.booking_date.getTime() / 1000).toFixed(0));
-                console.log(unixStartTimeStamp);
-                // let unixEndTimeStamp = new date()
-                var event = {
-                    'summary': this.state.booking_name,
-                    'location': this.state.travel_options,
-                    'description': this.state.overview,
-                    'start': {
-                        'dateTime': '2020-07-21T09:00:00-07:00',
-                        'timeZone': 'America/Los_Angeles'
-                    },
-                    'end': {
-                        'dateTime': '2020-07-21T17:00:00-07:00',
-                        'timeZone': 'America/Los_Angeles'
-                    },
-                    'recurrence': [
-                        'RRULE:FREQ=DAILY;COUNT=2'
-                    ],
-                    'attendees': [
-                        {'email': this.state.provider_email},
-                        {'email': this.state.user_email},
-                        {'email': 'owenzhang76@gmail.com'}
-                    ],
-                    'reminders': {
-                        'useDefault': false,
-                        'overrides': [
-                            {'method': 'email', 'minutes': 24 * 60},
-                            {'method': 'popup', 'minutes': 10}
-                        ]
-                    }
-                }
+//                 var request = gapi.client.calendar.events.insert({
+//                     'calendarId': 'primary',
+//                     'resource': event,
+//                     'sendNotifications': true,
+//                 })
 
-                var request = gapi.client.calendar.events.insert({
-                    'calendarId': 'primary',
-                    'resource': event,
-                    'sendNotifications': true,
-                })
+//                 request.execute(event => {
+//                     console.log(event)
+//                     window.open(event.htmlLink)
+//                 })
+//                 return;
+//             })
+//             .catch(e => {
+//                 console.log(e);
+//             });
+//     });
+//   }
 
-                request.execute(event => {
-                    console.log(event)
-                    window.open(event.htmlLink)
-                })
-
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    });
-  }
-
-  bookService = () => {
+bookService() {
       console.log("bookService initiated");
       console.log(this.state);
+      
       let bookingObj = {
           customer_id: this.props.userInfo.user_id,
           provider_id: this.state.provider_id,
@@ -210,11 +213,16 @@ export default class BookService extends React.Component {
           booking_is_confirmed_provider: false,
       };
       console.log(bookingObj);
-      axios.post("http://localhost:8080/book-new-service", bookingObj)
-        .then((res) => {
-            console.log("inside bookService .then()");
-            console.log(res.data);
-            
+    //   axios.post("http://localhost:8080/book-new-service", bookingObj)
+    //     .then((res) => {
+    //         console.log("inside bookService .then()");
+    //         console.log(res.data);
+            // const gapi = window.gapi;
+            // const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
+            // const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
+            // const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+            // const SCOPES = "https://www.googleapis.com/auth/calendar.events";
+
             // gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
 
             // gapi.auth2.getAuthInstance().signIn().then(() => {
@@ -251,11 +259,14 @@ export default class BookService extends React.Component {
 			//     'resource': event,
 			// });
 
-            // request.execute(event => {
-			//     console.log(event);
-			//     window.open(event.htmlLink);
-			// });
-        })
+        //     request.execute(event => {
+		// 	    console.log(event);
+		// 	    window.open(event.htmlLink);
+		// 	});
+        // })
+        //  .catch(err => console.log(err))
+        // })
+        // .catch(err => console.log(err))
     };
 
   render() {
@@ -348,7 +359,6 @@ export default class BookService extends React.Component {
                                 class="book-service-button"
                                 variant="contained"
                                 color="secondary"
-                                type="submit"
                                 onClick={this.bookService}
                             >
                                  Book Now 
@@ -400,7 +410,7 @@ export default class BookService extends React.Component {
                             <div class="book-service-facts-container">
                             <div class="book-service-fact">
                                 <i class="fas fa-location-arrow"></i>
-                                {this.state.booking_description_needs_traveling? "This service requires you to travel" : "I will meet you at your desired location"}
+                                {this.state.booking_description_needs_traveling}
                             </div>
                             <div class="book-service-fact">
                                 <i class="far fa-clock"></i>

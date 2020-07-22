@@ -523,15 +523,21 @@ nav {
 }
 
 .profile-service-image-container {
-  align-items: flex-end;
+  /*align-items: flex-end;
   background-color: #2EB887;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 5px;
-  width: 100%;
+  width: 95%;
   height: 200px;
-  /* border-bottom: 1px solid grey; */
+  border-bottom: 1px solid grey; */
+  background-color: #2EB887;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+  height: 200px;
 }
 
 .profile-service-info {

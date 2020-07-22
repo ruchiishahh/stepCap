@@ -10,25 +10,13 @@ export default function VirtualizedList(props) {
   const { name, description, service_name, rating, date } = props;
   return (
     <div>
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          class="profile-review"
-          primary={
-            <React.Fragment>
-              <div class="profile-review-reviewer-name">
-                A user left a review for <strong>{service_name}</strong> on {date}
-              </div>
-            </React.Fragment>
-          }
-          secondary={
-            <React.Fragment>
-              {/*<div class="profile-review-rating">{rating} stars </div> */}
-               <Rating name="read-only" value={rating} readOnly />
-              <div class="profile-review-title">{name}</div>
-              <div class="profile-review-body">{description}</div>
-            </React.Fragment>
-          }
-        />
+      <ListItem alignItems="flex-start"> 
+       <div class="profile-reviews">
+        <div class="profile-review-reviewer-name">A user left a review for <strong>{service_name}</strong> on {date}</div>
+        <Rating name="read-only" value={rating} readOnly />
+        <div class="profile-review-title">{name}</div>
+        <div class="profile-review-body">{description}</div>
+       </div>
       </ListItem>
       <Divider />
     </div>

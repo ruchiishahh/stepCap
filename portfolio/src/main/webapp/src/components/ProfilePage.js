@@ -121,10 +121,11 @@ export default class ProfilePage extends Component {
           <Grid container spacing={3} alignItems="stretch" direction="row" justify="space-evenly" r>
             <Grid item xs>
               <Paper>
-              <div class="profile-description-container">
+              
                 <div class="profile-image-container">
                   <img src=""></img>
                 </div>
+                <div class="profile-description-container">
                   <div class="profile-title-strong">
                     {(this.state.firstname, this.state.lastname)}Owen Zhang
                   </div>

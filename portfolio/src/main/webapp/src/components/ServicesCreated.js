@@ -12,28 +12,23 @@ export default function VirtualizedList(props) {
     <div>
       <ListItem alignItems="flex-start">
         <ListItemText
-          class="profile-review"
           primary={
             <React.Fragment>
               <div class="profile-service">
                 <div class="profile-service-image-container">
                   <div class="profile-service-RSVP">RSVP</div>
                 </div>
-                <div class="profile-service-info">
-                  <div class="profile-service-info-column">
-                    <div class="profile-service-title">
-                      {name}
-                      <Rating name="read-only" value={4} readOnly />
-                      <p> {description} </p>
-                    </div>
-                  </div>
-                  <div class="profile-service-price">$24/hr</div>
+                <div class="profile-service-title">
+                  {name}
+                  <Rating name="read-only" value={4} readOnly />
+                  <div class="profile-service-body">{description}</div>
                 </div>
+
+                <div class="profile-service-price">$24/hr</div>
               </div>
             </React.Fragment>
           }
         />
-
       </ListItem>
       <Divider />
     </div>

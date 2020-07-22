@@ -864,3 +864,9 @@ react-calendar__month-view__days__day--weekend {
   margin-top: 5px;
   width: 50%;
 }
+
+.map-container {
+    border: 10px solid black;
+    height: 400px;
+    width: 600px;
+}

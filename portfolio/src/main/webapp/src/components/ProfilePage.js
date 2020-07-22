@@ -64,6 +64,24 @@ export default class ProfilePage extends Component {
       });
   }
 
+  componentDidUpdate() {
+    console.log("Inside of showInfo");
+    axios.get("http://localhost:8080/reviews-displayer").then((res) => {
+      console.log(res);
+      console.log(res.data);
+      this.setState({ reviewsReqInfo: res.data });
+    });
+
+    axios
+      .post("http://localhost:8080/search-handler", { input: "" })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          servicesReqInfo: response.data,
+        });
+      });
+  }
+
   openForm() {
     this.setState({ showForm: true });
   }

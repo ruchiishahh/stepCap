@@ -9,7 +9,7 @@ export default class BookService extends React.Component {
   constructor() {
     super();
     this.state = {
-        service_id:
+        service_id: "",
         user_id: "",
         user_name: "",
         user_email: "",

@@ -26,7 +26,7 @@ export default class BookingForm extends React.Component {
 
   render() {
     return (
-      <main>
+      <div class="dashboard-page-container">
         <Navbar />
         <h1 className="dashboard-center-title">Dashboard Page</h1>
         <div>
@@ -50,7 +50,7 @@ export default class BookingForm extends React.Component {
             </Grid>
           </Grid>
         </div>
-      </main>
+      </div>
     );
   }
 }

@@ -22,6 +22,8 @@ export default class ProfilePage extends Component {
     this.openReviewForm = this.openReviewForm.bind(this);
     this.closeReviewForm = this.closeReviewForm.bind(this);
     this.setClass = this.setClass.bind(this);
+    this.reviewFormHandler = this.reviewFormHandler.bind(this);
+    this.serviceFormHandler = this.serviceFormHandler.bind(this);
     //this.handleShowInfo = this.handleShowInfo.bind(this);
     this.state = {
       loggedIn: "",
@@ -58,6 +60,23 @@ export default class ProfilePage extends Component {
     axios
       .post("http://localhost:8080/search-handler", { input: "" })
       .then((response) => {
+        console.log(response);
+        this.setState({
+          servicesReqInfo: response.data,
+        });
+      });
+  }
+
+  reviewFormHandler(){
+      axios.get("http://localhost:8080/reviews-displayer").then((res) => {
+          console.log(res);
+          console.log(res.data);
+          this.setState({ reviewsReqInfo: res.data });
+        });
+  }
+
+  serviceFormHandler(){
+      axios.post("http://localhost:8080/search-handler", { input: "" }).then((response) => {
         console.log(response);
         this.setState({
           servicesReqInfo: response.data,
@@ -103,9 +122,9 @@ export default class ProfilePage extends Component {
 
     return (
       <div>
-        {showForm ? <ServiceForm closeForm={this.closeForm} /> : null}
+        {showForm ? <ServiceForm closeForm={this.closeForm} serviceFormHandler={this.serviceFormHandler}/> : null}
         {showReviewForm ? (
-          <ReviewsForm closeReviewForm={this.closeReviewForm} />
+          <ReviewsForm closeReviewForm={this.closeReviewForm} reviewFormHandler={this.reviewFormHandler}/>
         ) : null}
         <div class={blur}>
           <Navbar />

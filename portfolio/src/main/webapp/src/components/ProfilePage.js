@@ -12,6 +12,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Button } from "@material-ui/core";
 import ReviewsGiven from "./ReviewsGiven";
 import ServicesCreated from "./ServicesCreated";
+import Navbar from "./Navbar";
 
 export default class ProfilePage extends Component {
   constructor(props) {
@@ -107,17 +108,7 @@ export default class ProfilePage extends Component {
           <ReviewsForm closeReviewForm={this.closeReviewForm} />
         ) : null}
         <div class={blur}>
-          <div class="profile-page-header-container">
-            <div class="logo-container">theCOMMONS PROJECT</div>
-            <div class="searchbar-container">
-              <SearchBar />
-            </div>
-            <div class="options-container">
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to="/profile"></Link>
-              <button>Logout</button>
-            </div>
-          </div>
+          <Navbar />
           <Grid container spacing={3} alignItems="stretch" direction="row" justify="space-evenly" r>
             <Grid item xs>
               <Paper>

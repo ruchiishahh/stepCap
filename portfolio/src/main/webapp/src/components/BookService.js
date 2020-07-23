@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import SearchBar from "./SearchBar";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 export default class BookService extends React.Component {
   constructor() {
@@ -82,17 +83,7 @@ export default class BookService extends React.Component {
       <main>
         <form action="/book-new-service" method="POST">
           <div class="book-service-all-container">
-            <div class="book-service-header-container">
-              <div class="logo-container">theCOMMONS</div>
-              <div class="searchbar-container">
-                <SearchBar />
-              </div>
-              <div class="options-container">
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/profile"></Link>
-                <button>Logout</button>
-              </div>
-            </div>
+            <Navbar />
 
             <div class="book-service-body-container">
               <div class="book-service-info-container">

@@ -46,12 +46,8 @@ export default class BookService extends React.Component {
     let serviceInfo = {
         service_id: service_id,
     }
-<<<<<<< HEAD
+
     axios.post('http://thecommons-281818.appspot.com/service-info', serviceInfo)
-        .then((data) => {
-            console.log(data);
-=======
-    axios.post('http://localhost:8080/service-info', serviceInfo)
         .then((res) => {
             console.log(res);
             let travelQuote = "";
@@ -68,7 +64,7 @@ export default class BookService extends React.Component {
                 default:
                     travelQuote = "You can decide where to meet";
             };
->>>>>>> master
+
             this.setState({
                 service_id: service_id,
                 provider_id: res.data.provider_id,
@@ -87,7 +83,7 @@ export default class BookService extends React.Component {
                     provider_id: this.state.provider_id
                 }
                 console.log(providerInfo);
-                axios.post('http://localhost:8080/provider-info', providerInfo)
+                axios.post('http://thecommons-281818.appspot.com/provider-info', providerInfo)
                     .then((res) => {
                         console.log(res);
                         this.setState({
@@ -100,7 +96,7 @@ export default class BookService extends React.Component {
                             }
                             console.log(userInfo);
                             // TODO: Discuss whether to create new servlet with same functionality but for user instead of provider
-                            axios.post('http://localhost:8080/user-info', userInfo)
+                            axios.post('http://thecommons-281818.appspot.com/user-info', userInfo)
                                 .then((res) => {
                                     console.log(res.data);
                                     this.setState({

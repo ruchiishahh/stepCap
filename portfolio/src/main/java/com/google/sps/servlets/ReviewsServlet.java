@@ -6,8 +6,9 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;;
+import com.google.gson.JsonParser;
 import com.google.sps.data.Service;
+import com.google.sps.data.Review;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import javax.servlet.annotation.WebServlet;
@@ -31,21 +32,25 @@ public class ReviewsServlet extends HttpServlet {
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
     
-    String name = jsonObj.get("review_name").getAsString().toLowerCase();
+    String name = jsonObj.get("review_name").getAsString();
     String description = jsonObj.get("review_description").getAsString();
+    String service_name = jsonObj.get("service_name").getAsString();
     //TODO obtain service ID from current service
-    long serviceId;
-    long review_rating;
+    //long serviceId;
+    Double review_rating = jsonObj.get("review_rating").getAsDouble();
+    long timestamp = System.currentTimeMillis();
 
-    System.out.println(name);
-    System.out.println(description);
+    System.out.println("Here is the review name" + name);
+    System.out.println("Here is the review description" + description);
     
     //TODO implement dynamic Review creation
     Entity review = new Entity("Review");
     review.setProperty("review_name", name);
     review.setProperty("review_description", description);
-    review.setProperty("service_id", 154829301);
-    review.setProperty("review_rating", 4.0);
+    review.setProperty("service_name", service_name);
+    //review.setProperty("service_id", 154829301);
+    review.setProperty("review_rating", review_rating);
+    review.setProperty("timestamp", timestamp);
     datastore.put(review);
 
     response.sendRedirect("/");

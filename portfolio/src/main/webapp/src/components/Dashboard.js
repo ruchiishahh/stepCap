@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import PendingReqs from "./bookingcomponents/PendingReqs";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import Navbar from "./Navbar"
 
 export default class BookingForm extends React.Component {
   constructor() {
@@ -12,11 +13,9 @@ export default class BookingForm extends React.Component {
     this.state = {
         pendingReqInfo: [],  
     }
-    this.handleShowInfo = this.handleShowInfo.bind(this);
   }
 
-  handleShowInfo(event) {
-    console.log("Inside of showInfo");
+  componentDidMount() {
     axios.get("http://localhost:8080/list-services")
         .then((res) => {
             console.log(res);
@@ -28,6 +27,7 @@ export default class BookingForm extends React.Component {
   render() {
     return (
       <main>
+        <Navbar />
         <h1 className="dashboard-center-title">Dashboard Page</h1>
         <div>
           <Grid container spacing={2}>
@@ -37,14 +37,6 @@ export default class BookingForm extends React.Component {
                   Here are your Pending Requests
                 </h2>
               </Paper>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={this.handleShowInfo}
-                type="submit"
-              >
-                Show Info
-              </Button>
                 {this.state.pendingReqInfo.map((info) => (
                   <PendingReqs name={info.booking_name} date={info.booking_date} duration={info.booking_duration} note={info.booking_optional_note} price={info.booking_price}/>
                 ))}

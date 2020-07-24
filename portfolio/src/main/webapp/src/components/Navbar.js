@@ -1,34 +1,65 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import AnonymousProfile from "../images/anonymous.png"
 
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showDropdown: false,
+    }
+  }
+
+  dropdown = () => {
+    this.setState(prevState => ({
+      showDropdown: !prevState.showDropdown,
+    }))
   }
 
   render() {
     return (
       <div class="navbar-main-container">
-        <div class="navbar-logo-container">
-          <div class="navbar-logo">TheCommons</div>
-        </div>
+        <Link to="/">
+          <div class="navbar-logo-container">
+            theCOMMONS
+          </div>
+        </Link>
         <div class="navbar-options-container">
           <Link to="/">
+
             <li>Register</li>
           </Link>
           <Link to='/profile'>
             <li>Profile</li>
+
           </Link>
+
           <Link to="/search">
-            <li>Search</li>
+            <div class="navbar-link">Search</div>
           </Link>
           <Link to="/bookService">
-            <li>Service</li>
+            <div class="navbar-link">Service</div>
           </Link>
           <Link to="/dashboard">
-            <li>Dashboard</li>
+            <div class="navbar-link">Dashboard</div>
           </Link>
+          <div class="dropdown">
+            <img onClick={() => {this.dropdown()}} class="navbar-profile" src={AnonymousProfile} />
+            {this.state.showDropdown ? 
+            (
+              <div class="dropdown-content"> 
+                <Link to="/profile"> 
+                  <div class="navbar-link">Profile</div>
+                </Link>
+                <Link to="/LOGOUTURL"> 
+                  <div class="navbar-link">Logout</div>
+                </Link>
+
+              </div>
+            ) : null
+            }
+          </div>
         </div>
       </div>
     );

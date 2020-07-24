@@ -1,12 +1,13 @@
 body {
-    background-color: #2EB887;
-    color: #434D66 !important;
-    font-family: -apple-system, BlinkMacSystemFont, "signoria", "Signoria", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  background-color: #2eb887;
+  color: #434d66 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "signoria", "Signoria",
+    "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol" !important;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
 
 .book-service-center {
   align-items: center;
@@ -85,8 +86,8 @@ body {
   flex-direction: column;
 }
 
-.book-service-button{
-  background-color: #F2b203;
+.book-service-button {
+  background-color: #f2b203;
   border: none;
   border-radius: 9px;
   font-size: 18px;
@@ -113,7 +114,7 @@ body {
 }
 
 .book-service-info-avg-rating {
-  align-items:center;
+  align-items: center;
   background-color: gold;
   display: flex;
   flex-direction: column;
@@ -134,7 +135,9 @@ body {
 
 .book-service-info-title {
   color: black;
-  font-family:-apple-system, BlinkMacSystemFont, "signoria", "Signoria", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+  font-family: -apple-system, BlinkMacSystemFont, "signoria", "Signoria",
+    "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol" !important;
   font-size: 35px;
   font-weight: 800px;
 }
@@ -183,7 +186,7 @@ body {
   font-weight: 500;
   padding: 10px;
   width: 100%;
-  
+
   /* border-bottom: 1px solid gray; */
 }
 
@@ -193,24 +196,24 @@ body {
 }
 
 .center-text {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    font-size: 23px !important;
-    font-weight: 200;
-    letter-spacing: 0.02em !important;
-    margin-bottom: 100px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 23px !important;
+  font-weight: 200;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 100px;
 }
 
 .center-title {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    font-size: 70px !important;
-    font-weight: 200;
-    letter-spacing: 0.06em !important;
-    margin-bottom: 20px;
-    margin-top: 100px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 70px !important;
+  font-weight: 200;
+  letter-spacing: 0.06em !important;
+  margin-bottom: 20px;
+  margin-top: 100px;
 }
 
 .dashboard-center-title {
@@ -281,15 +284,14 @@ body {
   width: 100%;
 }
 
-
 input {
   color: white;
   /* border-radius: 2px; */
   /* border: none !important; */
-  border: 1px solid #434D66;
+  border: 1px solid #434d66;
   font-size: 22px !important;
   font-weight: 500;
-  background-color: #2EB887;
+  background-color: #2eb887;
   /* border-style: solid !important; */
   box-shadow: none !important;
   height: 40px;
@@ -316,29 +318,11 @@ input:hover {
 .logo-container {
   font-size: 25px !important;
   font-weight: 300;
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 .long-input {
   width: 45%;
-}
-
-
-nav {
-  align-items: center;
-  background-color: rgb(73, 79, 82);
-  color: white;
-  display: flex;
-  justify-content: space-around;
-  min-height: 10vh;
-}
-
-.nav-links {
-  align-items: center;
-  display: flex;
-  list-style: none;
-  justify-content: center;
-  width: 50px;
 }
 
 .landing-body-container {
@@ -349,41 +333,64 @@ nav {
 }
 
 .navbar-logo-container {
+  color: #2eb887;
   display: flex;
-  flex-direction: column;
-  justify-content: end;
-}
-
-.navbar-logo {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: baseline;
-  font-size: 1.7em;
+  text-decoration: none;
+  font-size: 2.1em;
   font-weight: 300;
   letter-spacing: 0.04em !important;
+  margin: 10px;
+  padding: 5px;
+}
+
+.navbar-logo-container:hover, .navbar-logo-container:active {
+  text-decoration-line: inherit;
 }
 
 .navbar-main-container {
-  /* background-color: #c13f21; */
-  background-color: #584b4f;
+  background-color: white;
+  color: #2eb887;
   display: flex;
   flex-direction: row;
   flex-shrink: 1;
+  height: 100%;
   justify-content: space-between;
-  height: 35px;
   width: 100%;
 }
 
 .navbar-options-container {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  font-size: 1em;
-  font-weight: 400;
+  font-size: 1.3em;
+  height: 50%;
   justify-content: space-between;
   letter-spacing: 0.04em !important;
-  width: 20%;
+  margin-top: 5px;
+  margin-right: 4px;
+  min-width: 30%;
+  text-decoration: none !important;
+  width: 35%;
+}
+
+.navbar-link {
+  color: #2eb887;
+  text-decoration: none;
+}
+
+.navbar-link:hover, .navbar-link:link, 
+.navbar-link:visited, .navbar-link:active {
+  color: #2eb887;
+  text-decoration: inherit;
+  transform: scale(1.2);
+}
+
+.navbar-profile {
+  border: 4px inset #2eb887;
+  border-radius: 50%;
+  max-height: 45px;
+  margin-right: 10px;
+  object-fit: contain;
 }
 
 .options-container {
@@ -398,7 +405,6 @@ nav {
   letter-spacing: 0.04em !important;
   height: 40px;
   width: 20%;
-
 }
 
 #profile-about {
@@ -406,7 +412,6 @@ nav {
 }
 
 .profile-column {
-  /* border: 1px solid grey; */
   background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
@@ -414,11 +419,9 @@ nav {
   margin-left: 10px;
   margin-right: 10px;
   width: 33%;
-
 }
 
 .profile-description-container {
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   height: 700px;
@@ -459,7 +462,6 @@ nav {
 }
 
 .profile-page-body-container {
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -500,13 +502,12 @@ nav {
 }
 
 .profile-service {
-  /* background-color: white; */
-  /* border: 1px solid #434D66; */
-  /* border-radius: 10px; */
-  font-weight: 700;
-  height: 250px;
-  margin-top: 25px;
-  width: 90%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  width: 95%;
+  height: 200px;
 }
 
 .profile-service-add-button {
@@ -515,7 +516,7 @@ nav {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background-color: #2EB887;
+  background-color: #2eb887;
   font-weight: 700;
   height: 20px;
   margin-top: 15px;
@@ -523,40 +524,36 @@ nav {
 }
 
 .profile-service-image-container {
-  align-items: flex-end;
-  background-color: #2EB887;
+  background-color: #2eb887;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   padding: 5px;
-  width: 100%;
+  width: 95%;
   height: 200px;
-  /* border-bottom: 1px solid grey; */
 }
 
 .profile-service-info {
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   margin-left: 5px;
-  margin-right: 5px;
+  width: 95%;
 }
 
 .profile-service-info-column {
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow: scroll;
 }
 
 .profile-service-price {
   align-items: flex-end;
-  /* border: 1px solid black; */
   color: black;
   display: flex;
   flex-direction: column;
-  font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+  font-family: "Trip Sans VF", "Trip Sans", Arial, sans-serif;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -564,9 +561,8 @@ nav {
   width: 100%;
 }
 
-
 .profile-service-rating {
-  align-items:center;
+  align-items: center;
   background-color: gold;
   display: flex;
   flex-direction: column;
@@ -582,6 +578,7 @@ nav {
   margin-bottom: 40px;
   width: 95%;
   height: 200px;
+  overflow: scroll;
 }
 
 .profile-review-body {
@@ -589,12 +586,13 @@ nav {
   display: flex;
   flex-direction: column;
   padding: 5px;
-  width: 95%;
+  width: 100%;
   height: 200px;
+  overflow: scroll;
 }
 
 .profile-review-rating {
-  align-items:center;
+  align-items: center;
   background-color: gold;
   display: flex;
   flex-direction: column;
@@ -617,8 +615,18 @@ nav {
   padding: 5px;
 }
 
+.profile-service-body {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 95%;
+  height: 200px;
+  overflow: scroll;
+}
+
 .profile-service-RSVP {
-  align-items:center;
+  align-items: center;
   border-radius: 8px;
   background-color: gold;
   display: flex;
@@ -633,7 +641,7 @@ nav {
   color: black;
   display: flex;
   flex-direction: column;
-  font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+  font-family: "Trip Sans VF", "Trip Sans", Arial, sans-serif;
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -694,7 +702,7 @@ nav {
 }
 
 .profile-title-strong {
-  color: #434D66;
+  color: #434d66;
   font-size: 32px !important;
   font-weight: 400;
   letter-spacing: 0.03em !important;
@@ -709,11 +717,10 @@ react-calendar__month-view__days__day--weekend {
   color: purple !important;
 }
 
-
 .register-button {
-  background-color: #2EB887;
-  border: 1px solid #434D66;
-  color: #434D66;
+  background-color: #2eb887;
+  border: 1px solid #434d66;
+  color: #434d66;
   font-size: 18px !important;
   font-weight: 200 !important;
   height: 35px;
@@ -760,7 +767,6 @@ react-calendar__month-view__days__day--weekend {
 }
 
 .searchbar-container {
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
   margin-top: 10px;
@@ -772,7 +778,6 @@ react-calendar__month-view__days__day--weekend {
   transition: none !important;
 }
 
-
 .section-container {
   border: 1px solid white;
   display: flex;
@@ -783,8 +788,8 @@ react-calendar__month-view__days__day--weekend {
 }
 
 .filter {
-  border: solid 2px #2EB887 !important;
-  color: #2EB887 !important;
+  border: solid 2px #2eb887 !important;
+  color: #2eb887 !important;
   margin: 10px;
 }
 
@@ -819,10 +824,10 @@ react-calendar__month-view__days__day--weekend {
 }
 
 .result-body {
-  flex: 3
+  flex: 3;
 }
 
-.service-form{
+.service-form {
   position: fixed;
   width: 500px;
   height: 200px;
@@ -847,7 +852,7 @@ react-calendar__month-view__days__day--weekend {
 
 .closeForm {
   align-self: flex-end;
-  border: solid 4px #2EB887 !important;
+  border: solid 4px #2eb887 !important;
   background-color: #3ece9b;
   border-radius: 30%;
   float: right;
@@ -869,4 +874,20 @@ react-calendar__month-view__days__day--weekend {
   margin-left: auto;
   margin-top: 5px;
   width: 50%;
+}
+
+.dropdown {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 20px;
+  position: relative;
+}
+
+.dropdown-content {
+  border: 1px solid grey;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  margin-top: 5px;
+  padding: 2px 10px;
+  position: absolute;
+  z-index: 100;
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import SearchBar from "./SearchBar";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 export default class BookService extends React.Component {
   constructor() {
@@ -215,6 +216,7 @@ bookNow(e) {
     };
 
   render() {
+
     
         console.log("finished loading");
         console.log(this.state);

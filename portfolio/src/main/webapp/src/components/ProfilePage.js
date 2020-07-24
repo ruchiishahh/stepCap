@@ -51,7 +51,7 @@ export default class ProfilePage extends Component {
     let providerInfo = {
         provider_id: provider_id,
     }
-    axios.post('http://thecommons-281818.appspot.com/provider-info', providerInfo)
+    axios.post('https://thecommons-281818.appspot.com/provider-info', providerInfo)
         .then((data) => {
             console.log(data);
             this.setState({
@@ -64,14 +64,14 @@ export default class ProfilePage extends Component {
         })
         .catch(err => console.log(err));
     
-    axios.get("http://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
+    axios.get("https://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
       console.log(res);
       console.log(res.data);
       this.setState({ reviewsReqInfo: res.data });
     });
 
     axios
-      .post("http://thecommons-281818.appspot.com/search-handler", { input: "" })
+      .post("https://thecommons-281818.appspot.com/search-handler", { input: "" })
       .then((response) => {
         console.log(response);
         this.setState({
@@ -88,7 +88,7 @@ export default class ProfilePage extends Component {
   
 
   reviewFormHandler(){
-      axios.get("http://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
+      axios.get("https://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
           console.log(res);
           console.log(res.data);
           this.setState({ reviewsReqInfo: res.data });
@@ -96,7 +96,7 @@ export default class ProfilePage extends Component {
   }
 
   serviceFormHandler(){
-      axios.post("http://thecommons-281818.appspot.com/search-handler", { input: "" }).then((response) => {
+      axios.post("https://thecommons-281818.appspot.com/search-handler", { input: "" }).then((response) => {
         console.log(response);
         this.setState({
           servicesReqInfo: response.data,

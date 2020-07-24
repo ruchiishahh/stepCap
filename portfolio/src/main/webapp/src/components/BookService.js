@@ -47,7 +47,7 @@ export default class BookService extends React.Component {
         service_id: service_id,
     }
 
-    axios.post('http://thecommons-281818.appspot.com/service-info', serviceInfo)
+    axios.post('https://thecommons-281818.appspot.com/service-info', serviceInfo)
         .then((res) => {
             console.log(res);
             let travelQuote = "";
@@ -83,7 +83,7 @@ export default class BookService extends React.Component {
                     provider_id: this.state.provider_id
                 }
                 console.log(providerInfo);
-                axios.post('http://thecommons-281818.appspot.com/provider-info', providerInfo)
+                axios.post('https://thecommons-281818.appspot.com/provider-info', providerInfo)
                     .then((res) => {
                         console.log(res);
                         this.setState({
@@ -96,7 +96,7 @@ export default class BookService extends React.Component {
                             }
                             console.log(userInfo);
                             // TODO: Discuss whether to create new servlet with same functionality but for user instead of provider
-                            axios.post('http://thecommons-281818.appspot.com/user-info', userInfo)
+                            axios.post('https://thecommons-281818.appspot.com/user-info', userInfo)
                                 .then((res) => {
                                     console.log(res.data);
                                     this.setState({
@@ -147,7 +147,7 @@ bookNow(e) {
           booking_is_confirmed_provider: false,
       };
       console.log(bookingObj);
-      axios.post("http://thecommons-281818.appspot.com/backend/book-new-service", bookingObj)
+      axios.post("https://thecommons-281818.appspot.com/backend/book-new-service", bookingObj)
         .then((res) => {
             console.log("inside bookService .then()");
             console.log(res.data);

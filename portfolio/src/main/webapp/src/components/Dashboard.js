@@ -16,7 +16,7 @@ export default class BookingForm extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("http://thecommons-281818.appspot.com/list-services")
+    axios.get("https://thecommons-281818.appspot.com/list-services")
         .then((res) => {
             console.log(res);
             console.log(res.data);

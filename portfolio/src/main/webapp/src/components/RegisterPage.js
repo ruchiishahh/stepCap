@@ -73,7 +73,7 @@ onChangePhone(e) {
       phone: this.state.phone
     };
     console.log(registerInfo);
-    axios.post('http://thecommons-281818.appspot.com/backend/registered', registerInfo)
+    axios.post('https://thecommons-281818.appspot.com/backend/registered', registerInfo)
        .then(res => {
            console.log(res.data);
            console.log(this.props);

@@ -1,49 +1,56 @@
 package com.google.sps.servlets;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.CompositeFilter;
-import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
-import com.google.appengine.api.datastore.Query.Filter;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Query.FilterPredicate;
-import com.google.appengine.api.datastore.Query.SortDirection;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.stream.Collectors;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;;
-import com.google.sps.data.Service;
-import java.io.IOException;
-import java.util.stream.Collectors;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.json.HTTP;
+import org.json.JSONObject;
+import org.json.JSONException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.blobstore.BlobInfo;
+import com.google.appengine.api.blobstore.BlobInfoFactory;
+import com.google.appengine.api.blobstore.BlobKey;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.FetchOptions;
+// import com.google.appengine.api.datastore.IncompleteKey;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.images.ImagesService;
+import com.google.appengine.api.images.ImagesServiceFactory;
+import com.google.appengine.api.images.ServingUrlOptions;
+import com.google.sps.data.Service;
 
-@WebServlet("/book-new-service")
+@WebServlet("/backend/book-new-service")
 public class BookNowServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String reader = request.getReader().lines().collect(Collectors.joining());
+    JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
 
-    String customer_id = request.getParameter("customer_id");
-    String provider_id = request.getParameter("provider_id");
-    String service_id = request.getParameter("service_id");
-    String booking_name = request.getParameter("booking_name");
-    String booking_date = request.getParameter("booking_date");
-    long booking_duration = Long.parseLong(request.getParameter("booking_duration"));
-    String booking_optional_note = request.getParameter("booking_optional_note");
-    long booking_price = Long.parseLong(request.getParameter("booking_price"));
+    String customer_id = jsonObj.get("customer_id").getAsString();
+    String provider_id = jsonObj.get("provider_id").getAsString();
+    String service_id = jsonObj.get("service_id").getAsString();
+    String booking_name = jsonObj.get("booking_name").getAsString();
+    String booking_date = jsonObj.get("booking_date").getAsString();
+    String booking_duration = jsonObj.get("booking_duration").getAsString();
+    String booking_optional_note = jsonObj.get("booking_optional_note").getAsString();
+    String booking_price = jsonObj.get("booking_price").getAsString();
     boolean booking_is_confirmed_customer = true;
     boolean booking_is_confirmed_provider = false;
     long timestamp = System.currentTimeMillis();
@@ -67,8 +74,10 @@ public class BookNowServlet extends HttpServlet {
 
     Gson gson = new Gson();
     String[] bookingResponse = new String[1]; 
-    bookingResponse[0] = "success";
+    bookingResponse[0] = "yeet";
+    
     String bookNowServletResponse = gson.toJson(bookingResponse);
+    response.setContentType("application/json;");
     response.getWriter().println(bookNowServletResponse);
     
   }

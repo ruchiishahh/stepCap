@@ -36,6 +36,7 @@ export default class BookService extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.onChangeCalendar = this.onChangeCalendar.bind(this);
+    this.bookNow = this.bookNow.bind(this);
 
   }
 
@@ -124,88 +125,18 @@ export default class BookService extends React.Component {
       [name]: value,
     });
   };
-  
-//   createCalendarEvent = () => {
-    // const gapi = window.gapi;
-    // const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
-    // const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
-    // const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-    // const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-//     gapi.load('client:auth2', () => {
-
-//         console.log('inside bookService gapi.load()');
-//         gapi.client.init({
-//             apiKey: API_KEY,
-//             clientId: CLIENT_ID,
-//             discoveryDocs: DISCOVERY_DOCS,
-//             scope: SCOPES
-//         })
-
-//         gapi.client.load('calendar', 'v3', () => console.log('Calendar v3 works!'));
-
-//         gapi.auth2.getAuthInstance().signIn()
-//             .then(() => {
-//                 let unixStartTimeStamp = parseInt((this.state.booking_date.getTime() / 1000).toFixed(0));
-//                 console.log(unixStartTimeStamp);
-//                 // let unixEndTimeStamp = new date()
-//                 var event = {
-//                     'summary': this.state.booking_name,
-//                     'location': this.state.travel_options,
-//                     'description': this.state.overview,
-//                     'start': {
-//                         'dateTime': '2020-07-21T09:00:00-07:00',
-//                         'timeZone': 'America/Los_Angeles'
-//                     },
-//                     'end': {
-//                         'dateTime': '2020-07-21T17:00:00-07:00',
-//                         'timeZone': 'America/Los_Angeles'
-//                     },
-//                     'recurrence': [
-//                         'RRULE:FREQ=DAILY;COUNT=2'
-//                     ],
-//                     'attendees': [
-//                         {'email': this.state.provider_email},
-//                         {'email': this.state.user_email},
-//                         {'email': 'owenzhang76@gmail.com'}
-//                     ],
-//                     'reminders': {
-//                         'useDefault': false,
-//                         'overrides': [
-//                             {'method': 'email', 'minutes': 24 * 60},
-//                             {'method': 'popup', 'minutes': 10}
-//                         ]
-//                     }
-//                 }
-
-//                 var request = gapi.client.calendar.events.insert({
-//                     'calendarId': 'primary',
-//                     'resource': event,
-//                     'sendNotifications': true,
-//                 })
-
-//                 request.execute(event => {
-//                     console.log(event)
-//                     window.open(event.htmlLink)
-//                 })
-//                 return;
-//             })
-//             .catch(e => {
-//                 console.log(e);
-//             });
-//     });
-//   }
-
-bookService() {
-      console.log("bookService initiated");
+bookNow(e) {
+     e.preventDefault();
+      console.log("bookNow initiated");
       console.log(this.state);
       
-      let bookingObj = {
+      const bookingObj = {
           customer_id: this.props.userInfo.user_id,
           provider_id: this.state.provider_id,
           service_id: this.state.service_id,
           booking_name: this.state.booking_name,
-          booking_date: this.state.booking_date,
+          booking_date: this.state.booking_date.toISOString(),
           booking_duration: this.state.booking_duration,
           booking_optional_note: this.state.booking_optional_note,
           booking_price: this.state.booking_price,
@@ -213,60 +144,74 @@ bookService() {
           booking_is_confirmed_provider: false,
       };
       console.log(bookingObj);
-    //   axios.post("http://localhost:8080/book-new-service", bookingObj)
-    //     .then((res) => {
-    //         console.log("inside bookService .then()");
-    //         console.log(res.data);
-            // const gapi = window.gapi;
-            // const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
-            // const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
-            // const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-            // const SCOPES = "https://www.googleapis.com/auth/calendar.events";
+      axios.post("http://localhost:8080/backend/book-new-service", bookingObj)
+        .then((res) => {
+            console.log("inside bookService .then()");
+            console.log(res.data);
+            const gapi = window.gapi;
+            const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
+            const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
+            const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+            const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-            // gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
+            gapi.load('client:auth2', () => {
+                console.log('loaded client');
 
-            // gapi.auth2.getAuthInstance().signIn().then(() => {
-			// var event = {
-            //     'summary': 'Test Event 1',
-            //     'location': '800 Howard St., San Francisco, CA 94103',
-            //     'description': 'Really great refreshments',
-            //     'start': {
-            //         'dateTime': '2020-06-28T09:00:00-07:00',
-            //         'timeZone': 'America/Los_Angeles'
-            //     },
-            //     'end': {
-            //         'dateTime': '2020-07-18T17:00:00-07:00',
-            //         'timeZone': 'America/Los_Angeles'
-            //     },
-            //     'recurrence': [
-            //         'RRULE:FREQ=DAILY;COUNT=2'
-            //     ],
-            //     'attendees': [
-            //         {'email': 'owenzhang76@gmail.com'},
-            //         {'email': 'sbrin@example.com'}
-            //     ],
-            //     'reminders': {
-            //         'useDefault': false,
-            //         'overrides': [
-            //             {'method': 'email', 'minutes': 24 * 60},
-            //             {'method': 'popup', 'minutes': 10}
-            //         ]
-            //     }
-			// }
+                gapi.client.init({
+                    apiKey: API_KEY,
+                    clientId: CLIENT_ID,
+                    discoveryDocs: DISCOVERY_DOCS,
+                    scope: SCOPES
+                })
+                gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
+                console.log(this.state);
+                console.log(bookingObj);
+                gapi.auth2.getAuthInstance().signIn().then(() => {
+                var event = {
+                    'summary': bookingObj.booking_name,
+                    'location': this.state.travel_options,
+                    'description': this.state.overview,
+                    'start': {
+                        'dateTime': '2020-07-24T09:00:00-07:00',
+                        'timeZone': 'America/Los_Angeles'
+                    },
+                    'end': {
+                        'dateTime': '2020-07-25T17:00:00-07:00',
+                        'timeZone': 'America/Los_Angeles'
+                    },
+                    'recurrence': [
+                        'RRULE:FREQ=DAILY;COUNT=2'
+                    ],
+                    'attendees': [
+                        {'email': this.state.provider_email},
+                        {'email': 'owenzhang@google.com'},
+                        {'email': this.state.user_email}
+                    ],
+                    'reminders': {
+                        'useDefault': false,
+                        'overrides': [
+                            {'method': 'email', 'minutes': 24 * 60},
+                            {'method': 'popup', 'minutes': 10}
+                        ]
+                    }
+                };
+                console.log(event);
+                
 
-            // var request = gapi.client.calendar.events.insert({
-			//     'calendarId': 'primary',
-			//     'resource': event,
-			// });
+                var request = gapi.client.calendar.events.insert({
+                    'calendarId': 'primary',
+                    'resource': event,
+                });
 
-        //     request.execute(event => {
-		// 	    console.log(event);
-		// 	    window.open(event.htmlLink);
-		// 	});
-        // })
-        //  .catch(err => console.log(err))
-        // })
-        // .catch(err => console.log(err))
+                request.execute(event => {
+                    console.log(event);
+                    this.props.history.push('/dashboard');
+                });
+            })
+            .catch(err => console.log(err))
+            })
+        })
+       
     };
 
   render() {
@@ -355,14 +300,7 @@ bookService() {
                             />
 
                             <div class="book-service-center">
-                            <Button
-                                class="book-service-button"
-                                variant="contained"
-                                color="secondary"
-                                onClick={this.bookService}
-                            >
-                                 Book Now 
-                            </Button>
+                            <button class="book-service-button" onClick={this.bookNow}> Book Now </button>
                             </div>
                         </div>
                         </div>

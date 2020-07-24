@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-calendar/dist/Calendar.css';
 import BookingForm from "./components/BookingForm";
@@ -27,6 +29,7 @@ export default class AppContainer extends Component {
     };
   }
 
+//   const allReducer= (state = )
   passRegisterInfo(registerInfoUpdated) {
     console.log(registerInfoUpdated);
     console.log(registerInfoUpdated.firstname);
@@ -63,17 +66,19 @@ export default class AppContainer extends Component {
     return (
       <div>
         <Router>
+
           <Route
             exact
             path="/"
             render={(props) => (
-              <RegisterPage
-                {...props}
-                passRegisterInfo={this.passRegisterInfo}
-              />
-            )}
+              <RegisterPage {...props} passRegisterInfo={this.passRegisterInfo}/>)}
           ></Route>
           
+           <Route
+                exact path="/login"
+                render={(props) => <LoginPage {...props}/>}>
+            </Route>
+
           <Route
             exact
             path="/home"

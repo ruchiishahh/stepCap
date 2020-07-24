@@ -26,20 +26,8 @@ export default class Navbar extends Component {
           </div>
         </Link>
         <div class="navbar-options-container">
-          <Link to="/">
-
-            <div class="navbar-link">Register</div>
-          </Link>
-          <Link to='/profile'>
-            <div class="navbar-link">Profile</div>
-
-          </Link>
-
           <Link to="/search">
             <div class="navbar-link">Search</div>
-          </Link>
-          <Link to="/bookService">
-            <div class="navbar-link">Service</div>
           </Link>
           <Link to="/dashboard">
             <div class="navbar-link">Dashboard</div>

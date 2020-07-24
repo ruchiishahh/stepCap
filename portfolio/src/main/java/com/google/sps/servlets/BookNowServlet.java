@@ -66,7 +66,7 @@ public class BookNowServlet extends HttpServlet {
     bookingEntity.setProperty("booking_price", booking_price);
     bookingEntity.setProperty("booking_is_confirmed_customer", booking_is_confirmed_customer);
     bookingEntity.setProperty("booking_is_confirmed_provider", booking_is_confirmed_provider);
-    bookingEntity.setProperty("booking_created", timestamp);
+    bookingEntity.setProperty("timestamp", timestamp);
     System.out.println(bookingEntity);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

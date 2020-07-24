@@ -30,7 +30,6 @@ export default function VirtualizedList(props) {
           }
         />
       </ListItem>
-      <Divider />
     </div>
   );
 }

@@ -143,7 +143,7 @@ body {
 }
 
 .book-service-image-container {
-  background-color: lightgray;
+  background-color: #2eb887;
   height: 800px;
   margin: 20px;
   width: 50%;
@@ -340,14 +340,14 @@ input:hover {
   color: #2eb887;
   display: flex;
   text-decoration: none;
-  font-size: 1.7em;
+  font-size: 2.1em;
   font-weight: 300;
   letter-spacing: 0.04em !important;
   margin: 10px;
   padding: 5px;
 }
 
-.navbar-logo-container:hover {
+.navbar-logo-container:hover, .navbar-logo-container:active {
   text-decoration-line: inherit;
 }
 
@@ -359,7 +359,6 @@ input:hover {
   flex-shrink: 1;
   height: 100%;
   justify-content: space-between;
-  max-height: 100px;
   width: 100%;
 }
 
@@ -367,7 +366,7 @@ input:hover {
   align-items: center;
   display: flex;
   flex-direction: row;
-  font-size: 1em;
+  font-size: 1.3em;
   height: 50%;
   justify-content: space-between;
   letter-spacing: 0.04em !important;
@@ -841,6 +840,12 @@ react-calendar__month-view__days__day--weekend {
   margin-top: -100px; /* Negative half of height. */
   margin-left: -250px; /* Negative half of width. */
   z-index: 100;
+}
+
+.service-form-container {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
 }
 
 .form {

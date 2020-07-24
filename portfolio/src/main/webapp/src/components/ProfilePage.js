@@ -22,6 +22,8 @@ export default class ProfilePage extends Component {
     this.openReviewForm = this.openReviewForm.bind(this);
     this.closeReviewForm = this.closeReviewForm.bind(this);
     this.setClass = this.setClass.bind(this);
+    this.reviewFormHandler = this.reviewFormHandler.bind(this);
+    this.serviceFormHandler = this.serviceFormHandler.bind(this);
     //this.handleShowInfo = this.handleShowInfo.bind(this);
     this.state = {
       loggedIn: "",
@@ -39,7 +41,28 @@ export default class ProfilePage extends Component {
 
   /*componentDidMount() {
     const { provider_id } = this.props.match.params;
+    // TODO: This needs to be changed later with the locationState Link property to differentiate the loggedin user and browsing someone else's profile
+    this.setState({
+        user_id: provider_id,
+    })
     console.log(provider_id);
+
+    let providerInfo = {
+        provider_id: provider_id,
+    }
+    axios.post('http://localhost:8080/provider-info', providerInfo)
+        .then((data) => {
+            console.log(data);
+            this.setState({
+                provider_name: data.provider_name,
+                provider_email: data.provider_email,
+                provider_phone: data.provider_phone,
+            }, () => {
+                console.log(this.state);
+            })
+        })
+        .catch(err => console.log(err));
+
     axios.post('http://localhost:8080/profile-info', provider_id)
       .then((data) => {
         console.log(data);
@@ -63,6 +86,24 @@ export default class ProfilePage extends Component {
           servicesReqInfo: response.data,
         });
       });
+  }
+
+  reviewFormHandler(){
+      axios.get("http://localhost:8080/reviews-displayer").then((res) => {
+          console.log(res);
+          console.log(res.data);
+          this.setState({ reviewsReqInfo: res.data });
+        });
+  }
+
+  serviceFormHandler(){
+      axios.post("http://localhost:8080/search-handler", { input: "" }).then((response) => {
+        console.log(response);
+        this.setState({
+          servicesReqInfo: response.data,
+        });
+      });
+
   }
 
   openForm() {
@@ -103,10 +144,15 @@ export default class ProfilePage extends Component {
 
     return (
       <div>
-        {showForm ? <ServiceForm closeForm={this.closeForm} /> : null}
+// <<<<<<< newRegisterPage
+//         {showForm ? <ServiceForm userInfo={this.state.user_id} closeForm={this.closeForm}/> : null}
+//         {showReviewForm ? <ReviewsForm closeForm={this.closeReviewForm}/> : null}
+// =======
+        {showForm ? <ServiceForm closeForm={this.closeForm} serviceFormHandler={this.serviceFormHandler}/> : null}
         {showReviewForm ? (
-          <ReviewsForm closeReviewForm={this.closeReviewForm} />
+          <ReviewsForm closeReviewForm={this.closeReviewForm} reviewFormHandler={this.reviewFormHandler}/>
         ) : null}
+
         <div class={blur}>
           <Navbar />
           <Grid container spacing={3} alignItems="stretch" direction="row" justify="space-evenly" r>

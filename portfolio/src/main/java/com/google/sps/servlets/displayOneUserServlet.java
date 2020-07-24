@@ -5,6 +5,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.CompositeFilter;
@@ -17,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;;
-import com.google.sps.data.Service;
+import com.google.sps.data.User;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -27,53 +28,54 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 
-@WebServlet("/search-handler")
-public class SearchHandler extends HttpServlet {
+/** Servlet responsible for handling memes. */
+@WebServlet("/user-info")
+public class displayOneUserServlet extends HttpServlet {
 
-  /** Java object converter. */
-  private static final Gson gson = new Gson();
-
-  /** Get the datastore. */
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-  /** Capitalize first letter of word. */
   private String capitalize(final String line) {
-   return Character.toUpperCase(line.charAt(0)) + line.substring(1);
-}
-  
+      return Character.toUpperCase(line.charAt(0)) + line.substring(1);
+  }
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
-    String input = jsonObj.get("input").getAsString().toLowerCase();
 
-    System.out.println(input);
+    long user_id = jsonObj.get("user_id").getAsLong();
 
-    Query query = new Query("Service");
-    if (!input.equals("")) {
-       Filter inputFilter = new FilterPredicate("service_name", FilterOperator.GREATER_THAN_OR_EQUAL, input);
-       query.setFilter(inputFilter).addSort("service_name", SortDirection.DESCENDING);
+    System.out.println(user_id);
+
+    Key newKey = KeyFactory.createKey("User", user_id);
+
+    
+    try {
+        Entity user = datastore.get(newKey);
+        System.out.println(user.toString());
+
+        String user_firstname = capitalize((String) user.getProperty("firstname"));
+        String user_lastname = capitalize((String) user.getProperty("lastname"));
+        String user_email = (String) user.getProperty("email");
+        String user_phone = (String) user.getProperty("phone_number");
+        Double average_rating = (Double) user.getProperty("average_rating");
+        User userObj = new User(user_id, user_firstname,  user_lastname, user_email, user_phone, average_rating);
+
+        Gson gson = new Gson();
+        String userInfo = gson.toJson(userObj);
+        response.setContentType("application/json;");
+        response.getWriter().println(userInfo);
+    } catch (EntityNotFoundException e){
+        System.out.println("provider not found");
+        Gson gson = new Gson();
+        String[] failureResponse = new String[1]; 
+        failureResponse[0] = "failure";
+        String displayOneServiceResponse = gson.toJson(failureResponse);
+        response.getWriter().println(displayOneServiceResponse);
     }
-
-
-    PreparedQuery results = datastore.prepare(query);
-    List<Entity> resultsList = results.asList(FetchOptions.Builder.withLimit(20));
-
-    List<Service> services = new ArrayList<>();
-    for (Entity entity : resultsList) {
-      long service_id = entity.getKey().getId();
-      String service_name = capitalize((String) entity.getProperty("service_name"));
-      String service_overview = (String) entity.getProperty("service_overview");
-      long provider_id = (long) entity.getProperty("provider_id");
-      Double average_rating = (Double) entity.getProperty("average_rating");
-
-      Service service = new Service(service_id, service_name, service_overview, "", "", provider_id, average_rating, "", "", 0);
-      services.add(service);
-    }
-
-    response.setContentType("application/json;");
-    String json = gson.toJson(services);
-    response.getWriter().println(json);
+    
+  
   }
 }

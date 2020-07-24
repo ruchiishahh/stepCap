@@ -39,7 +39,8 @@ export default class HomePage extends Component {
   }
 
   render() {
-
+      const linkToProfile = `/profile/${this.state.user_id}`;
+      console.log(linkToProfile);
     return (
       <div class="homepage-all-container">
           <div class="homepage-header-container">
@@ -47,7 +48,7 @@ export default class HomePage extends Component {
               <div class="searchbar-container"><SearchBar /></div>
               <div class="options-container">
                   <Link to="/dashboard">Dashboard</Link>
-                  <Link to="/profile">{this.state.firstname}</Link>
+                  <Link to={linkToProfile}>{this.state.firstname}</Link>
                   <button onclick={this.logout}>Logout</button>
               </div>
           </div>

@@ -143,7 +143,7 @@ body {
 }
 
 .book-service-image-container {
-  background-color: lightgray;
+  background-color: #2eb887;
   height: 800px;
   margin: 20px;
   width: 50%;
@@ -836,6 +836,12 @@ react-calendar__month-view__days__day--weekend {
   margin-top: -100px; /* Negative half of height. */
   margin-left: -250px; /* Negative half of width. */
   z-index: 100;
+}
+
+.service-form-container {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
 }
 
 .form {

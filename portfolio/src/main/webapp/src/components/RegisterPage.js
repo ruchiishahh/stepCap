@@ -13,14 +13,16 @@ export default class RegisterPage extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeFirstname = this.onChangeFirstname.bind(this);
     this.onChangeLastname = this.onChangeLastname.bind(this);
+    this.onChangePhone = this.onChangePhone.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      username: "",
-      password: "",
-      email: "",
-      firstname: "",
-      lastname: "",
+        username: "",
+        password: "",
+        email: "",
+        firstname: "",
+        lastname: "",
+        phone: "",
     };
   }
 
@@ -39,6 +41,12 @@ export default class RegisterPage extends Component {
   onChangeEmail(e) {
     this.setState({
       email: e.target.value,
+    });
+  }
+
+onChangePhone(e) {
+    this.setState({
+      phone: e.target.value,
     });
   }
 
@@ -62,6 +70,7 @@ export default class RegisterPage extends Component {
       email: this.state.email,
       firstname: this.state.firstname,
       lastname: this.state.lastname,
+      phone: this.state.phone
     };
     console.log(registerInfo);
     axios.post('http://localhost:8080/backend/registered', registerInfo)
@@ -72,21 +81,20 @@ export default class RegisterPage extends Component {
                user_id: res.data[1],
                username: this.state.username,
                email: this.state.email,
+               phone: this.state.phone,
                firstname: this.state.firstname,
                lastname: this.state.lastname,
            }
            this.props.passRegisterInfo(registerInfoUpdated);
            this.props.history.push('/home');
        })
-    //    .then(this.props.history.push('/home'))
        .catch((err)=>console.log(err));
   }
-  //yeet
 
   render() {
     return (
         <div class="landing-main-container">
-        <Navbar />
+        <Navbar/>
             <div class="landing-body-container">
                 <div id="landing-title" class="center-title animate__animated animate__fadeIn">THECOMMONS</div>
                 <div id="landing-tagline" class="center-text animate__animated animate__fadeIn">Help anyone. Get help on anything.</div>
@@ -109,6 +117,10 @@ export default class RegisterPage extends Component {
                         <div class="form-div">
                             <label>Email:</label>
                             <input id="email-submit" type="text" value={this.state.email} onChange={this.onChangeEmail} />
+                        </div>
+                        <div class="form-div">
+                            <label>Phone:</label>
+                            <input id="email-submit" type="text" value={this.state.phone} onChange={this.onChangePhone} />
                         </div>
                         <div class="form-div">
                             <label>Password:</label>

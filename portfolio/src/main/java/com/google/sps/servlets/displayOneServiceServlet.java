@@ -30,7 +30,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 
-/** Servlet responsible for handling memes. */
 @WebServlet("/service-info")
 public class displayOneServiceServlet extends HttpServlet {
 
@@ -45,6 +44,7 @@ public class displayOneServiceServlet extends HttpServlet {
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
 
+    System.out.println("Inside line 48");
     long service_id = jsonObj.get("service_id").getAsLong();
     // long provider_id = jsonObj.get("provider_id").getAsLong();
 
@@ -56,14 +56,25 @@ public class displayOneServiceServlet extends HttpServlet {
     
     try {
         Entity service = datastore.get(newKey);
+        System.out.println("HELLO");
         System.out.println(service.toString());
-
-        // long service_id_new = service.getKey().getId();
         String service_name = capitalize((String) service.getProperty("service_name"));
-        String service_description = (String) service.getProperty("service_description");
+        String service_overview = (String) service.getProperty("service_overview");
+        String service_highlights = (String) service.getProperty("service_highlights");
+        String service_requirements = (String) service.getProperty("service_requirements");
+        String service_duration = capitalize((String) service.getProperty("service_duration"));
+        String service_price = (String) service.getProperty("service_price");
         long provider_id = (long) service.getProperty("provider_id");
         Double average_rating = (Double) service.getProperty("average_rating");
-        Service serviceObj = new Service(service_id, service_name, service_description, provider_id, average_rating);
+        // if (service.getProperty("service_travel_options") instanceof long) {
+        //     System.out.println("true");
+        // } else {
+        //     System.out.println("false");
+        // }
+        long service_travel_options_long = (long) service.getProperty("service_travel_options");
+        int service_travel_options = (int) service_travel_options_long;
+
+        Service serviceObj = new Service(service_id, service_name, service_overview, service_highlights, service_requirements, provider_id, average_rating, service_duration, service_price, service_travel_options);
 
         Gson gson = new Gson();
         String serviceInfo = gson.toJson(serviceObj);

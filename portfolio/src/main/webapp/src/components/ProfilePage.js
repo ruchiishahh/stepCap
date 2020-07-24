@@ -39,7 +39,7 @@ export default class ProfilePage extends Component {
     };
   }
 
-  /*componentDidMount() {
+  componentDidMount() {
     const { provider_id } = this.props.match.params;
     // TODO: This needs to be changed later with the locationState Link property to differentiate the loggedin user and browsing someone else's profile
     this.setState({
@@ -62,16 +62,7 @@ export default class ProfilePage extends Component {
             })
         })
         .catch(err => console.log(err));
-
-    axios.post('http://localhost:8080/profile-info', provider_id)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(err => console.log(err));
-  }*/
-
-  componentDidMount() {
-    console.log("Inside of showInfo");
+    
     axios.get("http://localhost:8080/reviews-displayer").then((res) => {
       console.log(res);
       console.log(res.data);
@@ -86,7 +77,14 @@ export default class ProfilePage extends Component {
           servicesReqInfo: response.data,
         });
       });
+    /*axios.post('http://localhost:8080/profile-info', provider_id)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(err => console.log(err)); */
   }
+
+  
 
   reviewFormHandler(){
       axios.get("http://localhost:8080/reviews-displayer").then((res) => {
@@ -144,11 +142,7 @@ export default class ProfilePage extends Component {
 
     return (
       <div>
-// <<<<<<< newRegisterPage
-//         {showForm ? <ServiceForm userInfo={this.state.user_id} closeForm={this.closeForm}/> : null}
-//         {showReviewForm ? <ReviewsForm closeForm={this.closeReviewForm}/> : null}
-// =======
-        {showForm ? <ServiceForm closeForm={this.closeForm} serviceFormHandler={this.serviceFormHandler}/> : null}
+        {showForm ? <ServiceForm userInfo={this.state.user_id} closeForm={this.closeForm} serviceFormHandler={this.serviceFormHandler}/> : null}
         {showReviewForm ? (
           <ReviewsForm closeReviewForm={this.closeReviewForm} reviewFormHandler={this.reviewFormHandler}/>
         ) : null}

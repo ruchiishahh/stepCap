@@ -28,10 +28,10 @@ export default class Navbar extends Component {
         <div class="navbar-options-container">
           <Link to="/">
 
-            <li>Register</li>
+            <div class="navbar-link">Register</div>
           </Link>
           <Link to='/profile'>
-            <li>Profile</li>
+            <div class="navbar-link">Profile</div>
 
           </Link>
 

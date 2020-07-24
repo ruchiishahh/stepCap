@@ -255,6 +255,7 @@ body {
   flex-direction: column;
   margin-bottom: 15px;
   width: 100%;
+  overflow: scroll;
 }
 
 .form-div-button {
@@ -840,6 +841,7 @@ react-calendar__month-view__days__day--weekend {
   margin-top: -100px; /* Negative half of height. */
   margin-left: -250px; /* Negative half of width. */
   z-index: 100;
+  overflow: scroll;
 }
 
 .service-form-container {

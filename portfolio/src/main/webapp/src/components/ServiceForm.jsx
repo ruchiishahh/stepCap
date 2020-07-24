@@ -40,10 +40,12 @@ class ServiceForm extends Component {
         console.log(data);
         axios.post("http://localhost:8080/service-handler", data)
             .then((res) => {
-                console.log(res.data);
-                console.log(this);
-                this.props.closeForm();
-            })
+                //console.log(res.data);
+                //console.log(this);
+                //this.props.closeForm();
+                this.props.serviceFormHandler();
+            });
+        this.props.closeForm();
 
 //         axios.post("http://localhost:8080/service-handler", data).then(resp => {
 //             this.props.serviceFormHandler();

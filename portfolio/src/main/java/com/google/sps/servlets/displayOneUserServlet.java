@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;;
-import com.google.sps.data.Provider;
+import com.google.sps.data.User;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -31,8 +31,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 
 /** Servlet responsible for handling memes. */
-@WebServlet("/provider-info")
-public class displayOneProviderServlet extends HttpServlet {
+@WebServlet("/user-info")
+public class displayOneUserServlet extends HttpServlet {
 
   DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
@@ -44,28 +44,29 @@ public class displayOneProviderServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
-    long provider_id = jsonObj.get("provider_id").getAsLong();
 
-    System.out.println(provider_id);
+    long user_id = jsonObj.get("user_id").getAsLong();
 
-    Key newKey = KeyFactory.createKey("User", provider_id);
+    System.out.println(user_id);
+
+    Key newKey = KeyFactory.createKey("User", user_id);
 
     
     try {
-        Entity provider = datastore.get(newKey);
-        System.out.println(provider.toString());
+        Entity user = datastore.get(newKey);
+        System.out.println(user.toString());
 
-        String provider_firstname = capitalize((String) provider.getProperty("firstname"));
-        String provider_lastname = capitalize((String) provider.getProperty("lastname"));
-        String provider_email = (String) provider.getProperty("email");
-        String provider_phone = (String) provider.getProperty("phone_number");
-        Double average_rating = (Double) provider.getProperty("average_rating");
-        Provider providerObj = new Provider(provider_id, provider_firstname,  provider_lastname, provider_email, provider_phone, average_rating);
+        String user_firstname = capitalize((String) user.getProperty("firstname"));
+        String user_lastname = capitalize((String) user.getProperty("lastname"));
+        String user_email = (String) user.getProperty("email");
+        String user_phone = (String) user.getProperty("phone_number");
+        Double average_rating = (Double) user.getProperty("average_rating");
+        User userObj = new User(user_id, user_firstname,  user_lastname, user_email, user_phone, average_rating);
 
         Gson gson = new Gson();
-        String providerInfo = gson.toJson(providerObj);
+        String userInfo = gson.toJson(userObj);
         response.setContentType("application/json;");
-        response.getWriter().println(providerInfo);
+        response.getWriter().println(userInfo);
     } catch (EntityNotFoundException e){
         System.out.println("provider not found");
         Gson gson = new Gson();

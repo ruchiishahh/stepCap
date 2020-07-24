@@ -52,6 +52,7 @@ public class RegisterServlet extends HttpServlet {
     String lastname = jsonObj.get("lastname").getAsString();;
     String email = jsonObj.get("email").getAsString();
     String password = jsonObj.get("password").getAsString();
+    String phone = jsonObj.get("phone").getAsString();
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     // KeyFactory keyFactory = datastore.newKeyFactory().setKind("User");
@@ -64,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
     userEntity.setProperty("lastname", lastname);
     userEntity.setProperty("email", email);
     userEntity.setProperty("password", password);
-    userEntity.setProperty("phone_number", "");
+    userEntity.setProperty("phone_number", phone);
     userEntity.setProperty("average_rating", 5.0);
     System.out.println(userEntity);
     datastore.put(userEntity);

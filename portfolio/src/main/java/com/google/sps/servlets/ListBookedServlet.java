@@ -39,24 +39,31 @@ public class ListBookedServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
     Query query = new Query("Booking").addSort("timestamp", SortDirection.DESCENDING);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
+    System.out.println("first");
+    System.out.println(results);
 
     List<Booking> bookings = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      System.out.println("first");
-      long booking_id = entity.getKey().getId();
-
+      System.out.println("HERE");
+      String booking_id = "" + entity.getKey().getId();
+      String service_id = (String) entity.getProperty("service_id");
+      String customer_id = (String) entity.getProperty("customer_id");
+      String provider_id = (String) entity.getProperty("provider_id");
+      Boolean is_confirmed_customer = (boolean) entity.getProperty("booking_is_confirmed_customer");
+      Boolean is_confirmed_provider = (boolean) entity.getProperty("booking_is_confirmed_provider");
       String booking_name = (String) entity.getProperty("booking_name");
       String booking_date = (String) entity.getProperty("booking_date");
-      long booking_duration = (long) entity.getProperty("booking_duration");
+      String booking_duration = (String) entity.getProperty("booking_duration");
       String booking_optional_note = (String) entity.getProperty("booking_optional_note");
-      long booking_price = (Long) entity.getProperty("booking_price");
+      String booking_price = (String) entity.getProperty("booking_price");
       long timestamp = (long) entity.getProperty("timestamp");
 
-      Booking booking = new Booking(booking_id, booking_name, booking_date, booking_duration, booking_optional_note, booking_price, timestamp);
+      Booking booking = new Booking(booking_id, service_id, booking_name, booking_date, booking_duration, booking_optional_note, customer_id, provider_id, is_confirmed_customer, is_confirmed_provider, booking_price, timestamp);
       bookings.add(booking);
     }
     

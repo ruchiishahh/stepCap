@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import PendingReqs from "./bookingcomponents/PendingReqs";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import Navbar from "./Navbar"
 
 export default class BookingForm extends React.Component {
   constructor() {
@@ -25,7 +26,8 @@ export default class BookingForm extends React.Component {
 
   render() {
     return (
-      <main>
+      <div class="dashboard-page-container">
+        <Navbar />
         <h1 className="dashboard-center-title">Dashboard Page</h1>
         <div>
           <Grid container spacing={2}>
@@ -48,7 +50,7 @@ export default class BookingForm extends React.Component {
             </Grid>
           </Grid>
         </div>
-      </main>
+      </div>
     );
   }
 }

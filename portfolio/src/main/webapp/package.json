@@ -10,10 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "^4.10.2",
+    "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+<<<<<<< HEAD
     "@types/react": "^16.9.41",
+=======
+    "@types/react": "^16.9.43",
+>>>>>>> master
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "google-maps-react": "^2.0.6",
@@ -21,9 +25,14 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+<<<<<<< HEAD
     "react-rating": "^2.0.5",
+=======
+    "react-redux": "^7.2.0",
+>>>>>>> master
     "react-router-dom": "^5.2.0",
-    "react-window": "^1.8.5"
+    "react-window": "^1.8.5",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",

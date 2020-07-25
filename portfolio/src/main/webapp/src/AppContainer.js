@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect,} from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-calendar/dist/Calendar.css';
 import BookingForm from "./components/BookingForm";
 import RegisterPage from "./components/RegisterPage";
-import HomePage from "./components/HomePage";
 import SearchPage from "./components/SearchPage";
 import Dashboard from "./components/Dashboard";
 import ProfilePage from "./components/ProfilePage";
@@ -29,7 +28,6 @@ export default class AppContainer extends Component {
     };
   }
 
-//   const allReducer= (state = )
   passRegisterInfo(registerInfoUpdated) {
     console.log(registerInfoUpdated);
     console.log(registerInfoUpdated.firstname);
@@ -51,6 +49,12 @@ export default class AppContainer extends Component {
     );
   }
 
+  landingPage = () => {
+    if (this.state.loggedIn) {
+      return "/";
+    }
+    return "/register";
+  }
  
   render() {
     let userInfo = {
@@ -66,10 +70,10 @@ export default class AppContainer extends Component {
     return (
       <div>
         <Router>
-
+        <Redirect exact from="/" to={this.landingPage()} />
           <Route
             exact
-            path="/"
+            path="/register"
             render={(props) => (
               <RegisterPage {...props} passRegisterInfo={this.passRegisterInfo}/>)}
           ></Route>
@@ -79,15 +83,9 @@ export default class AppContainer extends Component {
                 render={(props) => <LoginPage {...props}/>}>
             </Route>
 
-          <Route
-            exact
-            path="/home"
-            render={(props) => <HomePage {...props} userInfo={userInfo} />}
-          ></Route>
-
           <Route 
             exact 
-            path="/search" 
+            path="/" 
             render={(props) => <SearchPage {...props}/>}
           ></Route>
 

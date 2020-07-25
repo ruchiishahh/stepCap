@@ -86,7 +86,7 @@ onChangePhone(e) {
                lastname: this.state.lastname,
            }
            this.props.passRegisterInfo(registerInfoUpdated);
-           this.props.history.push('/home');
+           this.props.history.push('/');
        })
        .catch((err)=>console.log(err));
   }

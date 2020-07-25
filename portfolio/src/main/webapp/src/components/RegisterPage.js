@@ -102,29 +102,29 @@ onChangePhone(e) {
                     <form class="register-form animate__animated animate__fadeInUp animate__delay-1s" onSubmit={this.onSubmit}> 
                         <div class="form-names-container">
                             <div class="form-div long-input">
-                                <label>First:</label>
+                                <label><span style={{color: "red"}}>* </span>First:</label>
                                 <input id="firstname-submit" type="text" value={this.state.firstname} onChange={this.onChangeFirstname} />
                             </div>
                             <div class="form-div long-input">
-                                <label>Last:</label>
+                                <label><span style={{color: "red"}}>*</span>Last:</label>
                                 <input id="lastname-submit" type="text" value={this.state.lastname} onChange={this.onChangeLastname} />
                             </div>
                         </div>
                         <div class="form-div">
-                            <label>Username:</label>
+                            <label><span style={{color: "red"}}>* </span>Username:</label>
                             <input id="username-submit" type="text" value={this.state.username} onChange={this.onChangeUsername} />
                         </div>
                         <div class="form-div">
-                            <label>Email:</label>
+                            <label><span style={{color: "red"}}>* </span>Email:</label>
                             <input id="email-submit" type="text" value={this.state.email} onChange={this.onChangeEmail} />
                         </div>
                         <div class="form-div">
                             <label>Phone:</label>
-                            <input id="email-submit" type="text" value={this.state.phone} onChange={this.onChangePhone} />
+                            <input id="phone-submit" type="text" value={this.state.phone} onChange={this.onChangePhone} />
                         </div>
                         <div class="form-div">
-                            <label>Password:</label>
-                            <input id="password-submit" type="text" value={this.state.password} onChange={this.onChangePassword} />
+                            <label><span style={{color: "red"}}>* </span>Password: </label>
+                            <input id="password-submit" type="password" value={this.state.password} onChange={this.onChangePassword} />
                         </div>
                         <div class="form-div-button">
                             <button class="register-button" href="#">Register</button>

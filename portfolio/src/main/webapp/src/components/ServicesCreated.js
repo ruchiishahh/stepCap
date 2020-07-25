@@ -5,9 +5,11 @@ import { FixedSizeList } from "react-window";
 import { Button } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import Divider from "@material-ui/core/Divider";
+import { Link } from "react-router-dom";
 
 export default function VirtualizedList(props) {
-  const { name, description, provider, rating } = props;
+  const { name, description, provider, rating, service_id} = props;
+  let linkToService = `/service/${service_id}`;
   return (
     <div>
       <ListItem alignItems="flex-start">
@@ -16,7 +18,7 @@ export default function VirtualizedList(props) {
             <React.Fragment>
               <div class="profile-service">
                 <div class="profile-service-image-container">
-                  <div class="profile-service-RSVP">RSVP</div>
+                  <div class="profile-service-RSVP"><Link to={linkToService}>RSVP</Link></div>
                 </div>
                 <div class="profile-service-title">
                   {name}

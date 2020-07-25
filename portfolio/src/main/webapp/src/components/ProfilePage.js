@@ -214,9 +214,10 @@ export default class ProfilePage extends Component {
                   {this.state.servicesReqInfo.map((info) => (
                     <ServicesCreated
                       name={info.service_name}
-                      description={info.service_description}
+                      description={info.service_overview}
                       provider={info.provider_id}
                       rating={info.average_rating}
+                      service_id={info.service_id}
                     />                  
                   ))}
                 </List>

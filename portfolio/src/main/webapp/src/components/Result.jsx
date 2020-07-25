@@ -31,7 +31,7 @@ class Result extends Component {
         <p className="card-text"> {this.props.result.service_description} </p>
         <div>
           
-              <Link to={linkToService}>View Service 2</Link>
+              <Link to={linkToService}>View Service</Link>
           <Link to={linkToProfile}>View Profile</Link>
         </div>
     </div>

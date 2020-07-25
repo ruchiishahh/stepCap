@@ -59,11 +59,11 @@ class SearchPage extends Component {
     return (
       <div className="searchPage-container">
         <Navbar />
-        <div>
+        {/*<div>
           {this.state.filters.map(filter => (
             filter.active && (<Filter key={filter.id} filter={filter} onClick={this.filterOnClick} />)
           ))}
-        </div>
+        </div> */}
         <Search onChange={this.searchOnChange} loadedResults={this.state.loadedResults}/>
         <Results input={this.state.input} results={this.state.filteredResults}/>
       </div>

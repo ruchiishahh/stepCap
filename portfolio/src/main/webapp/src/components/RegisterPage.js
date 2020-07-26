@@ -163,7 +163,7 @@ onChangePassword(e) {
                lastname: this.state.lastname,
            }
            this.props.passRegisterInfo(registerInfoUpdated);
-           this.props.history.push('/');
+           this.props.history.push('/search');
        })
        .catch((err)=>console.log(err));
   }
@@ -171,7 +171,7 @@ onChangePassword(e) {
   render() {
     return (
         <div class="landing-main-container">
-        <Navbar/>
+
             <div class="landing-body-container">
                 <div id="landing-title" class="center-title animate__animated animate__fadeIn">THECOMMONS</div>
                 <div id="landing-tagline" class="center-text animate__animated animate__fadeIn">Help anyone. Get help on anything.</div>

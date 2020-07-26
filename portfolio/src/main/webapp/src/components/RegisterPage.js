@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "./Navbar";
-// import RegisterForm from "./RegisterForm";
 
 export default class RegisterPage extends Component {
  constructor(props) {
@@ -15,7 +14,6 @@ export default class RegisterPage extends Component {
     this.onChangeLastname = this.onChangeLastname.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
     this.onChangeConfirm = this.onChangeConfirm.bind(this);
-
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -27,26 +25,33 @@ export default class RegisterPage extends Component {
         email: "",
         validEmail: true,
         firstname: "",
+        validFirst: true,
         lastname: "",
+        validLast: true,
         phone: "",
         validPhone: true,
     };
   }
 
   handleInputValidation = () => {
-    if (!this.state.validUsername && this.state.username !== "") {
+    if (this.state.firstname === "") {
       return false;
     }
-    if (!this.state.validPassword && this.state.password !== "" && this.state.password === this.state.confirmPassword) {
+    if (this.state.lastname === "") {
       return false;
     }
-    if (!this.state.validEmail && this.state.email !== "") {
+    if (!this.state.validUsername || this.state.username === "") {
+      return false;
+    }
+    if (!this.state.validPassword || this.state.password === "" || (this.state.password !== this.state.confirmPassword)) {
+      return false;
+    }
+    if (!this.state.validEmail || this.state.email === "") {
       return false;
     }
     if (!this.state.validPhone) {
       return false;
     }
-
     return true;
   }
 
@@ -103,12 +108,24 @@ onChangePassword(e) {
   onChangeFirstname(e) {
     this.setState({
       firstname: e.target.value,
+    }, () => {
+      if (this.state.firstname !== "") {
+        this.setState({ validFirst: true})
+      } else {
+        this.setState({ validFirst: false})
+      }
     });
   }
 
   onChangeLastname(e) {
     this.setState({
       lastname: e.target.value,
+    }, () => {
+      if (this.state.lastname !== "") {
+        this.setState({ validLast: true})
+      } else {
+        this.setState({ validLast: false})
+      }
     });
   }
 
@@ -121,9 +138,9 @@ onChangePassword(e) {
   onSubmit(e) {
     e.preventDefault();
     if (!this.handleInputValidation()) {
+      console.log("failed");
       return;
     }
-    console.log("it works")
     const registerInfo = {
       username: this.state.username,
       password: this.state.password,
@@ -162,11 +179,22 @@ onChangePassword(e) {
                     <form class="register-form animate__animated animate__fadeInUp animate__delay-1s" onSubmit={this.onSubmit}> 
                         <div class="form-names-container">
                             <div class="form-div long-input">
-                                <label><span style={{color: "red"}}>* </span>First:</label>
+                                <label>
+                                  <span style={{color: "red"}}>* </span>
+                                  First:
+                                  {!this.state.validFirst ? (<div class="alert alert-danger" role="alert">
+                                Cannot be empty
+                              </div>) : null}
+                                </label>
                                 <input id="firstname-submit" type="text" value={this.state.firstname} onChange={this.onChangeFirstname} />
                             </div>
                             <div class="form-div long-input">
-                                <label><span style={{color: "red"}}>*</span>Last:</label>
+                                <label>
+                                  <span style={{color: "red"}}>*</span>
+                                  Last:
+                                  {!this.state.validLast ? (<div class="alert alert-danger" role="alert">
+                                Cannot be empty
+                              </div>) : null}</label>
                                 <input id="lastname-submit" type="text" value={this.state.lastname} onChange={this.onChangeLastname} />
                             </div>
                         </div>
@@ -197,7 +225,7 @@ onChangePassword(e) {
                         <div class="form-div">
                             <label><span style={{color: "red"}}>* </span>Confirm Password: 
                             {this.state.confirmPassword !== this.state.password ? (<div class="alert alert-danger" role="alert">
-                                Must be same password.
+                                Passwords must match.
                               </div>) : null}
                             </label>
                             <input id="password-confirm" type="password" value={this.state.confirmPassword} onChange={this.onChangeConfirm} />

@@ -70,7 +70,7 @@ class ServiceForm extends Component {
         switch (inputName) {
             case "name":
                 this.setState({service_name: e.target.value}, () => {
-                    if (/^(?=.{5,100}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._\s]+$/.test(this.state.service_name)) {
+                    if (/^(?=.{3,100}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._\s]+$/.test(this.state.service_name)) {
                         this.setState({ valid_name: true});
                     } else {
                         this.setState({ valid_name: false});
@@ -124,7 +124,7 @@ class ServiceForm extends Component {
                             <span style={{color: "red"}}>* </span>
                                 Service Name
                                 {!this.state.valid_name ? (<div class="alert alert-danger" role="alert">
-                                Nonempty and 5-100 characters
+                                Nonempty and 3-100 characters
                               </div>) : null}
                         </label>
                         <input required type="text" onChange={e => this.handleChange("name", e)}/>

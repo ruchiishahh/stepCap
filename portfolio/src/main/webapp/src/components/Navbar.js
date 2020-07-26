@@ -18,6 +18,7 @@ export default class Navbar extends Component {
   }
 
   render() {
+    const linkToProfile = `/profile/${this.props.user_id}`;
     return (
       <div class="navbar-main-container">
         <Link to="/">
@@ -37,7 +38,7 @@ export default class Navbar extends Component {
             {this.state.showDropdown ? 
             (
               <div class="dropdown-content"> 
-                <Link to="/profile"> 
+                <Link to={linkToProfile}> 
                   <div class="navbar-link">Profile</div>
                 </Link>
                 <Link to="/LOGOUTURL"> 

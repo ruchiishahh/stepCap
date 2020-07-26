@@ -774,13 +774,13 @@ react-calendar__month-view__days__day--weekend {
 .searchbar-container {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  margin: 20px;
   width: 70%;
 }
 
 .searchbar {
-  width: 100% !important;
   transition: none !important;
+  width: 100% !important;
 }
 
 .section-container {
@@ -792,22 +792,35 @@ react-calendar__month-view__days__day--weekend {
   width: 100%;
 }
 
-.filter {
-  border: solid 2px #2eb887 !important;
+.active-filter {
+  background-color: #b9e9d8 !important;
+  border: solid 3px #2eb887 !important;
   color: #2eb887 !important;
+  font-size: 1.1em !important;
   margin: 10px;
 }
 
-.filter:hover {
+.unactive-filter {
+  border: solid 3px #ccdad5 !important;
+  color: #2eb887 !important;
+  font-size: 1.1em !important;
+  margin: 10px;
+}
+
+.active-filter:hover {
+  background-color: #2eb887 !important;
+  border: solid 3px #b9e9d8 !important;
   color: white !important;
   transform: scale(1.1);
 }
 
-.remove-filter {
-  background-color: white;
-  border: none;
-  margin: 2px;
+.unactive-filter:hover {
+  background-color: #2eb887 !important;
+  border: solid 3px #ccdad5 !important;
+  color: white !important;
+  transform: scale(1.1);
 }
+
 
 .result-container {
   display: flex;

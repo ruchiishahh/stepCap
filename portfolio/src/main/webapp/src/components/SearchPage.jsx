@@ -10,11 +10,11 @@ import { Link } from "react-router-dom";
 
 class SearchPage extends Component {
   state = {
-    filters: [
-        {id:0, text: "Alphabetical", active: true},
-        {id:1, text: "Highest-Rated", active: true},
-        {id:2, text: "Lowest-Price", active: true},
-    ],
+    // filters: [
+    //     {id:0, text: "Alphabetical", active: true},
+    //     {id:1, text: "Highest-Rated", active: true},
+    //     {id:2, text: "Lowest-Price", active: true},
+    // ],
     input: "",
     filteredResults: [],
     loadedResults: true,
@@ -59,11 +59,6 @@ class SearchPage extends Component {
     return (
       <div className="searchPage-container">
         <Navbar />
-        {/*<div>
-          {this.state.filters.map(filter => (
-            filter.active && (<Filter key={filter.id} filter={filter} onClick={this.filterOnClick} />)
-          ))}
-        </div> */}
         <Search onChange={this.searchOnChange} loadedResults={this.state.loadedResults}/>
         <Results input={this.state.input} results={this.state.filteredResults}/>
       </div>

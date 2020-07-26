@@ -64,7 +64,7 @@ class ReviewsForm extends Component {
                 break;
             case "desc":
                 this.setState({review_description: e.target.value}, () => {
-                    if (/^(?=.{30,200}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+$/.test(this.state.review_description)) {
+                    if (/^(?=.{30,200}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._\s]+$/.test(this.state.review_description)) {
                         this.setState({ validDesc: true})
                       } else {
                         this.setState({ validDesc: false})

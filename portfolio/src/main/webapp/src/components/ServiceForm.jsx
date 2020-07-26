@@ -32,7 +32,7 @@ class ServiceForm extends Component {
         if (this.state.service_name === "" || !this.state.valid_name) {
           return false;
         }
-        if (this.state.service_overview === "" || !this.valid_overview) {
+        if (this.state.service_overview === "" || !this.state.valid_overview) {
           return false;
         }
         if (!this.state.valid_needs_traveling) {
@@ -70,7 +70,7 @@ class ServiceForm extends Component {
         switch (inputName) {
             case "name":
                 this.setState({service_name: e.target.value}, () => {
-                    if (/^(?=.{1,40}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+$/.test(this.state.service_name)) {
+                    if (/^(?=.{5,100}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._\s]+$/.test(this.state.service_name)) {
                         this.setState({ valid_name: true});
                     } else {
                         this.setState({ valid_name: false});
@@ -79,7 +79,7 @@ class ServiceForm extends Component {
                 break;
             case "overview":
                 this.setState({service_overview: e.target.value}, () => {
-                    if (/^(?=.{20,250}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+$/.test(this.state.service_overview)) {
+                    if (/^(?=.{20,300}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._\s]+$/.test(this.state.service_overview)) {
                         this.setState({ valid_overview: true});
                     } else {
                         this.setState({ valid_overview: false});
@@ -89,19 +89,15 @@ class ServiceForm extends Component {
                 break;
             case "highlights":
                 this.setState({service_highlights: e.target.value});
-                console.log(this.state.service_highlights);
                 break;
             case "price":
                 this.setState({service_price: e.target.value});
-                console.log(this.state.service_price);
                 break;
             case "duration":
                 this.setState({service_duration: e.target.value});
-                console.log(this.state.service_duration);
                 break;
             case "requirements":
                 this.setState({service_requirements: e.target.value});
-                console.log(this.state.service_requirements);
                 break;
             default:
                 return null;
@@ -128,7 +124,7 @@ class ServiceForm extends Component {
                             <span style={{color: "red"}}>* </span>
                                 Service Name
                                 {!this.state.valid_name ? (<div class="alert alert-danger" role="alert">
-                                Cannot be empty.
+                                Nonempty and 5-100 characters
                               </div>) : null}
                         </label>
                         <input required type="text" onChange={e => this.handleChange("name", e)}/>
@@ -137,7 +133,7 @@ class ServiceForm extends Component {
                             <span style={{color: "red"}}>* </span>
                                 Description
                                 {!this.state.valid_overview ? (<div class="alert alert-danger" role="alert">
-                                Please describe this service in 20-250 words.
+                                Please describe this service in 20-300 characters.
                               </div>) : null}
                         </label>
                         <textarea name="description" onChange={e => this.handleChange("overview", e)} className="input-desc"></textarea>

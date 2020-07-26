@@ -14,39 +14,89 @@ export default class RegisterPage extends Component {
     this.onChangeFirstname = this.onChangeFirstname.bind(this);
     this.onChangeLastname = this.onChangeLastname.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
+    this.onChangeConfirm = this.onChangeConfirm.bind(this);
+
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
         username: "",
+        validUsername: true,
         password: "",
+        confirmPassword: "",
+        validPassword: true,
         email: "",
+        validEmail: true,
         firstname: "",
         lastname: "",
         phone: "",
+        validPhone: true,
     };
+  }
+
+  handleInputValidation = () => {
+    if (!this.state.validUsername && this.state.username !== "") {
+      return false;
+    }
+    if (!this.state.validPassword && this.state.password !== "" && this.state.password === this.state.confirmPassword) {
+      return false;
+    }
+    if (!this.state.validEmail && this.state.email !== "") {
+      return false;
+    }
+    if (!this.state.validPhone) {
+      return false;
+    }
+
+    return true;
   }
 
   onChangeUsername(e) {
     this.setState({
       username: e.target.value,
+    }, () => {
+      if (/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(this.state.username)) {
+        this.setState({ validUsername: true})
+      } else {
+        this.setState({ validUsername: false})
+      }
     });
   }
 
-  onChangePassword(e) {
+  onChangePhone(e) {
     this.setState({
-      password: e.target.value,
+      phone: e.target.value,
+    }, () => {
+      if (this.state.phone === "" || /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(this.state.phone)) {
+        this.setState({ validPhone: true})
+        console.log("valid")
+      } else {
+        this.setState({ validPhone: false})
+        console.log("invalid")
+      }
     });
   }
 
   onChangeEmail(e) {
     this.setState({
       email: e.target.value,
+    }, () => {
+      if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.email)) {
+        this.setState({ validEmail: true})
+      } else {
+        this.setState({ validEmail: false})
+      }
     });
   }
 
-onChangePhone(e) {
+onChangePassword(e) {
     this.setState({
-      phone: e.target.value,
+      password: e.target.value,
+    }, () => {
+      if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(this.state.password)) {
+        this.setState({ validPassword: true})
+      } else {
+        this.setState({ validPassword: false})
+      }
     });
   }
 
@@ -62,8 +112,18 @@ onChangePhone(e) {
     });
   }
 
+  onChangeConfirm(e) {
+    this.setState({
+      confirmPassword: e.target.value,
+    });
+  }
+
   onSubmit(e) {
     e.preventDefault();
+    if (!this.handleInputValidation()) {
+      return;
+    }
+    console.log("it works")
     const registerInfo = {
       username: this.state.username,
       password: this.state.password,
@@ -111,21 +171,47 @@ onChangePhone(e) {
                             </div>
                         </div>
                         <div class="form-div">
-                            <label><span style={{color: "red"}}>* </span>Username:</label>
+                            <label>
+                              <span style={{color: "red"}}>* </span>
+                              Username:
+                              {!this.state.validUsername ? (<div class="alert alert-danger" role="alert">
+                                8-20 Characters.
+                              </div>) : null}
+                            </label>
                             <input id="username-submit" type="text" value={this.state.username} onChange={this.onChangeUsername} />
                         </div>
                         <div class="form-div">
                             <label><span style={{color: "red"}}>* </span>Email:</label>
                             <input id="email-submit" type="text" value={this.state.email} onChange={this.onChangeEmail} />
                         </div>
+
                         <div class="form-div">
-                            <label>Phone:</label>
-                            <input id="phone-submit" type="text" value={this.state.phone} onChange={this.onChangePhone} />
-                        </div>
-                        <div class="form-div">
-                            <label><span style={{color: "red"}}>* </span>Password: </label>
+                            <label><span style={{color: "red"}}>* </span>Password: 
+                            {!this.state.validPassword ? (<div class="alert alert-danger" role="alert">
+                                Minimum 8 characters, one upper case letter, one lowercase letter, one number, and one special character.
+                              </div>) : null}
+                            </label>
                             <input id="password-submit" type="password" value={this.state.password} onChange={this.onChangePassword} />
                         </div>
+
+                        <div class="form-div">
+                            <label><span style={{color: "red"}}>* </span>Confirm Password: 
+                            {this.state.confirmPassword !== this.state.password ? (<div class="alert alert-danger" role="alert">
+                                Must be same password.
+                              </div>) : null}
+                            </label>
+                            <input id="password-confirm" type="password" value={this.state.confirmPassword} onChange={this.onChangeConfirm} />
+                        </div>
+
+                        <div class="form-div">
+                            <label>Phone:
+                            {!this.state.validPhone ? (<div class="alert alert-danger" role="alert">
+                                Any form of (xxx)xxxxxxx | xxxxxxxxxx | xxx-xxx-xxxx
+                              </div>) : null}
+                            </label>
+                            <input id="phone-submit" type="text" value={this.state.phone} onChange={this.onChangePhone} />
+                        </div>
+
                         <div class="form-div-button">
                             <button class="register-button" href="#">Register</button>
                         </div>

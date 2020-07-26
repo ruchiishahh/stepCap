@@ -11,12 +11,19 @@ export default class BookingForm extends React.Component {
   constructor() {
     super();
     this.state = {
+        user_id: "",
         pendingReqInfo: [],  
     }
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8080/list-services")
+    this.setState({
+        user_id: this.props.userInfo.user_id,
+    });
+    let userInfo = {
+        user_id: this.props.userInfo.user_id,
+    };
+    axios.post("http://localhost:8080/list-pending", userInfo)
         .then((res) => {
             console.log(res);
             console.log(res.data);

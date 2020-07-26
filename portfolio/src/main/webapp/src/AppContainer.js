@@ -92,7 +92,7 @@ export default class AppContainer extends Component {
           <Route
             exact
             path="/BookingForm"
-            render={(props) => <BookingForm {...props} />}
+            render={(props) => <BookingForm {...props} userInfo={userInfo} />}
           ></Route>
 
             <Route

@@ -32,6 +32,10 @@ export default class ProfilePage extends Component {
       email: "",
       firstname: "",
       lastname: "",
+      provider_id: "",
+      provider_name: "",
+      provider_email: "",
+      provider_phone: "",
       showForm: false,
       showReviewForm: false,
       reviewsReqInfo: [],
@@ -43,10 +47,10 @@ export default class ProfilePage extends Component {
     const { provider_id } = this.props.match.params;
     // TODO: This needs to be changed later with the locationState Link property to differentiate the loggedin user and browsing someone else's profile
     this.setState({
-        user_id: provider_id,
-    })
+        user_id: this.props.userInfo.user_id,
+        provider_id: provider_id,
+    });
     console.log(provider_id);
-
 
     let providerInfo = {
         provider_id: provider_id,
@@ -69,23 +73,17 @@ export default class ProfilePage extends Component {
       console.log(res.data);
       this.setState({ reviewsReqInfo: res.data });
     });
-
-    axios
-      .post("https://thecommons-281818.appspot.com/search-handler", { input: "" })
+    let userInfo = {
+        user_id: this.props.userInfo.user_id,
+    }
+    axios.post("https://thecommons-281818.appspot.com/list-user-services", userInfo)
       .then((response) => {
         console.log(response);
         this.setState({
           servicesReqInfo: response.data,
         });
       });
-    /*axios.post('http://localhost:8080/profile-info', provider_id)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(err => console.log(err)); */
-  }
-
-  
+    }
 
   reviewFormHandler(){
       axios.get("https://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
@@ -149,11 +147,10 @@ export default class ProfilePage extends Component {
         ) : null}
 
         <div class={blur}>
-          <Navbar />
+          <Navbar user_id={this.props.userInfo.user_id}/>
           <Grid container spacing={3} alignItems="stretch" direction="row" justify="space-evenly" r>
             <Grid item xs>
               <Paper>
-              
                 <div class="profile-image-container">
                   <img src=""></img>
                 </div>
@@ -215,18 +212,19 @@ export default class ProfilePage extends Component {
                   {this.state.servicesReqInfo.map((info) => (
                     <ServicesCreated
                       name={info.service_name}
-                      description={info.service_description}
+                      description={info.service_overview}
                       provider={info.provider_id}
                       rating={info.average_rating}
+                      service_id={info.service_id}
                     />                  
                   ))}
                 </List>
-                <button
-                  onClick={this.openForm}
-                  class="profile-service-add-button"
-                >
-                  Create a Service
-                </button>
+                {(this.props.userInfo.user_id == this.state.provider_id) ? 
+                    <button onClick={this.openForm} class="profile-service-add-button">Create a Service</button>
+                    :
+                    <div></div>
+                }
+                
               </Paper>
             </Grid>
             <Grid item xs>
@@ -245,12 +243,11 @@ export default class ProfilePage extends Component {
                     
                   ))}
                 </List>
-                <button
-                  onClick={this.openReviewForm}
-                  class="profile-service-add-button"
-                >
-                  Create a Review
-                </button>
+                {(this.props.userInfo.user_id != this.state.provider_id) ? 
+                    <button onClick={this.openReviewForm} class="profile-service-add-button">Create a Review</button>
+                    :
+                    <div></div>
+                }
               </Paper>
             </Grid>
           </Grid>

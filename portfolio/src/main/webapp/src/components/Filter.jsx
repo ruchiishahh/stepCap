@@ -6,10 +6,17 @@ class Filter extends Component {
     console.log("Left");
   }
 
+  getClass = () => {
+    if (this.props.filter.active) {
+      return "btn btn-sm btn-outline-success btn-rounded waves-effect active-filter"
+    }
+    return "filter btn btn-sm btn-outline-success btn-rounded waves-effect unactive-filter"
+  }
+
   render() {
     return <button 
     onClick={() => {this.props.onClick(this.props.filter.id)}}
-    className="filter btn btn-sm btn-outline-success btn-rounded waves-effect">
+    className={this.getClass()}>
       {this.props.filter.text}
     </button>;
   }

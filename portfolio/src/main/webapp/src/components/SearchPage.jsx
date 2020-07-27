@@ -5,20 +5,26 @@ import Results from "./Results";
 import { debounce } from "lodash";
 import axios from "axios";
 import Navbar from "./Navbar"
-import { Link } from "react-router-dom";
 
 
 class SearchPage extends Component {
-  state = {
-    filters: [
-        {id:0, text: "Alphabetical", active: true},
-        {id:1, text: "Highest-Rated", active: true},
-        {id:2, text: "Lowest-Price", active: true},
-    ],
-    input: "",
-    filteredResults: [],
-    loadedResults: true,
+
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            filters: [
+            {id:0, text: "Alphabetical", active: true},
+            {id:1, text: "Highest-Rated", active: false},
+            {id:2, text: "Lowest-Price", active: false},
+        ],
+        input: "",
+        filteredResults: [],
+        loadedResults: true,
+    };
+
   };
+
 
   componentDidMount() {
     axios.post("https://thecommons-281818.appspot.com/search-handler", {input: ""})
@@ -33,7 +39,6 @@ class SearchPage extends Component {
 
   searchOnChange = debounce((input) => {
     this.setState({ input });
-    console.log(this.state.input);
     axios
       .post("https://thecommons-281818.appspot.com/search-handler", { input: this.state.input })
       .then((response) => {
@@ -46,22 +51,20 @@ class SearchPage extends Component {
   }, 400);
 
   filterOnClick = (id) => {
-      console.log(id);
       this.setState(prevState => ({
         filters: prevState.filters.map(
-          filter => filter.id === id ? { ...filter, active: false } : filter
+          filter => filter.id !== id ? { ...filter, active: false } : { ...filter, active: !filter.active }
         )
       }))
-      console.log(this.state.filters);
   }
 
   render() {
     return (
       <div className="searchPage-container">
-        <Navbar />
+        <Navbar user_id={this.props.userInfo.user_id} />
         <div>
           {this.state.filters.map(filter => (
-            filter.active && (<Filter key={filter.id} filter={filter} onClick={this.filterOnClick} />)
+            <Filter key={filter.id} filter={filter} onClick={this.filterOnClick} />
           ))}
         </div>
         <Search onChange={this.searchOnChange} loadedResults={this.state.loadedResults}/>

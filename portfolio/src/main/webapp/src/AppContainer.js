@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,7 +29,6 @@ export default class AppContainer extends Component {
     };
   }
 
-//   const allReducer= (state = )
   passRegisterInfo(registerInfoUpdated) {
     console.log(registerInfoUpdated);
     console.log(registerInfoUpdated.firstname);
@@ -79,27 +78,15 @@ export default class AppContainer extends Component {
                 render={(props) => <LoginPage {...props}/>}>
             </Route>
 
-          <Route
-            exact
-            path="/home"
-            render={(props) => <HomePage {...props} userInfo={userInfo} />}
-          ></Route>
-
           <Route 
             exact 
             path="/search" 
-            render={(props) => <SearchPage {...props}/>}
-          ></Route>
-
-          <Route
-            exact
-            path="/BookingForm"
-            render={(props) => <BookingForm {...props} />}
+            render={(props) => <SearchPage {...props} userInfo={userInfo} />}
           ></Route>
 
             <Route
                 exact path="/dashboard"
-                render={(props) => <Dashboard {...props} />}>
+                render={(props) => <Dashboard {...props} userInfo={userInfo} />}>
             </Route>
 
             <Route

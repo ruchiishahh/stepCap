@@ -7,10 +7,13 @@ class ServiceForm extends Component {
         this.state = { 
             provider_id: 0,
             service_name: '',
+            valid_name: true,
             service_overview: '',
+            valid_overview: true,
             service_price: '',
             service_highlights: '',
-            service_needs_traveling: 3,
+            service_needs_traveling: 0,
+            valid_needs_traveling: false,
             service_requirements: '',
             service_duration: '60',
         }
@@ -25,8 +28,23 @@ class ServiceForm extends Component {
         });
     }
 
+    handleInputValidation = () => {
+        if (this.state.service_name === "" || !this.state.valid_name) {
+          return false;
+        }
+        if (this.state.service_overview === "" || !this.state.valid_overview) {
+          return false;
+        }
+        if (!this.state.valid_needs_traveling) {
+            return false;
+        }
+        return true;
+      }
+
     handleFormSubmit = () => {
-        console.log("inside handleFormSubmit");
+        if (!this.handleInputValidation()) {
+            return;
+        }
         const data = {
             provider_id: this.state.provider_id,
             service_name: this.state.service_name,
@@ -46,38 +64,40 @@ class ServiceForm extends Component {
                 this.props.serviceFormHandler();
             });
         this.props.closeForm();
-
-//         axios.post("http://localhost:8080/service-handler", data).then(resp => {
-//             this.props.serviceFormHandler();
-//         });
-//         this.props.closeForm();
-
     }
 
     handleChange = (inputName, e) => {
         switch (inputName) {
             case "name":
-                this.setState({service_name: e.target.value});
+                this.setState({service_name: e.target.value}, () => {
+                    if (/^(?=.{3,100}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._\s]+$/.test(this.state.service_name)) {
+                        this.setState({ valid_name: true});
+                    } else {
+                        this.setState({ valid_name: false});
+                    }
+                });
                 break;
             case "overview":
-                this.setState({service_overview: e.target.value});
+                this.setState({service_overview: e.target.value}, () => {
+                    if (/^(?=.{20,300}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._\s]+$/.test(this.state.service_overview)) {
+                        this.setState({ valid_overview: true});
+                    } else {
+                        this.setState({ valid_overview: false});
+                    }
+                });
                 console.log(this.state.service_overview);
                 break;
             case "highlights":
                 this.setState({service_highlights: e.target.value});
-                console.log(this.state.service_highlights);
                 break;
             case "price":
                 this.setState({service_price: e.target.value});
-                console.log(this.state.service_price);
                 break;
             case "duration":
                 this.setState({service_duration: e.target.value});
-                console.log(this.state.service_duration);
                 break;
             case "requirements":
                 this.setState({service_requirements: e.target.value});
-                console.log(this.state.service_requirements);
                 break;
             default:
                 return null;
@@ -85,10 +105,10 @@ class ServiceForm extends Component {
     }
 
     setTraveling = (e) => {
-        console.log(e);
-        console.log(e.target.value);
         this.setState({
             service_needs_traveling: e.target.value,
+        }, () => {
+            this.setState({valid_needs_traveling: this.state.service_needs_traveling !== 0})
         });
     }
 
@@ -100,10 +120,22 @@ class ServiceForm extends Component {
                     <div className="form">
                         <h1>Create a Service</h1>
 
-                        <label>Service Name</label>
+                        <label>
+                            <span style={{color: "red"}}>* </span>
+                                Service Name
+                                {!this.state.valid_name ? (<div class="alert alert-danger" role="alert">
+                                Nonempty and 3-100 characters
+                              </div>) : null}
+                        </label>
                         <input required type="text" onChange={e => this.handleChange("name", e)}/>
 
-                        <label>Overview:</label>
+                        <label>                     
+                            <span style={{color: "red"}}>* </span>
+                                Description
+                                {!this.state.valid_overview ? (<div class="alert alert-danger" role="alert">
+                                Please describe this service in 20-300 characters.
+                              </div>) : null}
+                        </label>
                         <textarea name="description" onChange={e => this.handleChange("overview", e)} className="input-desc"></textarea>
 
                         <label>Highlights:</label>

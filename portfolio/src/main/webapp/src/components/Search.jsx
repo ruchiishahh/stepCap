@@ -3,11 +3,6 @@ import React, { Component } from "react";
 class Search extends Component {
   constructor() {
     super();
-    console.log("Search - Contructor");
-  }
-
-  componentDidMount() {
-    console.log("Search - Mounted");
   }
 
   render() {

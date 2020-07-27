@@ -7,13 +7,35 @@ import Box from "@material-ui/core/Box";
 class ReviewsForm extends Component {
     state = { 
         review_name: '',
+        validName: true,
         review_description: '',
-        //service_id: 1234567,
+        validDesc: true,
         service_name: '',
+        validService: true,
         review_rating: 0,
     }
 
+    handleInputValidation = () => {
+        if (!this.state.validName || this.state.review_name === "") {
+            return false;
+        }
+        if (!this.state.validDesc || this.state.review_description === "") {
+            return false;
+        }
+        if (!this.state.validService || this.state.service_name === "") {
+            return false;
+        }
+        if (this.state.review_rating === 0) {
+            return false;
+        }
+        return true;
+    }
+
     handleFormSubmit = () => {
+        if (!this.handleInputValidation()) {
+            console.log("failed");
+            return;
+        }
         const data = {
             review_name: this.state.review_name,
             review_description: this.state.review_description,
@@ -29,17 +51,35 @@ class ReviewsForm extends Component {
         this.props.closeReviewForm();
     }
 
+    
     handleChange = (inputName, e) => {
         switch (inputName) {
             case "name":
-                this.setState({review_name: e.target.value});
+                this.setState({review_name: e.target.value}, () => {
+                    if (this.state.review_name !== "") {
+                        this.setState({ validName: true})
+                    } else {
+                      this.setState({ validName: false })
+                    }
+                });
                 break;
             case "desc":
-                this.setState({review_description: e.target.value});
-                console.log(this.state.review_description);
+                this.setState({review_description: e.target.value}, () => {
+                    if (/^(?=.{30,200}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._\s]+$/.test(this.state.review_description)) {
+                        this.setState({ validDesc: true})
+                      } else {
+                        this.setState({ validDesc: false})
+                      }
+                });
                 break;
             case "service":
-                this.setState({service_name: e.target.value});
+                this.setState({service_name: e.target.value}, () => {
+                    if (this.state.service_name !== "") {
+                        this.setState({ validService: true})
+                    } else {
+                      this.setState({ validService: false })
+                    }
+                });
                 break;      
             default:
                 return null;
@@ -54,11 +94,24 @@ class ReviewsForm extends Component {
                     <button className="closeForm" onClick={this.props.closeReviewForm}>&#10005;</button>
                     <div className="form">
                         <h1>Create a Review</h1>
-                        <label>Review Name</label>
+                        <label>Review Name
+                        {!this.state.validName ? (<div class="alert alert-danger" role="alert">
+                               Insert a review title.
+                              </div>) : null}
+                        </label>
                         <input required type="text" onChange={e => this.handleChange("name", e)}/>
-                        <label>Review Description</label>
+                        <label>Review Description
+                        {!this.state.validDesc ? (<div class="alert alert-danger" role="alert">
+                                30-200 characters.
+                              </div>) : null}
+                        </label>
                         <textarea name="description" onChange={e => this.handleChange("desc", e)} className="input-desc"></textarea>
-                        <label>Service Name</label>
+                        <label>Service Name
+
+                        {!this.state.validService ? (<div class="alert alert-danger" role="alert">
+                               Insert the service title.
+                              </div>) : null}
+                        </label>
                         <input required type="text" onChange={e => this.handleChange("service", e)}/>
                         <Box component="fieldset" mb={3} borderColor="transparent">
                             <Typography component="legend">Review Rating</Typography>

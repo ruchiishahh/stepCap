@@ -40,6 +40,7 @@ export default class ProfilePage extends Component {
       showReviewForm: false,
       reviewsReqInfo: [],
       servicesReqInfo: [],
+      isOwner: "",
     };
   }
 
@@ -75,14 +76,28 @@ export default class ProfilePage extends Component {
     let userInfo = {
         user_id: this.props.userInfo.user_id,
     }
-    axios.post("http://localhost:8080/list-user-services", userInfo)
-      .then((response) => {
-        console.log(response);
-        this.setState({
-          servicesReqInfo: response.data,
+    if (this.props.userInfo.user_id == provider_id) {
+        console.log("this user is looking at their own profile");
+        axios.post("http://localhost:8080/list-user-services", userInfo)
+        .then((response) => {
+            console.log(response);
+            this.setState({
+                servicesReqInfo: response.data,
+                isOwner: true,
+            });
         });
-      });
-    }
+    } else {
+        axios.post("http://localhost:8080/list-user-services", providerInfo)
+        .then((response) => {
+            console.log(response);
+            this.setState({
+                servicesReqInfo: response.data,
+                isOwner: false,
+            });
+        });
+    };
+  }
+
 
   reviewFormHandler(){
       axios.get("http://localhost:8080/reviews-displayer").then((res) => {
@@ -147,9 +162,9 @@ export default class ProfilePage extends Component {
 
         <div class={blur}>
           <Navbar user_id={this.props.userInfo.user_id}/>
-          <Grid container spacing={3} alignItems="stretch" direction="row" justify="space-evenly" r>
+          <Grid id="profile-grid-main" container spacing={3} alignItems="stretch" direction="row" justify="space-evenly" r>
             <Grid item xs>
-              <Paper>
+              <Paper class="profile-paper">
                 <div class="profile-image-container">
                   <img src=""></img>
                 </div>
@@ -205,7 +220,7 @@ export default class ProfilePage extends Component {
               </Paper>
             </Grid>
             <Grid item xs>
-              <Paper>
+              <Paper class="profile-paper">
                 <div class="profile-title-strong center">Services</div>
                 <List style={{ maxHeight: "100%", overflow: "auto" }}>
                   {this.state.servicesReqInfo.map((info) => (
@@ -218,16 +233,17 @@ export default class ProfilePage extends Component {
                     />                  
                   ))}
                 </List>
-                {(this.props.userInfo.user_id == this.state.provider_id) ? 
-                    <button onClick={this.openForm} class="profile-service-add-button">Create a Service</button>
+              </Paper>
+               {(this.state.isOwner) ? 
+                    <div class="profile-review-button">
+                        <button onClick={this.openForm} class="profile-service-add-button">Create a Service</button>
+                    </div>
                     :
                     <div></div>
                 }
-                
-              </Paper>
             </Grid>
-            <Grid item xs>
-              <Paper>
+            <Grid id="profile-review-grid" item xs>
+              <Paper class="profile-paper">
                 <div class="profile-title-strong center">Reviews</div>
                 <List style={{ maxHeight: "100%", overflow: "auto" }}>
                   {this.state.reviewsReqInfo.map((info) => (
@@ -242,12 +258,14 @@ export default class ProfilePage extends Component {
                     
                   ))}
                 </List>
-                {(this.props.userInfo.user_id != this.state.provider_id) ? 
-                    <button onClick={this.openReviewForm} class="profile-service-add-button">Create a Review</button>
+              </Paper>
+              {(this.state.isOwner) ? 
+                    <div class="profile-review-button">
+                        <button onClick={this.openReviewForm} class="profile-service-add-button">Write a Review</button>
+                    </div>
                     :
                     <div></div>
                 }
-              </Paper>
             </Grid>
           </Grid>
         </div>

@@ -40,6 +40,7 @@ export default class ProfilePage extends Component {
       showReviewForm: false,
       reviewsReqInfo: [],
       servicesReqInfo: [],
+      isOwner: "",
     };
   }
 
@@ -76,14 +77,31 @@ export default class ProfilePage extends Component {
     let userInfo = {
         user_id: this.props.userInfo.user_id,
     }
-    axios.post("https://thecommons-281818.appspot.com/list-user-services", userInfo)
-      .then((response) => {
-        console.log(response);
-        this.setState({
-          servicesReqInfo: response.data,
+    if (this.props.userInfo.user_id == provider_id) {
+        console.log("this user is looking at their own profile");
+        axios.post("https://thecommons-281818.appspot.com/list-user-services", userInfo)
+        .then((response) => {
+            console.log(response);
+            this.setState({
+                servicesReqInfo: response.data,
+                isOwner: true,
+            }, () => {
+                console.log(this.state);
+            });
         });
-      });
-    }
+    } else {
+        console.log("this user is not looking at the own profile");
+        axios.post("https://thecommons-281818.appspot.com/list-user-services", providerInfo)
+        .then((response) => {
+            console.log(response);
+            this.setState({
+                servicesReqInfo: response.data,
+                isOwner: false,
+            });
+        });
+    };
+  }
+
 
   reviewFormHandler(){
       axios.get("https://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
@@ -94,13 +112,31 @@ export default class ProfilePage extends Component {
   }
 
   serviceFormHandler(){
-      axios.post("https://thecommons-281818.appspot.com/search-handler", { input: "" }).then((response) => {
-        console.log(response);
-        this.setState({
-          servicesReqInfo: response.data,
+      if (this.state.isOwner) {
+          axios.post("https://thecommons-281818.appspot.com/list-user-services", this.state.user_id)
+            .then((response) => {
+            console.log(response);
+            this.setState({
+                servicesReqInfo: response.data,
+                isOwner: true,
+            });
         });
-      });
-
+      } else {
+          axios.post("https://thecommons-281818.appspot.com/list-user-services", this.state.provider_id)
+            .then((response) => {
+                console.log(response);
+                this.setState({
+                    servicesReqInfo: response.data,
+                    isOwner: false,
+                });
+            });
+      }
+    // axios.post("http://localhost:8080/search-handler", { input: "" }).then((response) => {
+    //         console.log(response);
+    //         this.setState({
+    //         servicesReqInfo: response.data,
+    //         });
+    //     });
   }
 
   openForm() {
@@ -148,9 +184,9 @@ export default class ProfilePage extends Component {
 
         <div class={blur}>
           <Navbar user_id={this.props.userInfo.user_id}/>
-          <Grid container spacing={3} alignItems="stretch" direction="row" justify="space-evenly" r>
+          <Grid id="profile-grid-main" container spacing={3} alignItems="stretch" direction="row" justify="space-evenly" r>
             <Grid item xs>
-              <Paper>
+              <Paper class="profile-paper">
                 <div class="profile-image-container">
                   <img src=""></img>
                 </div>
@@ -206,7 +242,7 @@ export default class ProfilePage extends Component {
               </Paper>
             </Grid>
             <Grid item xs>
-              <Paper>
+              <Paper class="profile-paper">
                 <div class="profile-title-strong center">Services</div>
                 <List style={{ maxHeight: "100%", overflow: "auto" }}>
                   {this.state.servicesReqInfo.map((info) => (
@@ -219,16 +255,17 @@ export default class ProfilePage extends Component {
                     />                  
                   ))}
                 </List>
-                {(this.props.userInfo.user_id == this.state.provider_id) ? 
-                    <button onClick={this.openForm} class="profile-service-add-button">Create a Service</button>
+              </Paper>
+               {(this.state.isOwner) ? 
+                    <div class="profile-review-button">
+                        <button onClick={this.openForm} class="profile-service-add-button">Create a Service</button>
+                    </div>
                     :
                     <div></div>
                 }
-                
-              </Paper>
             </Grid>
-            <Grid item xs>
-              <Paper>
+            <Grid id="profile-review-grid" item xs>
+              <Paper class="profile-paper">
                 <div class="profile-title-strong center">Reviews</div>
                 <List style={{ maxHeight: "100%", overflow: "auto" }}>
                   {this.state.reviewsReqInfo.map((info) => (
@@ -243,12 +280,14 @@ export default class ProfilePage extends Component {
                     
                   ))}
                 </List>
-                {(this.props.userInfo.user_id != this.state.provider_id) ? 
-                    <button onClick={this.openReviewForm} class="profile-service-add-button">Create a Review</button>
+              </Paper>
+              {(!this.state.isOwner) ? 
+                    <div class="profile-review-button">
+                        <button onClick={this.openReviewForm} class="profile-service-add-button">Write a Review</button>
+                    </div>
                     :
                     <div></div>
                 }
-              </Paper>
             </Grid>
           </Grid>
         </div>

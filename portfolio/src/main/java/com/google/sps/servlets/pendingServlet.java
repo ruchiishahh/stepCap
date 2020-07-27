@@ -16,8 +16,8 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;;
-import com.google.sps.data.Service;
+import com.google.gson.JsonParser;
+import com.google.sps.data.Booking;
 import com.google.sps.data.BookingAndStatusPair;
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -71,11 +71,17 @@ public class pendingServlet extends HttpServlet {
       bookingAndStatusPairList.add(new BookingAndStatusPair(booking, "customer"));
     }
     
+    System.out.println("LINE 74 LOG:");
+    System.out.println("List consists of " + bookingAndStatusPairList.size() + " pairs");
+    for (BookingAndStatusPair pair : bookingAndStatusPairList) {
+        System.out.println(pair.toString());
+    }
+
     Query pendingAndProviderStatusQuery = new Query("Booking").setFilter(pendingAndProviderStatusFilter);
     PreparedQuery pendingAndProviderStatusResults = datastore.prepare(pendingAndProviderStatusQuery);
 
     for (Entity entity : pendingAndProviderStatusResults.asIterable()) {
-      System.out.println("Inside pendingAndCustomerStatusResults");
+      System.out.println("Inside pendingAndProviderStatusResults");
 
       String booking_id = "" + entity.getKey().getId();
       String service_id = (String) entity.getProperty("service_id");
@@ -92,6 +98,12 @@ public class pendingServlet extends HttpServlet {
 
       Booking booking = new Booking(booking_id, service_id, booking_name, booking_date, booking_duration, booking_optional_note, customer_id, provider_id, is_confirmed_customer, is_confirmed_provider, booking_price, timestamp);
       bookingAndStatusPairList.add(new BookingAndStatusPair(booking, "provider"));
+    }
+
+    System.out.println("LINE 103 LOG:");
+    System.out.println("List consists of " + bookingAndStatusPairList.size() + " pairs");
+    for (BookingAndStatusPair pair : bookingAndStatusPairList) {
+        System.out.println(pair.toString());
     }
 
     Gson gson = new Gson();

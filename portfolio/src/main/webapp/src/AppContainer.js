@@ -84,15 +84,9 @@ export default class AppContainer extends Component {
             render={(props) => <SearchPage {...props} userInfo={userInfo} />}
           ></Route>
 
-          <Route
-            exact
-            path="/BookingForm"
-            render={(props) => <BookingForm {...props} />}
-          ></Route>
-
             <Route
                 exact path="/dashboard"
-                render={(props) => <Dashboard {...props} />}>
+                render={(props) => <Dashboard {...props} userInfo={userInfo} />}>
             </Route>
 
             <Route

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,6 +9,7 @@ import RegisterPage from "./components/RegisterPage";
 import HomePage from "./components/HomePage";
 import SearchPage from "./components/SearchPage";
 import Dashboard from "./components/Dashboard";
+import axios from "axios";
 import ProfilePage from "./components/ProfilePage";
 import BookService from "./components/BookService";
 import CreateService from "./components/createService";
@@ -18,7 +19,9 @@ export default class AppContainer extends Component {
     super(props);
     this.passRegisterInfo = this.passRegisterInfo.bind(this);
     this.state = {
+      landingPage: "/",
       loggedIn: false,
+      registered: false,
       user_id: "",
       username: "",
       firstname: "",
@@ -35,7 +38,7 @@ export default class AppContainer extends Component {
     console.log(this);
     this.setState(
       {
-        loggedIn: true,
+        loggedIn: false,
         user_id: registerInfoUpdated.user_id,
         username: registerInfoUpdated.username,
         firstname: registerInfoUpdated.firstname,
@@ -48,6 +51,21 @@ export default class AppContainer extends Component {
         console.log(this.state);
       }
     );
+  }
+
+  componentDidMount() {
+      axios.get('http://localhost:8080/log').then(response => {
+          console.log(response);
+          const user = response.data;
+          const userInfo = JSON.parse(user.userInfo);
+          console.log(userInfo);
+          this.setState({
+            loggedIn: user.loggedIn,
+            registered: user.registered != "",
+          }, () => {
+              this.setState({ landingPage: this.state.registered ? "/search" : "/register" })
+          })
+      })
   }
 
  
@@ -65,7 +83,7 @@ export default class AppContainer extends Component {
     return (
       <div>
         <Router>
-
+        {this.state.registered ? <Redirect to="/search" /> : <RegisterPage passRegisterInfo={this.passRegisterInfo}/>}
           <Route
             exact
             path="/"

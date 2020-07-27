@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;;
-import com.google.sps.data.User;
+import com.google.sps.data.Users;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -55,13 +55,14 @@ public class displayOneUserServlet extends HttpServlet {
     try {
         Entity user = datastore.get(newKey);
         System.out.println(user.toString());
-
+        String username = (String) user.getProperty("username");
         String user_firstname = capitalize((String) user.getProperty("firstname"));
         String user_lastname = capitalize((String) user.getProperty("lastname"));
         String user_email = (String) user.getProperty("email");
         String user_phone = (String) user.getProperty("phone_number");
+        String password = (String) user.getProperty("password");
         Double average_rating = (Double) user.getProperty("average_rating");
-        User userObj = new User(user_id, user_firstname,  user_lastname, user_email, user_phone, average_rating);
+        Users userObj = new Users(user_id, username, user_firstname,  user_lastname, user_email, password, user_phone, average_rating);
 
         Gson gson = new Gson();
         String userInfo = gson.toJson(userObj);

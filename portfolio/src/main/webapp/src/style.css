@@ -823,6 +823,8 @@ react-calendar__month-view__days__day--weekend {
 
 
 .result-container {
+  align-content: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   height: 500px;
@@ -831,11 +833,14 @@ react-calendar__month-view__days__day--weekend {
 }
 
 .result-img-container {
+  align-content: center;
+  justify-content: center;
   height: 200px;
   width: 500px;
 }
 
 .result-img {
+  margin-left: 50%;
   max-height: 100%;
   max-width: 100%;
   object-fit: cover;
@@ -843,6 +848,8 @@ react-calendar__month-view__days__day--weekend {
 
 .result-body {
   flex: 3;
+  align-content: center;
+  justify-content: center;
 }
 
 .service-form {

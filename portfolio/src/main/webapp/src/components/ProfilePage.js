@@ -84,9 +84,12 @@ export default class ProfilePage extends Component {
             this.setState({
                 servicesReqInfo: response.data,
                 isOwner: true,
+            }, () => {
+                console.log(this.state);
             });
         });
     } else {
+        console.log("this user is not looking at the own profile");
         axios.post("http://localhost:8080/list-user-services", providerInfo)
         .then((response) => {
             console.log(response);
@@ -108,13 +111,31 @@ export default class ProfilePage extends Component {
   }
 
   serviceFormHandler(){
-      axios.post("http://localhost:8080/search-handler", { input: "" }).then((response) => {
-        console.log(response);
-        this.setState({
-          servicesReqInfo: response.data,
+      if (this.state.isOwner) {
+          axios.post("http://localhost:8080/list-user-services", this.state.user_id)
+            .then((response) => {
+            console.log(response);
+            this.setState({
+                servicesReqInfo: response.data,
+                isOwner: true,
+            });
         });
-      });
-
+      } else {
+          axios.post("http://localhost:8080/list-user-services", this.state.provider_id)
+            .then((response) => {
+                console.log(response);
+                this.setState({
+                    servicesReqInfo: response.data,
+                    isOwner: false,
+                });
+            });
+      }
+    // axios.post("http://localhost:8080/search-handler", { input: "" }).then((response) => {
+    //         console.log(response);
+    //         this.setState({
+    //         servicesReqInfo: response.data,
+    //         });
+    //     });
   }
 
   openForm() {
@@ -259,7 +280,7 @@ export default class ProfilePage extends Component {
                   ))}
                 </List>
               </Paper>
-              {(this.state.isOwner) ? 
+              {(!this.state.isOwner) ? 
                     <div class="profile-review-button">
                         <button onClick={this.openReviewForm} class="profile-service-add-button">Write a Review</button>
                     </div>

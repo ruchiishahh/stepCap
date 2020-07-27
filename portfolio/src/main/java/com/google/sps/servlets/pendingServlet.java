@@ -39,11 +39,12 @@ public class pendingServlet extends HttpServlet {
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
     String user_id = jsonObj.get("user_id").getAsString();
 
+    System.out.println("user_id is " + user_id);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Filter customerStatusFilter = new FilterPredicate("customer_id", FilterOperator.EQUAL, user_id);
     Filter providerStatusFilter = new FilterPredicate("provider_id", FilterOperator.EQUAL, user_id);
-    Filter pendingStatusFilter = new FilterPredicate("is_confirmed_provider", FilterOperator.EQUAL, false);
-    Filter confirmedStatusFilter = new FilterPredicate("is_confirmed_provider", FilterOperator.EQUAL, true);
+    Filter pendingStatusFilter = new FilterPredicate("booking_is_confirmed_provider", FilterOperator.EQUAL, false);
+    Filter confirmedStatusFilter = new FilterPredicate("booking_is_confirmed_provider", FilterOperator.EQUAL, true);
     Filter pendingAndCustomerStatusFilter = CompositeFilterOperator.and(customerStatusFilter, pendingStatusFilter); 
     Filter pendingAndProviderStatusFilter = CompositeFilterOperator.and(providerStatusFilter, pendingStatusFilter);
     

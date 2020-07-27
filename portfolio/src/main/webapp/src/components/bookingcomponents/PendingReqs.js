@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 import BookingInfoPopUp from "./BookingInfoPopUp";
 
 export default function VirtualizedList(props) {
-  const { name, date, duration, note, price } = props;
+  const { user_id, name, date, duration, note, price, status } = props;
   return (
     <div>
       <ListItem alignItems="flex-start">
@@ -24,7 +24,7 @@ export default function VirtualizedList(props) {
           price={price}
         />
         <Button variant="contained" color="primary">
-          Pending
+          {(status == "customer") ? "pending": "confirm"}
         </Button>
       </ListItem>
     </div>

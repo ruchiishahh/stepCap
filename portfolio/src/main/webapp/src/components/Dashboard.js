@@ -25,7 +25,9 @@ export default class BookingForm extends React.Component {
     axios.post("http://localhost:8080/list-pending", userInfo)
         .then((res) => {
             console.log(res.data);
-            // this.setState({ pendingReqInfo: res.data });        
+            this.setState({
+                pendingReqInfo: res.data
+            });        
         });
   }
 
@@ -42,8 +44,8 @@ export default class BookingForm extends React.Component {
                   Here are your Pending Requests
                 </h2>
               </Paper>
-                {this.state.pendingReqInfo.map((info) => (
-                  <PendingReqs name={info.booking_name} date={info.booking_date} duration={info.booking_duration} note={info.booking_optional_note} price={info.booking_price}/>
+                {this.state.pendingReqInfo.map((pair) => (
+                  <PendingReqs user_id={this.props.userInfo.user_id} name={pair.booking.booking_name} date={pair.booking.booking_date} duration={pair.booking.booking_duration} note={pair.booking_optional_note} price={pair.booking.booking_price} status={pair.status}/>
                 ))}
             </Grid>
             <Grid item xs={12} sm={6}>

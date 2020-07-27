@@ -8,16 +8,23 @@ import Navbar from "./Navbar"
 
 
 class SearchPage extends Component {
-  state = {
-    filters: [
-        {id:0, text: "Alphabetical", active: true},
-        {id:1, text: "Highest-Rated", active: false},
-        {id:2, text: "Lowest-Price", active: false},
-    ],
-    input: "",
-    filteredResults: [],
-    loadedResults: true,
+
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            filters: [
+            {id:0, text: "Alphabetical", active: true},
+            {id:1, text: "Highest-Rated", active: false},
+            {id:2, text: "Lowest-Price", active: false},
+        ],
+        input: "",
+        filteredResults: [],
+        loadedResults: true,
+    };
+
   };
+
 
   componentDidMount() {
     axios.post("http://localhost:8080/search-handler", {input: ""})
@@ -54,7 +61,7 @@ class SearchPage extends Component {
   render() {
     return (
       <div className="searchPage-container">
-        <Navbar />
+        <Navbar user_id={this.props.userInfo.user_id} />
         <div>
           {this.state.filters.map(filter => (
             <Filter key={filter.id} filter={filter} onClick={this.filterOnClick} />

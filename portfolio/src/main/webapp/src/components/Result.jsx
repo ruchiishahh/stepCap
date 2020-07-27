@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 class Result extends Component {
   constructor(props) {
@@ -28,11 +29,10 @@ class Result extends Component {
 
         <h4 className="card-title"><strong>{this.props.result.service_name}</strong></h4>
         <h6 className="font-weight-bold indigo-text py-2">{this.props.result.provider_id}</h6>
-        <p className="card-text"> {this.props.result.service_description} </p>
+        <p className="card-text"> {this.props.result.service_overview} </p>
         <div>
-          
-              <Link to={linkToService}>View Service</Link>
-          <Link to={linkToProfile}>View Profile</Link>
+          <Button variant="contained"><Link to={linkToService}>View Service</Link> </Button>
+          <Button variant="contained"><Link to={linkToProfile}>View Profile</Link></Button>
         </div>
     </div>
 

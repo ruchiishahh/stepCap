@@ -8,8 +8,8 @@ import axios from "axios";
 import Navbar from "./Navbar"
 
 export default class BookingForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
         user_id: "",
         pendingReqInfo: [],  
@@ -17,17 +17,15 @@ export default class BookingForm extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-        user_id: this.props.userInfo.user_id,
-    });
+    console.log(this.props);
     let userInfo = {
         user_id: this.props.userInfo.user_id,
     };
+    console.log(userInfo);
     axios.post("http://localhost:8080/list-pending", userInfo)
         .then((res) => {
-            console.log(res);
             console.log(res.data);
-            this.setState({ pendingReqInfo: res.data });        
+            // this.setState({ pendingReqInfo: res.data });        
         });
   }
 

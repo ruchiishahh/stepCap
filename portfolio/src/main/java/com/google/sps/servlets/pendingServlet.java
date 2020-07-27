@@ -18,6 +18,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;;
 import com.google.sps.data.Service;
+import com.google.sps.data.BookingAndStatusPair;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class pendingServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
     String user_id = jsonObj.get("user_id").getAsString();
@@ -43,16 +45,15 @@ public class pendingServlet extends HttpServlet {
     Filter pendingStatusFilter = new FilterPredicate("is_confirmed_provider", FilterOperator.EQUAL, false);
     Filter confirmedStatusFilter = new FilterPredicate("is_confirmed_provider", FilterOperator.EQUAL, true);
     Filter pendingAndCustomerStatusFilter = CompositeFilterOperator.and(customerStatusFilter, pendingStatusFilter); 
-    Filter pendingAndProviderStatusFilter = CompositeFilterOperator.and(providerStatusFilter, pendingStatusFilter); 
-    Query query = new Query("Booking").addSort("timestamp", SortDirection.DESCENDING);
+    Filter pendingAndProviderStatusFilter = CompositeFilterOperator.and(providerStatusFilter, pendingStatusFilter);
+    
+    Query pendingAndCustomerStatusQuery = new Query("Booking").setFilter(pendingAndCustomerStatusFilter);
+    PreparedQuery pendingAndCustomerStatusResults = datastore.prepare(pendingAndCustomerStatusQuery);
+    List<BookingAndStatusPair> bookingAndStatusPairList = new ArrayList<>();
 
-    PreparedQuery results = datastore.prepare(query);
-    System.out.println("first");
-    System.out.println(results);
+    for (Entity entity : pendingAndCustomerStatusResults.asIterable()) {
+      System.out.println("Inside pendingAndCustomerStatusResults");
 
-    List<Booking> bookings = new ArrayList<>();
-    for (Entity entity : results.asIterable()) {
-      System.out.println("HERE");
       String booking_id = "" + entity.getKey().getId();
       String service_id = (String) entity.getProperty("service_id");
       String customer_id = (String) entity.getProperty("customer_id");
@@ -67,11 +68,34 @@ public class pendingServlet extends HttpServlet {
       long timestamp = (long) entity.getProperty("timestamp");
 
       Booking booking = new Booking(booking_id, service_id, booking_name, booking_date, booking_duration, booking_optional_note, customer_id, provider_id, is_confirmed_customer, is_confirmed_provider, booking_price, timestamp);
-      bookings.add(booking);
+      bookingAndStatusPairList.add(new BookingAndStatusPair(booking, "customer"));
     }
     
+    Query pendingAndProviderStatusQuery = new Query("Booking").setFilter(pendingAndProviderStatusFilter);
+    PreparedQuery pendingAndProviderStatusResults = datastore.prepare(pendingAndProviderStatusQuery);
+
+    for (Entity entity : pendingAndProviderStatusResults.asIterable()) {
+      System.out.println("Inside pendingAndCustomerStatusResults");
+
+      String booking_id = "" + entity.getKey().getId();
+      String service_id = (String) entity.getProperty("service_id");
+      String customer_id = (String) entity.getProperty("customer_id");
+      String provider_id = (String) entity.getProperty("provider_id");
+      Boolean is_confirmed_customer = (boolean) entity.getProperty("booking_is_confirmed_customer");
+      Boolean is_confirmed_provider = (boolean) entity.getProperty("booking_is_confirmed_provider");
+      String booking_name = (String) entity.getProperty("booking_name");
+      String booking_date = (String) entity.getProperty("booking_date");
+      String booking_duration = (String) entity.getProperty("booking_duration");
+      String booking_optional_note = (String) entity.getProperty("booking_optional_note");
+      String booking_price = (String) entity.getProperty("booking_price");
+      long timestamp = (long) entity.getProperty("timestamp");
+
+      Booking booking = new Booking(booking_id, service_id, booking_name, booking_date, booking_duration, booking_optional_note, customer_id, provider_id, is_confirmed_customer, is_confirmed_provider, booking_price, timestamp);
+      bookingAndStatusPairList.add(new BookingAndStatusPair(booking, "provider"));
+    }
+
     Gson gson = new Gson();
     response.setContentType("application/json");
-    response.getWriter().println(gson.toJson(bookings));
+    response.getWriter().println(gson.toJson(bookingAndStatusPairList));
   }
 }

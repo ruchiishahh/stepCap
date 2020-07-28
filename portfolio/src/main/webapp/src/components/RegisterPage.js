@@ -33,6 +33,8 @@ export default class RegisterPage extends Component {
         showLogin: true,
         loginPassword: "",
         loginUser: "",
+        errorUser: false,
+        errorLogin: false,
     };
   }
 
@@ -183,15 +185,42 @@ onChangePassword(e) {
        .catch((err)=>console.log(err));
   }
 
+  handleLoginResponse = (data) => {
+      console.log(data);
+      const user = data;
+    if (user.logged) {
+        const registerInfo = {
+            user_id: user.user_id,
+            username: user.username,
+            email: user.email,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            phone: user.phone
+        };
+        console.log(registerInfo);
+        this.props.passRegisterInfo(registerInfo);
+        this.props.history.push('/search');
+    } else {
+        this.setState({errorLogin: true})
+    }
+  }
+
   onLogin = (e) => {
     e.preventDefault();
     console.log(this.state.loginUser);
     if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.loginUser)) {
-      console.log("its an email");
+      axios.post("http://localhost:8080/log", {username: "", email: this.state.loginUser, password: this.state.loginPassword}).then(response => {
+          console.log(response.data);
+        this.handleLoginResponse(response.data);
+      })
     } else if (/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(this.state.loginUser)) {
-      console.log("its a username.");
+      axios.post("http://localhost:8080/log", {username: this.state.loginUser, email: "", password: this.state.loginPassword}).then(response => {
+          console.log(response.data);
+
+            this.handleLoginResponse(response.data);
+        })
     } else {
-      console.log("not valid");
+      this.setState({errorUser: true})
     }
   }
 
@@ -217,13 +246,21 @@ onChangePassword(e) {
                 {this.state.showLogin ? (
                   <form class="login-form animate__animated animate__fadeInUp animate__delay-1s" onSubmit={this.onLogin}> 
                           <div class="form-div">
-                              <label> Username/Email </label>
+                              <label> 
+                              Username/Email 
+                                {this.state.errorUser ? (<div class="alert alert-danger" role="alert">
+                                    No username or email exists by that name.
+                                </div>) : null}
+                            </label>
                               <input id="user-login" type="text" value={this.state.loginUser} onChange={this.onLoginUser} />
                           </div>
                           <div class="form-div">
                               <label> Password </label>
                               <input id="password-login" type="password" value={this.state.loginPassword} onChange={this.onLoginPassword} />
                           </div>
+                            {this.state.errorLogin ? (<div class="alert alert-danger" role="alert">
+                                Wrong username or password.
+                              </div>) : null}
                           <button class="login-button" onClick={this.onLogin}>Login</button>
                   </form>
                 ) : (

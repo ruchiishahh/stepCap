@@ -78,9 +78,10 @@ export default class BookService extends React.Component {
             }, () => {
                 console.log(this.state);
                 let providerInfo = {
-                    provider_id: this.state.provider_id
+                    user_id: this.state.provider_id
                 }
                 console.log(providerInfo);
+                // Something's wrong with this line during RSVP -> Service
                 axios.post('http://localhost:8080/provider-info', providerInfo)
                     .then((res) => {
                         console.log(res);

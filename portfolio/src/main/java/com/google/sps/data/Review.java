@@ -7,19 +7,21 @@ import java.text.SimpleDateFormat;
 public final class Review {
 
   private final long review_id;
+  private final String customer_id;
+  private final String provider_id;
   private final String review_name;
   private final String review_description;
-  //private final long service_id;
   private final String service_name;
   private final Double review_rating;
   private final long timestamp;
   private final String review_date;
 
-  public Review(long review_id, String review_name, String review_description, String service_name, Double review_rating, long timestamp) {
+  public Review(long review_id, String provider_id, String customer_id, String review_name, String review_description, String service_name, Double review_rating, long timestamp) {
       this.review_id = review_id;
       this.review_name = review_name;
       this.review_description = review_description;
-      //this.service_id = service_id;
+      this.customer_id = customer_id;
+      this.provider_id = provider_id;
       this.service_name = service_name;
       this.review_rating = review_rating;
       this.timestamp = timestamp;

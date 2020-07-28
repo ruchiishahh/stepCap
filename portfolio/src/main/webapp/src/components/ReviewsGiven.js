@@ -8,6 +8,7 @@ import Divider from "@material-ui/core/Divider";
 
 export default function VirtualizedList(props) {
   const { name, description, service_name, rating, date } = props;
+  console.log("a review card is rendering");
   return (
     <div>
       <ListItem alignItems="flex-start">

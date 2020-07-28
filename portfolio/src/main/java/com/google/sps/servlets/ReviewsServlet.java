@@ -40,8 +40,13 @@ public class ReviewsServlet extends HttpServlet {
     Double review_rating = jsonObj.get("review_rating").getAsDouble();
     long timestamp = System.currentTimeMillis();
 
-    System.out.println("Here is the review name" + name);
-    System.out.println("Here is the review description" + description);
+    System.out.println("Here is the review name " + name);
+    System.out.println("Here is the review description " + description);
+    System.out.println("Here is service_name " + service_name);
+    System.out.println("Here is customer_id " + customer_id);
+    System.out.println("Here is provider_id " + provider_id);
+    System.out.println("Here is review_rating " + review_rating);
+    System.out.println("Here is timestamp " + timestamp);
     
 
     Entity review = new Entity("Review");
@@ -53,7 +58,12 @@ public class ReviewsServlet extends HttpServlet {
     review.setProperty("review_rating", review_rating);
     review.setProperty("timestamp", timestamp);
     datastore.put(review);
-
-    response.sendRedirect("/");
+    
+    Gson gson = new Gson();
+    String[] responses = new String[3]; 
+    responses[0] = "success";
+    String createReviewResponse = gson.toJson(responses);
+    response.setContentType("application/json");
+    response.getWriter().println(createReviewResponse);
   }
 }

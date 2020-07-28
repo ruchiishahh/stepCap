@@ -40,13 +40,12 @@ export default function VirtualizedList(props) {
        <div class="service-container-list">
             <div class="service-container-image">
                 <div class="service-RSVP-button">
-                <Link to={linkToService}>RSVP</Link>
+                <Link className="the-link" style={{ textDecoration: 'none' }} to={linkToService}>RSVP</Link>
                 </div>
             </div>
             <div class="service-list-description">
                 <div class="service-list-title">{name}</div>
-                <Rating name="read-only" value={4} readOnly />
-                <div class="service-list-rating">{rating}</div>
+                <Rating name="read-only" value={rating} readOnly />
             </div> 
         </div>
     );

@@ -258,7 +258,7 @@ export default class ProfilePage extends Component {
             <Grid item xs>
               <Paper class="profile-paper">
                 <div class="profile-title-strong center">Services</div>
-                <List style={{ maxHeight: "100%", overflow: "auto" }}>
+                <List id="profile-service-listccccccccsefawesefseff"style={{ maxHeight: "100%", overflow: "auto" }}>
                   {this.state.servicesReqInfo.map((info) => (
                     <ServicesCreated
                       name={info.service_name}

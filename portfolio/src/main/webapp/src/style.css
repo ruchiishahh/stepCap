@@ -1014,3 +1014,7 @@ react-calendar__month-view__days__day--weekend {
   flex-direction: column;
   width: 100%;
 }
+
+.the-link {
+    color: black;
+}

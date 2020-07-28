@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import axios from "axios";
 
 class Result extends Component {
   constructor(props) {
@@ -9,12 +10,33 @@ class Result extends Component {
     const max = 100;
     const rand = min + Math.random() * (max - min);
     super(props);
-    this.state = { random: rand };
+    this.state = {
+        random: rand,
+        provider_firstname: "",
+        provider_email: "",
+        provider_phone: "",
+    };
   }
 
   componentDidMount() {
     console.log("Mounted: " + this.props.result.service_name);
-    console.log(this.props.result)
+    console.log(this.props.result);
+    let providerInfo = {
+        provider_id: this.props.result.provider_id,
+    }
+    axios.post('http://localhost:8080/provider-info', providerInfo)
+        .then((data) => {
+            console.log(data);
+            this.setState({
+                provider_firstname: data.provider_firstname,
+                provider_email: data.provider_email,
+                provider_phone: data.provider_phone,
+            }, () => {
+                console.log(this.state);
+            })
+        })
+        .catch(err => console.log(err));
+    console.log("post state: " + this.state);
   }
   
 
@@ -43,6 +65,7 @@ class Result extends Component {
 
         <h4 className="card-title"><strong>{this.props.result.service_name}</strong></h4>
         <h6 className="font-weight-bold indigo-text py-2">{this.props.result.provider_id}</h6>
+        <h6 className="font-weight-bold indigo-text py-2">{this.state.provider_firstname}</h6>
         <p className="card-text"> {this.props.result.service_overview} </p>
         <div>
           <Button variant="contained"><Link to={linkToService}>View Service</Link> </Button>

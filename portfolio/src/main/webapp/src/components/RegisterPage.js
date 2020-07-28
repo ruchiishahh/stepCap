@@ -30,6 +30,11 @@ export default class RegisterPage extends Component {
         validLast: true,
         phone: "",
         validPhone: true,
+        showLogin: true,
+        loginPassword: "",
+        loginUser: "",
+        errorUser: false,
+        errorLogin: false,
     };
   }
 
@@ -135,6 +140,18 @@ onChangePassword(e) {
     });
   }
 
+  onLoginUser = (e) => {
+    this.setState({
+      loginUser: e.target.value,
+    })
+  }
+
+  onLoginPassword = (e) => {
+    this.setState({
+      loginPassword: e.target.value,
+    });
+  }
+
   onSubmit(e) {
     e.preventDefault();
     if (!this.handleInputValidation()) {
@@ -168,17 +185,91 @@ onChangePassword(e) {
        .catch((err)=>console.log(err));
   }
 
+  handleLoginResponse = (data) => {
+      console.log(data);
+      const user = data;
+    if (user.logged) {
+        const registerInfo = {
+            user_id: user.user_id,
+            username: user.username,
+            email: user.email,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            phone: user.phone
+        };
+        console.log(registerInfo);
+        this.props.passRegisterInfo(registerInfo);
+        this.props.history.push('/search');
+    } else {
+        this.setState({errorLogin: true})
+    }
+  }
+
+  onLogin = (e) => {
+    e.preventDefault();
+    console.log(this.state.loginUser);
+    if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.loginUser)) {
+      axios.post("http://localhost:8080/log", {username: "", email: this.state.loginUser, password: this.state.loginPassword}).then(response => {
+          console.log(response.data);
+        this.handleLoginResponse(response.data);
+      })
+    } else if (/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(this.state.loginUser)) {
+      axios.post("http://localhost:8080/log", {username: this.state.loginUser, email: "", password: this.state.loginPassword}).then(response => {
+          console.log(response.data);
+
+            this.handleLoginResponse(response.data);
+        })
+    } else {
+      this.setState({errorUser: true})
+    }
+  }
+
+  showRegister = () => {
+    this.setState(prevState => ({
+      showLogin: !prevState.showLogin,
+    }))
+  }
+
   render() {
     return (
         <div class="landing-main-container">
-
             <div class="landing-body-container">
                 <div id="landing-title" class="center-title animate__animated animate__fadeIn">THECOMMONS</div>
                 <div id="landing-tagline" class="center-text animate__animated animate__fadeIn">Help anyone. Get help on anything.</div>
+          <div class="tabs animate__animated animate__fadeInUp">
+            <ul class="nav">
+              <button onClick={this.showRegister} class={this.state.showLogin ? "tabs-active" : "tabs-inactive"}>Login</button>
+              <button onClick={this.showRegister} class={this.state.showLogin ? "tabs-inactive" : "tabs-active"}>Register</button>
+            </ul>
+          </div>
+
+                {this.state.showLogin ? (
+                  <form class="login-form animate__animated animate__fadeInUp animate__delay-1s" onSubmit={this.onLogin}> 
+                          <div class="form-div">
+                              <label> 
+                              Username/Email 
+                                {this.state.errorUser ? (<div class="alert alert-danger" role="alert">
+                                    No username or email exists by that name.
+                                </div>) : null}
+                            </label>
+                              <input id="user-login" type="text" value={this.state.loginUser} onChange={this.onLoginUser} />
+                          </div>
+                          <div class="form-div">
+                              <label> Password </label>
+                              <input id="password-login" type="password" value={this.state.loginPassword} onChange={this.onLoginPassword} />
+                          </div>
+                            {this.state.errorLogin ? (<div class="alert alert-danger" role="alert">
+                                Wrong username or password.
+                              </div>) : null}
+                          <button class="login-button" onClick={this.onLogin}>Login</button>
+                  </form>
+                ) : (
+
+
                 <div class="register-form-container">
                     <form class="register-form animate__animated animate__fadeInUp animate__delay-1s" onSubmit={this.onSubmit}> 
                         <div class="form-names-container">
-                            <div class="form-div long-input">
+                            <div class="form-div">
                                 <label>
                                   <span style={{color: "red"}}>* </span>
                                   First:
@@ -188,7 +279,7 @@ onChangePassword(e) {
                                 </label>
                                 <input id="firstname-submit" type="text" value={this.state.firstname} onChange={this.onChangeFirstname} />
                             </div>
-                            <div class="form-div long-input">
+                            <div class="form-div">
                                 <label>
                                   <span style={{color: "red"}}>*</span>
                                   Last:
@@ -245,6 +336,7 @@ onChangePassword(e) {
                         </div>
                     </form>
                 </div>
+                )}
             </div>
         </div>
     );

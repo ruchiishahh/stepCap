@@ -46,34 +46,27 @@ export default class ProfilePage extends Component {
 
   componentDidMount() {
     const { provider_id } = this.props.match.params;
-    // TODO: This needs to be changed later with the locationState Link property to differentiate the loggedin user and browsing someone else's profile
     this.setState({
         user_id: this.props.userInfo.user_id,
         provider_id: provider_id,
     });
-    console.log(provider_id);
 
+    console.log("the provider is: " + provider_id);
     let providerInfo = {
-        provider_id: provider_id,
+        user_id: provider_id,
     }
     axios.post('https://thecommons-281818.appspot.com/provider-info', providerInfo)
         .then((data) => {
-            console.log(data);
             this.setState({
                 provider_name: data.provider_name,
                 provider_email: data.provider_email,
                 provider_phone: data.provider_phone,
             }, () => {
-                console.log(this.state);
+                
             })
         })
         .catch(err => console.log(err));
-    
-    axios.get("https://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
-      console.log(res);
-      console.log(res.data);
-      this.setState({ reviewsReqInfo: res.data });
-    });
+
     let userInfo = {
         user_id: this.props.userInfo.user_id,
     }
@@ -81,62 +74,94 @@ export default class ProfilePage extends Component {
         console.log("this user is looking at their own profile");
         axios.post("https://thecommons-281818.appspot.com/list-user-services", userInfo)
         .then((response) => {
-            console.log(response);
+           console.log("inside list user services");
             this.setState({
                 servicesReqInfo: response.data,
                 isOwner: true,
             }, () => {
-                console.log(this.state);
+                
             });
+        });
+        axios.post("https://thecommons-281818.appspot.com/list-user-reviews", userInfo).then((res) => {
+            console.log("inside list user reviews");
+            this.setState({ reviewsReqInfo: res.data });
         });
     } else {
         console.log("this user is not looking at the own profile");
+
+        console.log(providerInfo);
         axios.post("https://thecommons-281818.appspot.com/list-user-services", providerInfo)
+
         .then((response) => {
-            console.log(response);
+           console.log("inside list provider services");
+           console.log(response.data);
             this.setState({
                 servicesReqInfo: response.data,
                 isOwner: false,
             });
+        });
+        axios.post("https://thecommons-281818.appspot.com/list-user-reviews", providerInfo).then((res) => {
+            console.log(res.data);
+            console.log("inside list provider reviews");
+            this.setState({ reviewsReqInfo: res.data }, () => {console.log(this.state)});
         });
     };
   }
 
 
   reviewFormHandler(){
-      axios.get("https://thecommons-281818.appspot.com/reviews-displayer").then((res) => {
-          console.log(res);
-          console.log(res.data);
-          this.setState({ reviewsReqInfo: res.data });
+
+      console.log("inside reviewFormHandler");
+      console.log(this.state);
+    if (this.state.isOwner) {
+        console.log("inside review if");
+        let userInfo = {
+            user_id: this.state.user_id
+        };
+        axios.post("https://thecommons-281818.appspot.com/list-user-reviews", userInfo).then((res) => {
+            
+            this.setState({ reviewsReqInfo: res.data });
         });
+    } else {
+        console.log("inside review else")
+        let providerInfo = {
+            user_id: this.state.provider_id
+        };
+        console.log(providerInfo);
+        axios.post("https://thecommons-281818.appspot.com/list-user-reviews", providerInfo).then((res) => {
+            console.log(res.data);
+            this.setState({ reviewsReqInfo: res.data });
+        });
+    }
   }
 
   serviceFormHandler(){
       if (this.state.isOwner) {
-          axios.post("https://thecommons-281818.appspot.com/list-user-services", this.state.user_id)
+
+          let userInfo = {
+            user_id: this.state.user_id
+          };
+          axios.post("https://thecommons-281818.appspot.com/list-user-services", userInfo)
             .then((response) => {
-            console.log(response);
+           
             this.setState({
                 servicesReqInfo: response.data,
                 isOwner: true,
             });
         });
       } else {
-          axios.post("https://thecommons-281818.appspot.com/list-user-services", this.state.provider_id)
+          let providerInfo = {
+              user_id: this.state.provider_id,
+          };
+          axios.post("https://thecommons-281818.appspot.com/list-user-services", providerInfo)
             .then((response) => {
-                console.log(response);
+              
                 this.setState({
                     servicesReqInfo: response.data,
                     isOwner: false,
                 });
             });
       }
-    // axios.post("http://localhost:8080/search-handler", { input: "" }).then((response) => {
-    //         console.log(response);
-    //         this.setState({
-    //         servicesReqInfo: response.data,
-    //         });
-    //     });
   }
 
   openForm() {
@@ -174,12 +199,13 @@ export default class ProfilePage extends Component {
     const showForm = this.state.showForm;
     const showReviewForm = this.state.showReviewForm;
     const blur = this.setClass();
+    console.log(this.state);
 
     return (
       <div>
         {showForm ? <ServiceForm userInfo={this.state.user_id} closeForm={this.closeForm} serviceFormHandler={this.serviceFormHandler}/> : null}
         {showReviewForm ? (
-          <ReviewsForm closeReviewForm={this.closeReviewForm} reviewFormHandler={this.reviewFormHandler}/>
+          <ReviewsForm userInfo={this.state.user_id} providerInfo={this.state.provider_id} closeReviewForm={this.closeReviewForm} reviewFormHandler={this.reviewFormHandler}/>
         ) : null}
 
         <div class={blur}>
@@ -244,7 +270,7 @@ export default class ProfilePage extends Component {
             <Grid item xs>
               <Paper class="profile-paper">
                 <div class="profile-title-strong center">Services</div>
-                <List style={{ maxHeight: "100%", overflow: "auto" }}>
+                <List id="profile-service-list"style={{ maxHeight: "100%", overflow: "auto" }}>
                   {this.state.servicesReqInfo.map((info) => (
                     <ServicesCreated
                       name={info.service_name}

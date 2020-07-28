@@ -22,7 +22,7 @@ class Result extends Component {
     console.log("Mounted: " + this.props.result.service_name);
     console.log(this.props.result);
     let providerInfo = {
-        provider_id: this.props.result.provider_id,
+        user_id: this.props.result.provider_id,
     }
     axios.post('http://localhost:8080/provider-info', providerInfo)
         .then((data) => {

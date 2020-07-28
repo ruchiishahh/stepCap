@@ -16,8 +16,9 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.JsonParser;;
 import com.google.sps.data.Service;
+import com.google.sps.data.Review;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -28,43 +29,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/list-user-services")
-public class ListUserServices extends HttpServlet {
-
+@WebServlet("/list-user-reviews")
+public class ListUserReviews extends HttpServlet {
+  private static final Gson gson = new Gson();
+  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+    System.out.println("Inside List User Reviews Servlet");
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
+    System.out.println("Here is the jsonObj in list user reviews");
+    System.out.println(jsonObj);
     String user_id = jsonObj.get("user_id").getAsString();
 
     System.out.println("user_id is " + user_id);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Filter userIdFilter = new FilterPredicate("provider_id", FilterOperator.EQUAL, Long.parseLong(user_id));
-    
-    // TODO: Error is provider_id is long and user_id is String
+    Filter userIdFilter = new FilterPredicate("provider_id", FilterOperator.EQUAL, user_id);
 
-    
-    Query query = new Query("Service").setFilter(userIdFilter);
+    Query query = new Query("Review").setFilter(userIdFilter);
     PreparedQuery results = datastore.prepare(query);
-    List<Service> services = new ArrayList<>();
+    List<Review> reviews = new ArrayList<>();
 
     for (Entity entity : results.asIterable()) {
-      System.out.println("LINE 50 LOG");
+        long review_id = entity.getKey().getId();
+        String review_name = (String) entity.getProperty("review_name");
+        String review_description = (String) entity.getProperty("review_description");
+        String service_name = (String) entity.getProperty("service_name");
+        Double review_rating = (Double) entity.getProperty("review_rating");
+        long timestamp = (long) entity.getProperty("timestamp");
+        String customer_id = (String) entity.getProperty("customer_id");
+        String provider_id = (String) entity.getProperty("provider_id");
 
-      long service_id = entity.getKey().getId();
-      String service_name = (String) entity.getProperty("service_name");
-      String service_overview = (String) entity.getProperty("service_overview");
-      long provider_id = (long) entity.getProperty("provider_id");
-      Double average_rating = (Double) entity.getProperty("average_rating");
-
-      // TODO: Change hard-coded properties
-      Service service = new Service(service_id, service_name, service_overview, "", "", provider_id, average_rating, "", "", 0);
-      services.add(service);
+        Review review = new Review(review_id, customer_id, provider_id, review_name, review_description, service_name, review_rating, timestamp);
+        reviews.add(review);
     }
 
-    Gson gson = new Gson();
-    response.setContentType("application/json");
-    response.getWriter().println(gson.toJson(services));
+    response.setContentType("application/json;");
+    String json = gson.toJson(reviews);
+    response.getWriter().println(json);
   }
 }

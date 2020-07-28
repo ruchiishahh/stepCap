@@ -44,7 +44,7 @@ public class displayOneProviderServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
-    long provider_id = jsonObj.get("provider_id").getAsLong();
+    long provider_id = jsonObj.get("user_id").getAsLong();
 
     System.out.println(provider_id);
 

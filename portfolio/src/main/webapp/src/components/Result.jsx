@@ -24,7 +24,7 @@ class Result extends Component {
     let providerInfo = {
         user_id: this.props.result.provider_id,
     }
-    axios.post('http://localhost:8080/provider-info', providerInfo)
+    axios.post('https://thecommons-281818.appspot.com/provider-info', providerInfo)
         .then((data) => {
 
             this.setState({

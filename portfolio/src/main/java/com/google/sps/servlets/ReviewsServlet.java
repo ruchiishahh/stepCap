@@ -35,20 +35,21 @@ public class ReviewsServlet extends HttpServlet {
     String name = jsonObj.get("review_name").getAsString();
     String description = jsonObj.get("review_description").getAsString();
     String service_name = jsonObj.get("service_name").getAsString();
-    //TODO obtain service ID from current service
-    //long serviceId;
+    String customer_id = jsonObj.get("customer_id").getAsString();
+    String provider_id = jsonObj.get("provider_id").getAsString();
     Double review_rating = jsonObj.get("review_rating").getAsDouble();
     long timestamp = System.currentTimeMillis();
 
     System.out.println("Here is the review name" + name);
     System.out.println("Here is the review description" + description);
     
-    //TODO implement dynamic Review creation
+
     Entity review = new Entity("Review");
+    review.setProperty("customer_id", customer_id);
+    review.setProperty("provider_id", provider_id);
     review.setProperty("review_name", name);
     review.setProperty("review_description", description);
     review.setProperty("service_name", service_name);
-    //review.setProperty("service_id", 154829301);
     review.setProperty("review_rating", review_rating);
     review.setProperty("timestamp", timestamp);
     datastore.put(review);

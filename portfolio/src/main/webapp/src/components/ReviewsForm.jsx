@@ -5,7 +5,13 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
 class ReviewsForm extends Component {
-    state = { 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+        provider_id: '',
+        service_id: '',
+        customer_id: '',
         review_name: '',
         validName: true,
         review_description: '',
@@ -13,7 +19,9 @@ class ReviewsForm extends Component {
         service_name: '',
         validService: true,
         review_rating: 0,
+        }
     }
+
 
     handleInputValidation = () => {
         if (!this.state.validName || this.state.review_name === "") {
@@ -39,10 +47,11 @@ class ReviewsForm extends Component {
         const data = {
             review_name: this.state.review_name,
             review_description: this.state.review_description,
-            //service_id: this.state.service_id,
+            customer_id: this.props.userInfo,
+            provider_id: this.props.providerInfo,
             service_name: this.state.service_name,
             review_rating: this.state.review_rating,
-        }
+        };
         console.log("Information inputted: " + data.review_name);
         axios.post("http://localhost:8080/reviews-handler", data).then(resp => {
             this.props.reviewFormHandler();

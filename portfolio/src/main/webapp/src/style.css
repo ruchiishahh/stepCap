@@ -775,6 +775,14 @@ react-calendar__month-view__days__day--weekend {
   color: black;
   outline: none;
 }
+.login-form {
+  align-items: center;
+  display: flex;
+  flex-grow: 4;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+}
 
 .register-form {
   /* border: 1px solid pink; */
@@ -947,4 +955,58 @@ react-calendar__month-view__days__day--weekend {
   padding: 2px 10px;
   position: absolute;
   z-index: 100;
+}
+
+.tabs {
+  border-bottom: 2px solid #2eb887;
+  color: #2eb887;
+  height: 10%;
+  margin-bottom: 40px;
+  width: 75%;
+}
+
+.tabs-active {
+  background-color: #bef0de !important;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #2eb887 !important;
+  color: #2eb887 !important;
+  font-size: 1.1em !important;
+  margin: 20px;
+  padding: 5px;
+}
+
+.tabs-inactive {
+  background: none !important;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #2eb887 !important;
+  color: #2eb887 !important;
+  font-size: 1.1em !important;
+  margin: 20px;
+  padding: 5px;
+}
+
+.tabs-active:hover, .tabs-inactive:hover {
+  background-color: #2eb887 !important;
+  color: white !important;
+  font-size: 1.1em !important;
+}
+
+.tabs-active:focus {
+  outline: none;
+}
+
+.login-button {
+  background-color: #2eb887;
+  border: 1px solid #434d66;
+  color: #434d66;
+  font-size: 18px !important;
+  font-weight: 200 !important;
+  height: 35px;
+  margin-top: 25px;
+  margin-left: auto;
+  width: 100px;
 }

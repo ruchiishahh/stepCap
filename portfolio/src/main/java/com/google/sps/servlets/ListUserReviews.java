@@ -36,13 +36,16 @@ public class ListUserReviews extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+    System.out.println("Inside List User Reviews Servlet");
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
+    System.out.println("Here is the jsonObj in list user reviews");
+    System.out.println(jsonObj);
     String user_id = jsonObj.get("user_id").getAsString();
 
     System.out.println("user_id is " + user_id);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Filter userIdFilter = new FilterPredicate("user_id", FilterOperator.EQUAL, user_id);
+    Filter userIdFilter = new FilterPredicate("provider_id", FilterOperator.EQUAL, user_id);
 
     Query query = new Query("Review").setFilter(userIdFilter);
     PreparedQuery results = datastore.prepare(query);

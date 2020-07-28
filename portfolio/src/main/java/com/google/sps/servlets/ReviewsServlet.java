@@ -28,7 +28,8 @@ public class ReviewsServlet extends HttpServlet {
   //TODO change to toPost
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+    
+    System.out.println("Inside ReviewsServlet reviews-handler");
     String reader = request.getReader().lines().collect(Collectors.joining());
     JsonObject jsonObj = new JsonParser().parse(reader).getAsJsonObject();
     

@@ -97,15 +97,19 @@ export default class ProfilePage extends Component {
             });
         });
         axios.post("http://localhost:8080/list-user-reviews", providerInfo).then((res) => {
+            console.log(res.data);
             console.log("inside list provider reviews");
-            this.setState({ reviewsReqInfo: res.data });
+            this.setState({ reviewsReqInfo: res.data }, () => {console.log(this.state)});
         });
     };
   }
 
 
   reviewFormHandler(){
+      console.log("inside reviewFormHandler");
+      console.log(this.state);
     if (this.state.isOwner) {
+        console.log("inside review if");
         let userInfo = {
             user_id: this.state.user_id
         };
@@ -114,11 +118,13 @@ export default class ProfilePage extends Component {
             this.setState({ reviewsReqInfo: res.data });
         });
     } else {
+        console.log("inside review else")
         let providerInfo = {
             user_id: this.state.provider_id
         };
+        console.log(providerInfo);
         axios.post("http://localhost:8080/list-user-reviews", providerInfo).then((res) => {
-           
+            console.log(res.data);
             this.setState({ reviewsReqInfo: res.data });
         });
     }
@@ -139,7 +145,7 @@ export default class ProfilePage extends Component {
         });
       } else {
           let providerInfo = {
-              user_id: this.state.provider_id
+              user_id: this.state.provider_id,
           };
           axios.post("http://localhost:8080/list-user-services", providerInfo)
             .then((response) => {
@@ -258,7 +264,7 @@ export default class ProfilePage extends Component {
             <Grid item xs>
               <Paper class="profile-paper">
                 <div class="profile-title-strong center">Services</div>
-                <List id="profile-service-listccccccccsefawesefseff"style={{ maxHeight: "100%", overflow: "auto" }}>
+                <List id="profile-service-list"style={{ maxHeight: "100%", overflow: "auto" }}>
                   {this.state.servicesReqInfo.map((info) => (
                     <ServicesCreated
                       name={info.service_name}

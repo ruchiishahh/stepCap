@@ -775,6 +775,14 @@ react-calendar__month-view__days__day--weekend {
   color: black;
   outline: none;
 }
+.login-form {
+  align-items: center;
+  display: flex;
+  flex-grow: 4;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+}
 
 .register-form {
   /* border: 1px solid pink; */
@@ -854,6 +862,8 @@ react-calendar__month-view__days__day--weekend {
 
 
 .result-container {
+  align-content: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   height: 500px;
@@ -862,11 +872,14 @@ react-calendar__month-view__days__day--weekend {
 }
 
 .result-img-container {
+  align-content: center;
+  justify-content: center;
   height: 200px;
   width: 500px;
 }
 
 .result-img {
+  margin-left: 50%;
   max-height: 100%;
   max-width: 100%;
   object-fit: cover;
@@ -874,6 +887,8 @@ react-calendar__month-view__days__day--weekend {
 
 .result-body {
   flex: 3;
+  align-content: center;
+  justify-content: center;
 }
 
 .service-form {
@@ -941,7 +956,6 @@ react-calendar__month-view__days__day--weekend {
   position: absolute;
   z-index: 100;
 }
-
 
 .service-container-list {
   display: flex;
@@ -1017,4 +1031,58 @@ react-calendar__month-view__days__day--weekend {
 
 .the-link {
     color: black;
+}
+
+.tabs {
+  border-bottom: 2px solid #2eb887;
+  color: #2eb887;
+  height: 10%;
+  margin-bottom: 40px;
+  width: 75%;
+}
+
+.tabs-active {
+  background-color: #bef0de !important;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #2eb887 !important;
+  color: #2eb887 !important;
+  font-size: 1.1em !important;
+  margin: 20px;
+  padding: 5px;
+}
+
+.tabs-inactive {
+  background: none !important;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #2eb887 !important;
+  color: #2eb887 !important;
+  font-size: 1.1em !important;
+  margin: 20px;
+  padding: 5px;
+}
+
+.tabs-active:hover, .tabs-inactive:hover {
+  background-color: #2eb887 !important;
+  color: white !important;
+  font-size: 1.1em !important;
+}
+
+.tabs-active:focus {
+  outline: none;
+}
+
+.login-button {
+  background-color: #2eb887;
+  border: 1px solid #434d66;
+  color: #434d66;
+  font-size: 18px !important;
+  font-weight: 200 !important;
+  height: 35px;
+  margin-top: 25px;
+  margin-left: auto;
+  width: 100px;
 }

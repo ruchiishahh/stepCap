@@ -171,7 +171,6 @@ bookNow(e) {
                 gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
                 console.log(this.state);
                 console.log(bookingObj);
-                console.log(response)
                 gapi.auth2.getAuthInstance().signIn().then(() => {
                 var event = {
                     'summary': bookingObj.booking_name,

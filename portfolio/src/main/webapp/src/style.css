@@ -97,6 +97,10 @@ body {
   width: 90%;
 }
 
+.book-service-button:hover {
+  background-color: #f8b807;
+}
+
 .book-service-booking-container {
   border: 1px solid lightgrey;
   background-color: white;
@@ -338,10 +342,10 @@ input:hover {
 }
 
 .navbar-logo-container {
-  color: #2eb887;
+  color: #434d66;
   display: flex;
   text-decoration: none;
-  font-size: 2.1em;
+  font-size: 25px !important;
   font-weight: 300;
   letter-spacing: 0.04em !important;
   margin: 10px;
@@ -354,8 +358,11 @@ input:hover {
 
 .navbar-main-container {
   background-color: white;
-  color: #2eb887;
+  color: #434d66;
   display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, "signoria", "Signoria",
+    "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol" !important;
   flex-direction: row;
   flex-shrink: 1;
   height: 100%;
@@ -393,7 +400,7 @@ input:hover {
 .navbar-profile {
   border: 4px inset #2eb887;
   border-radius: 50%;
-  max-height: 45px;
+  max-height: 35px;
   margin-right: 10px;
   object-fit: contain;
 }
@@ -472,6 +479,18 @@ input:hover {
   justify-content: center;
 }
 
+#profile-grid-main {
+  background-color: #f6f6f6;
+}
+
+.profile-paper {
+  background-color: white;
+  border: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .profile-paragraph {
   display: flex;
   font-size: 17px !important;
@@ -515,18 +534,30 @@ input:hover {
   height: 200px;
 }
 
-.profile-service-add-button {
+.profile-review-button {
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background-color: #2eb887;
-  font-weight: 700;
-  height: 50px;
-  margin-top: 15px;
-  width: 90%;
+  align-items: center;
+  margin-top: 10px;
 }
+
+.profile-service-add-button {
+  background-color: #f2b203;
+  border: none;
+  border-radius: 9px;
+  font-size: 18px;
+  font-weight: 500;
+  height: 30px;
+  outline: none !important;
+  width: 97%;
+}
+
+.profile-service-add-button:hover {
+  background-color: #f8b807;
+}
+
 
 .profile-service-image-container {
   background-color: #2eb887;
@@ -708,7 +739,7 @@ input:hover {
 
 .profile-title-strong {
   color: #434d66;
-  font-size: 32px !important;
+  font-size: 27px !important;
   font-weight: 400;
   letter-spacing: 0.03em !important;
   margin-top: 20px;
@@ -743,6 +774,14 @@ react-calendar__month-view__days__day--weekend {
   box-shadow: outset 0px 0px 0px 0px white;
   color: black;
   outline: none;
+}
+.login-form {
+  align-items: center;
+  display: flex;
+  flex-grow: 4;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
 }
 
 .register-form {
@@ -916,4 +955,58 @@ react-calendar__month-view__days__day--weekend {
   padding: 2px 10px;
   position: absolute;
   z-index: 100;
+}
+
+.tabs {
+  border-bottom: 2px solid #2eb887;
+  color: #2eb887;
+  height: 10%;
+  margin-bottom: 40px;
+  width: 75%;
+}
+
+.tabs-active {
+  background-color: #bef0de !important;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #2eb887 !important;
+  color: #2eb887 !important;
+  font-size: 1.1em !important;
+  margin: 20px;
+  padding: 5px;
+}
+
+.tabs-inactive {
+  background: none !important;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid #2eb887 !important;
+  color: #2eb887 !important;
+  font-size: 1.1em !important;
+  margin: 20px;
+  padding: 5px;
+}
+
+.tabs-active:hover, .tabs-inactive:hover {
+  background-color: #2eb887 !important;
+  color: white !important;
+  font-size: 1.1em !important;
+}
+
+.tabs-active:focus {
+  outline: none;
+}
+
+.login-button {
+  background-color: #2eb887;
+  border: 1px solid #434d66;
+  color: #434d66;
+  font-size: 18px !important;
+  font-weight: 200 !important;
+  height: 35px;
+  margin-top: 25px;
+  margin-left: auto;
+  width: 100px;
 }

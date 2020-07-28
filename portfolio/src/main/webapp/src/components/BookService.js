@@ -7,8 +7,8 @@ import axios from "axios";
 import Navbar from "./Navbar";
 
 export default class BookService extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
         service_id: "",
         user_id: "",
@@ -231,18 +231,7 @@ bookNow(e) {
 
                 <form action="/book-new-service" method="POST">
                 <div class="book-service-all-container">
-                    <div class="book-service-header-container">
-                    <div class="logo-container">theCOMMONS</div>
-                    <div class="searchbar-container">
-                        <SearchBar />
-                    </div>
-                    <div class="options-container">
-                        <Link to="/dashboard">Dashboard</Link>
-                        <Link to="/profile"></Link>
-                        <button>Logout</button>
-                    </div>
-                    </div>
-
+                    <Navbar user_id={this.props.userInfo.user_id}/>
                     <div class="book-service-body-container">
                     <div class="book-service-info-container">
                         <div class="book-service-info-title">

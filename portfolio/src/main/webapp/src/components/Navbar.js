@@ -41,7 +41,7 @@ export default class Navbar extends Component {
                 <Link to={linkToProfile}> 
                   <div class="navbar-link">Profile</div>
                 </Link>
-                <Link to="/LOGOUTURL"> 
+                <Link to="/"> 
                   <div class="navbar-link">Logout</div>
                 </Link>
 

@@ -34,4 +34,15 @@ export default function VirtualizedList(props) {
       </ListItem>
     </div>
   );
+    // return (
+    //     <div class="service-container-list">
+    //         <div class="service-container-image">
+    //             <div class="service-RSVP-button">
+    //                 <Link to={linkToService}>RSVP</Link>
+    //             </div>
+    //         </div>
+    //         <div class="service-list-title">{name}</div>
+    //         <div class="service-list-text">{provid}</div>
+    //     </div>
+    // );
 }

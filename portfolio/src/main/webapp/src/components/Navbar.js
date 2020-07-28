@@ -8,6 +8,7 @@ export default class Navbar extends Component {
     super(props);
     this.state = {
       showDropdown: false,
+      logoutUrl: "",
     }
   }
 
@@ -17,7 +18,22 @@ export default class Navbar extends Component {
     }))
   }
 
+    componentDidMount() {
+      axios.get('http://localhost:8080/log').then(response => {
+          console.log(response);
+          const user = response.data;
+          const userInfo = JSON.parse(user.userInfo);
+          console.log(userInfo);
+          this.setState({
+            logoutUrl: user.url,
+          }, () => {
+              console.log(this.state.logoutUrl)
+          })
+      })
+  }
+
   render() {
+    console.log("RENDER: " + this.state.logoutUrl)
     const linkToProfile = `/profile/${this.props.user_id}`;
     return (
       <div class="navbar-main-container">
@@ -41,9 +57,7 @@ export default class Navbar extends Component {
                 <Link to={linkToProfile}> 
                   <div class="navbar-link">Profile</div>
                 </Link>
-                <Link to="/LOGOUTURL"> 
-                  <div class="navbar-link">Logout</div>
-                </Link>
+                <div class="navbar-link"><a href={this.state.logoutUrl}>Logout </a></div>
 
               </div>
             ) : null

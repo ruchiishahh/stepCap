@@ -13,6 +13,9 @@ import axios from "axios";
 import ProfilePage from "./components/ProfilePage";
 import BookService from "./components/BookService";
 import CreateService from "./components/createService";
+import Welcome from "./components/Welcome";
+import LoginButton from "./components/LoginButton";
+
 
 export default class AppContainer extends Component {
   constructor(props) {
@@ -29,6 +32,8 @@ export default class AppContainer extends Component {
       phone: "",
       email: "",
       service_id: "",
+      userInfo: {},
+      logUrl: "/",
     };
   }
 
@@ -39,6 +44,7 @@ export default class AppContainer extends Component {
     this.setState(
       {
         loggedIn: false,
+        loginUrl: "",
         user_id: registerInfoUpdated.user_id,
         username: registerInfoUpdated.username,
         firstname: registerInfoUpdated.firstname,
@@ -57,83 +63,109 @@ export default class AppContainer extends Component {
       axios.get('http://localhost:8080/log').then(response => {
           console.log(response);
           const user = response.data;
-          const userInfo = JSON.parse(user.userInfo);
+          let userInfo;
+          if (user.loggedIn) {
+            userInfo = JSON.parse(user.userInfo);
+          } else {
+            userInfo = {};
+          }
           console.log(userInfo);
           this.setState({
             loggedIn: user.loggedIn,
+            loginUrl: user.url,
             registered: user.registered != "",
-          }, () => {
-              this.setState({ landingPage: this.state.registered ? "/search" : "/register" })
+            userInfo: userInfo,
+          })
+      })
+  }
+
+  getUser = () => {
+    axios.get('http://localhost:8080/log').then(response => {
+          console.log(response);
+          const user = response.data;
+          let userInfo;
+          if (user.loggedIn) {
+            userInfo = JSON.parse(user.userInfo);
+          } else {
+            userInfo = {};
+          }
+          console.log(userInfo);
+          this.setState({
+            loggedIn: user.loggedIn,
+            loginUrl: user.url,
+            registered: user.registered != "",
+            userInfo: userInfo,
           })
       })
   }
 
  
   render() {
-    let userInfo = {
-      loggedIn: this.state.loggedIn,
-      user_id: this.state.user_id,
-      username: this.state.username,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      phone: this.state.phone,
-    };
+    let userInfo = this.state.userInfo;
 
     return (
       <div>
-        <Router>
-        {this.state.registered ? <Redirect to="/search" /> : <RegisterPage passRegisterInfo={this.passRegisterInfo}/>}
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <RegisterPage {...props} passRegisterInfo={this.passRegisterInfo}/>)}
-          ></Route>
-          
-           <Route
-                exact path="/login"
-                render={(props) => <LoginPage {...props}/>}>
-            </Route>
 
-          <Route 
-            exact 
-            path="/search" 
-            render={(props) => <SearchPage {...props} userInfo={userInfo} />}
-          ></Route>
+        {!this.state.loggedIn ? (
+            <LoginButton loginUrl={this.state.loginUrl} />
+        ) : (
+        <div>
 
-          <Route
-            exact
-            path="/BookingForm"
-            render={(props) => <BookingForm {...props} />}
-          ></Route>
+            <Router>
+        {this.state.registered ? <Welcome userInfo={this.state.userInfo} /> : null}
+                <Route
+                    exact
+                    path="/register"
+                    render={(props) => (
+                    <RegisterPage {...props} passRegisterInfo={this.passRegisterInfo}/>)}
+                ></Route>
+                
+                <Route
+                        exact 
+                        path="/login"
+                        render={(props) => <LoginPage {...props}/>}>
+                    </Route>
 
-            <Route
-                exact path="/dashboard"
-                render={(props) => <Dashboard {...props} />}>
-            </Route>
+                <Route 
+                    exact 
+                    path="/search" 
+                    render={(props) => <SearchPage {...props} userInfo={userInfo} />}
+                ></Route>
 
-            <Route
-                exact path="/profile"
-                render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
-            </Route>
+                <Route
+                    exact
+                    path="/BookingForm"
+                    render={(props) => <BookingForm {...props} />}
+                ></Route>
 
-            <Route
-                exact path="/profile/:provider_id"
-                render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
-            </Route>
+                    <Route
+                        exact path="/dashboard"
+                        render={(props) => <Dashboard {...props} />}>
+                    </Route>
 
-            <Route
-                exact path="/service/:service_id"
-                render={(props) => <BookService {...props} userInfo={userInfo} />}>
-            </Route>
+                    <Route
+                        exact path="/profile"
+                        render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
+                    </Route>
 
-            <Route
-                exact path="/createService"
-                render={(props) => <CreateService {...props} userInfo={userInfo} />}>
-            </Route>
+                    <Route
+                        exact path="/profile/:provider_id"
+                        render={(props) => <ProfilePage {...props} userInfo={userInfo} />}>
+                    </Route>
 
-        </Router>
+                    <Route
+                        exact path="/service/:service_id"
+                        render={(props) => <BookService {...props} userInfo={userInfo} />}>
+                    </Route>
+
+                    <Route
+                        exact path="/createService"
+                        render={(props) => <CreateService {...props} userInfo={userInfo} />}>
+                    </Route>
+
+            </Router>
+        </div>
+        )}
       </div>
     );
   }

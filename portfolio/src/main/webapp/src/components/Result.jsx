@@ -26,17 +26,16 @@ class Result extends Component {
     }
     axios.post('http://localhost:8080/provider-info', providerInfo)
         .then((data) => {
-            console.log(data);
+
             this.setState({
-                provider_firstname: data.provider_firstname,
-                provider_email: data.provider_email,
-                provider_phone: data.provider_phone,
-            }, () => {
-                console.log(this.state);
+                provider_firstname: data.data.provider_firstname,
+                provider_email: data.data.provider_email,
+                provider_phone: data.data.provider_phone,
             })
+            console.log("post state: " + this.state.provider_firstname);
+
         })
         .catch(err => console.log(err));
-    console.log("post state: " + this.state);
   }
   
 
@@ -64,8 +63,7 @@ class Result extends Component {
     <div className="card-body text-center">
 
         <h4 className="card-title"><strong>{this.props.result.service_name}</strong></h4>
-        <h6 className="font-weight-bold indigo-text py-2">{this.props.result.provider_id}</h6>
-        <h6 className="font-weight-bold indigo-text py-2">{this.state.provider_firstname}</h6>
+        <h6 className="font-weight-bold indigo-text py-2">Provider: {this.state.provider_firstname} ({this.state.provider_email})</h6>
         <p className="card-text"> {this.props.result.service_overview} </p>
         <div>
           <Button variant="contained"><Link to={linkToService}>View Service</Link> </Button>

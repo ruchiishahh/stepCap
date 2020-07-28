@@ -118,7 +118,7 @@ export default class BookService extends React.Component {
         .catch(err => console.log(err));
   }
 
-  onChangeCalendar = (booking_date) => this.setState({ booking_date });
+  onChangeCalendar = (booking_date) => this.setState({ booking_date }, () => {console.log(this.state.booking_date)});
 
   handleChange(event) {
     const { name, value, type, checked } = event.target;
@@ -154,7 +154,9 @@ bookNow(e) {
             const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
             const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
             const SCOPES = "https://www.googleapis.com/auth/calendar.events";
-
+            // const startDate = res.data.booking_date.slice(0, -1);
+            // console.log(startDate);
+            
             gapi.load('client:auth2', () => {
                 console.log('loaded client');
 
@@ -167,6 +169,7 @@ bookNow(e) {
                 gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
                 console.log(this.state);
                 console.log(bookingObj);
+                console.log(response)
                 gapi.auth2.getAuthInstance().signIn().then(() => {
                 var event = {
                     'summary': bookingObj.booking_name,
@@ -180,12 +183,8 @@ bookNow(e) {
                         'dateTime': '2020-07-25T17:00:00-07:00',
                         'timeZone': 'America/Los_Angeles'
                     },
-                    'recurrence': [
-                        'RRULE:FREQ=DAILY;COUNT=2'
-                    ],
                     'attendees': [
                         {'email': this.state.provider_email},
-                        {'email': 'owenzhang@google.com'},
                         {'email': this.state.user_email}
                     ],
                     'reminders': {
@@ -201,11 +200,13 @@ bookNow(e) {
 
                 var request = gapi.client.calendar.events.insert({
                     'calendarId': 'primary',
+                    'sendUpdates' : "all",
                     'resource': event,
                 });
 
                 request.execute(event => {
                     console.log(event);
+                    window.open(event.htmlLink);
                     this.props.history.push('/dashboard');
                 });
             })

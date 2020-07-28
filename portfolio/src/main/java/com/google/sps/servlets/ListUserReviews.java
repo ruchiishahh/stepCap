@@ -57,8 +57,8 @@ public class ListUserReviews extends HttpServlet {
         long timestamp = (long) entity.getProperty("timestamp");
         String customer_id = (String) entity.getProperty("customer_id");
         String provider_id = (String) entity.getProperty("provider_id");
-        
-        Review review = new Review(review_id, service_id, customer_id, provider_id, review_name, review_description, service_name, review_rating, timestamp);
+
+        Review review = new Review(review_id, customer_id, provider_id, review_name, review_description, service_name, review_rating, timestamp);
         reviews.add(review);
     }
 

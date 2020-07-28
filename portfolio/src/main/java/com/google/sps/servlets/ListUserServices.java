@@ -40,7 +40,10 @@ public class ListUserServices extends HttpServlet {
 
     System.out.println("user_id is " + user_id);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Filter userIdFilter = new FilterPredicate("provider_id", FilterOperator.EQUAL, user_id);
+    Filter userIdFilter = new FilterPredicate("provider_id", FilterOperator.EQUAL, Long.parseLong(user_id));
+    
+    // TODO: Error is provider_id is long and user_id is String
+
     
     Query query = new Query("Service").setFilter(userIdFilter);
     PreparedQuery results = datastore.prepare(query);
@@ -55,6 +58,7 @@ public class ListUserServices extends HttpServlet {
       long provider_id = (long) entity.getProperty("provider_id");
       Double average_rating = (Double) entity.getProperty("average_rating");
 
+      // TODO: Change hard-coded properties
       Service service = new Service(service_id, service_name, service_overview, "", "", provider_id, average_rating, "", "", 0);
       services.add(service);
     }

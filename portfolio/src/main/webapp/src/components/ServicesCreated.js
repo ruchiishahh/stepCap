@@ -34,8 +34,9 @@ export default function VirtualizedList(props) {
 //       </ListItem>
 //     </div>
 //   );
+    console.log("rendering a service card");
+    
     return (
-        console.log("rendering a service card");
        <div class="service-container-list">
             <div class="service-container-image">
                 <div class="service-RSVP-button">

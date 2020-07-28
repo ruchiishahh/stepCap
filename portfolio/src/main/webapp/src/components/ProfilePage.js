@@ -86,6 +86,7 @@ export default class ProfilePage extends Component {
         });
     } else {
         console.log("this user is not looking at the own profile");
+        console.log(providerInfo);
         axios.post("http://localhost:8080/list-user-services", providerInfo)
         .then((response) => {
            console.log("inside list provider services");
@@ -126,7 +127,7 @@ export default class ProfilePage extends Component {
   serviceFormHandler(){
       if (this.state.isOwner) {
           let userInfo = {
-              user_id: this.state.user_id
+            user_id: this.state.user_id
           };
           axios.post("http://localhost:8080/list-user-services", userInfo)
             .then((response) => {

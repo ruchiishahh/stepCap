@@ -73,10 +73,11 @@ public class BookNowServlet extends HttpServlet {
     datastore.put(bookingEntity);
 
     Gson gson = new Gson();
-    String[] bookingResponse = new String[1]; 
-    bookingResponse[0] = "yeet";
+    JsonObject json = new JsonObject();
+
+    json.addProperty("booking_date", booking_date);
     
-    String bookNowServletResponse = gson.toJson(bookingResponse);
+    String bookNowServletResponse = gson.toJson(json);
     response.setContentType("application/json;");
     response.getWriter().println(bookNowServletResponse);
     

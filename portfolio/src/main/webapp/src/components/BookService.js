@@ -147,15 +147,14 @@ bookNow(e) {
       console.log(bookingObj);
       axios.post("http://localhost:8080/backend/book-new-service", bookingObj)
         .then((res) => {
-            console.log("inside bookService .then()");
-            console.log(res.data);
+            console.log("HERE");
+            console.log(res);
             const gapi = window.gapi;
             const CLIENT_ID = '778442330423-c8o8u3mmmtun0phpr1381isl452c8cus.apps.googleusercontent.com';
             const API_KEY = 'AIzaSyDnIFqZ8EqTAOJXorggZ_fEo_vQ4L_aYFA';
             const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
             const SCOPES = "https://www.googleapis.com/auth/calendar.events";
-            // const startDate = res.data.booking_date.slice(0, -1);
-            // console.log(startDate);
+            const startDate = res.data.booking_date.slice(0, -5);
             
             gapi.load('client:auth2', () => {
                 console.log('loaded client');
@@ -167,20 +166,17 @@ bookNow(e) {
                     scope: SCOPES
                 })
                 gapi.client.load('calendar', 'v3', () => console.log('Yeet!'));
-                console.log(this.state);
-                console.log(bookingObj);
-                console.log(response)
                 gapi.auth2.getAuthInstance().signIn().then(() => {
                 var event = {
                     'summary': bookingObj.booking_name,
                     'location': this.state.travel_options,
                     'description': this.state.overview,
                     'start': {
-                        'dateTime': '2020-07-24T09:00:00-07:00',
+                        'dateTime': startDate + '-07:00',
                         'timeZone': 'America/Los_Angeles'
                     },
                     'end': {
-                        'dateTime': '2020-07-25T17:00:00-07:00',
+                        'dateTime': startDate + '-07:00',
                         'timeZone': 'America/Los_Angeles'
                     },
                     'attendees': [

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
+import parkourPic from "../images/parkour_picture_1.jpg"
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import SearchBar from "./SearchBar";
 import axios from "axios";
 import Navbar from "./Navbar";
+
+
 
 export default class BookService extends React.Component {
   constructor(props) {
@@ -243,7 +246,7 @@ bookNow(e) {
                     <div class="book-service-f6f6f6-theme">
                         <div class="book-service-row">
                         <div class="book-service-image-container">
-                            <img></img>
+                            <img class="book-service-img" src={parkourPic}></img>
                         </div>
                         <div class="book-service-booking-container">
                             <div class="book-service-title">Select a Date</div>

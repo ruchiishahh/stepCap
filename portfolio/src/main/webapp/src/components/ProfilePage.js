@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import profilePic from "../images/owen.jpg"
 import { Button } from "@material-ui/core";
 import ReviewsGiven from "./ReviewsGiven";
 import ServicesCreated from "./ServicesCreated";
@@ -208,7 +209,7 @@ export default class ProfilePage extends Component {
             <Grid item xs>
               <Paper class="profile-paper">
                 <div class="profile-image-container">
-                  <img src=""></img>
+                  <img class="profile-pic-img" src={profilePic}></img>
                 </div>
                 <div class="profile-description-container">
                   <div class="profile-title-strong">

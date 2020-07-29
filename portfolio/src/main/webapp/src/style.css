@@ -147,12 +147,25 @@ body {
 }
 
 .book-service-image-container {
-  background-color: #2eb887;
+  background-color: #f6f6f6;
   height: 800px;
   margin: 20px;
   width: 50%;
 }
 
+.book-service-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.profile-pic-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 .book-service-paragraph {
   color: black !important;
   display: flex;

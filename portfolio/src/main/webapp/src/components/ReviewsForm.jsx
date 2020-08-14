@@ -53,7 +53,7 @@ class ReviewsForm extends Component {
             review_rating: this.state.review_rating,
         };
         console.log("Information inputted: " + data.review_name);
-        axios.post("https://thecommons-281818.appspot.com/reviews-handler", data).then((response) => {
+        axios.post("https://thecommons-1.appspot.com/reviews-handler", data).then((response) => {
             console.log(response);
             this.props.reviewFormHandler();
         });

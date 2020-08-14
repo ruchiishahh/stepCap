@@ -23,7 +23,7 @@ export default class BookingForm extends React.Component {
         user_id: this.props.userInfo.user_id,
     };
     console.log(userInfo);
-    axios.post("https://thecommons-281818.appspot.com/list-pending", userInfo)
+    axios.post("https://thecommons-1.appspot.com/list-pending", userInfo)
         .then((res) => {
             console.log(res.data);
             this.setState({

@@ -36,7 +36,7 @@ export default class BookingForm extends React.Component {
         booking_duration: this.state.booking_duration,
         booking_price: this.state.booking_price,
     }
-    axios.post('https://thecommons-281818.appspot.com/book-new-service', booking_info)
+    axios.post('https://thecommons-1s.appspot.com/book-new-service', booking_info)
        .then(res => {
            console.log(res);
            console.log(this);

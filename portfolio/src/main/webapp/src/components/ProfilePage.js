@@ -56,7 +56,7 @@ export default class ProfilePage extends Component {
     let providerInfo = {
         user_id: provider_id,
     }
-    axios.post('https://thecommons-281818.appspot.com/provider-info', providerInfo)
+    axios.post('https://thecommons-1.appspot.com/provider-info', providerInfo)
         .then((data) => {
             this.setState({
                 provider_name: data.provider_name,
@@ -73,7 +73,7 @@ export default class ProfilePage extends Component {
     }
     if (this.props.userInfo.user_id == provider_id) {
         console.log("this user is looking at their own profile");
-        axios.post("https://thecommons-281818.appspot.com/list-user-services", userInfo)
+        axios.post("https://thecommons-1.appspot.com/list-user-services", userInfo)
         .then((response) => {
            console.log("inside list user services");
             this.setState({
@@ -83,7 +83,7 @@ export default class ProfilePage extends Component {
                 
             });
         });
-        axios.post("https://thecommons-281818.appspot.com/list-user-reviews", userInfo).then((res) => {
+        axios.post("https://thecommons-1.appspot.com/list-user-reviews", userInfo).then((res) => {
             console.log("inside list user reviews");
             this.setState({ reviewsReqInfo: res.data });
         });
@@ -91,7 +91,7 @@ export default class ProfilePage extends Component {
         console.log("this user is not looking at the own profile");
 
         console.log(providerInfo);
-        axios.post("https://thecommons-281818.appspot.com/list-user-services", providerInfo)
+        axios.post("https://thecommons-1.appspot.com/list-user-services", providerInfo)
 
         .then((response) => {
            console.log("inside list provider services");
@@ -101,7 +101,7 @@ export default class ProfilePage extends Component {
                 isOwner: false,
             });
         });
-        axios.post("https://thecommons-281818.appspot.com/list-user-reviews", providerInfo).then((res) => {
+        axios.post("https://thecommons-1.appspot.com/list-user-reviews", providerInfo).then((res) => {
             console.log(res.data);
             console.log("inside list provider reviews");
             this.setState({ reviewsReqInfo: res.data }, () => {console.log(this.state)});
@@ -119,7 +119,7 @@ export default class ProfilePage extends Component {
         let userInfo = {
             user_id: this.state.user_id
         };
-        axios.post("https://thecommons-281818.appspot.com/list-user-reviews", userInfo).then((res) => {
+        axios.post("https://thecommons-1.appspot.com/list-user-reviews", userInfo).then((res) => {
             
             this.setState({ reviewsReqInfo: res.data });
         });
@@ -129,7 +129,7 @@ export default class ProfilePage extends Component {
             user_id: this.state.provider_id
         };
         console.log(providerInfo);
-        axios.post("https://thecommons-281818.appspot.com/list-user-reviews", providerInfo).then((res) => {
+        axios.post("https://thecommons-1.appspot.com/list-user-reviews", providerInfo).then((res) => {
             console.log(res.data);
             this.setState({ reviewsReqInfo: res.data });
         });
@@ -142,7 +142,7 @@ export default class ProfilePage extends Component {
           let userInfo = {
             user_id: this.state.user_id
           };
-          axios.post("https://thecommons-281818.appspot.com/list-user-services", userInfo)
+          axios.post("https://thecommons-1.appspot.com/list-user-services", userInfo)
             .then((response) => {
            
             this.setState({
@@ -154,7 +154,7 @@ export default class ProfilePage extends Component {
           let providerInfo = {
               user_id: this.state.provider_id,
           };
-          axios.post("https://thecommons-281818.appspot.com/list-user-services", providerInfo)
+          axios.post("https://thecommons-1.appspot.com/list-user-services", providerInfo)
             .then((response) => {
               
                 this.setState({

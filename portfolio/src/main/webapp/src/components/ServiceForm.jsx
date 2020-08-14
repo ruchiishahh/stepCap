@@ -56,7 +56,7 @@ class ServiceForm extends Component {
             service_requirements: this.state.service_requirements,
         }
         console.log(data);
-        axios.post("https://thecommons-281818.appspot.com/service-handler", data)
+        axios.post("https://thecommons-1.appspot.com/service-handler", data)
             .then((res) => {
                 //console.log(res.data);
                 //console.log(this);

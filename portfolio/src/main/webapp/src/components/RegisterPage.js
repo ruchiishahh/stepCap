@@ -167,7 +167,7 @@ onChangePassword(e) {
       phone: this.state.phone
     };
     console.log(registerInfo);
-    axios.post('https://thecommons-281818.appspot.com/backend/registered', registerInfo)
+    axios.post('https://thecommons-1.appspot.com/backend/registered', registerInfo)
        .then(res => {
            console.log(res.data);
            console.log(this.props);
@@ -209,12 +209,12 @@ onChangePassword(e) {
     e.preventDefault();
     console.log(this.state.loginUser);
     if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.loginUser)) {
-      axios.post("https://thecommons-281818.appspot.com/log", {username: "", email: this.state.loginUser, password: this.state.loginPassword}).then(response => {
+      axios.post("https://thecommons-1.appspot.com/log", {username: "", email: this.state.loginUser, password: this.state.loginPassword}).then(response => {
           console.log(response.data);
         this.handleLoginResponse(response.data);
       })
     } else if (/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(this.state.loginUser)) {
-      axios.post("https://thecommons-281818.appspot.com/log", {username: this.state.loginUser, email: "", password: this.state.loginPassword}).then(response => {
+      axios.post("https://thecommons-1.appspot.com/log", {username: this.state.loginUser, email: "", password: this.state.loginPassword}).then(response => {
           console.log(response.data);
 
             this.handleLoginResponse(response.data);
